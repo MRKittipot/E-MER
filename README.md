@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
@@ -70,3 +71,7 @@ This is one way to run your app — you can also run it directly from within And
 
 
 และได้ทำการดึง Google maps API
+=======
+# E-MER
+Project SE semester 2 Group 1 : Halffull-Team 
+>>>>>>> 1919219 (Initial commit)
