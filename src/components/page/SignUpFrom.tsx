@@ -5,6 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -72,14 +74,14 @@ const SignUp = () => {
 
         try {
             // Call your backend API endpoint for user registration
-            const response = await fetch('https://00ad-2405-9800-b641-80ac-ccd8-3ef2-7338-1db6.ngrok-free.app/signup', {
+            const response = await fetch('https://d304-2405-9800-b641-80ac-4dbc-87f5-9024-1c31.ngrok-free.app/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userData),
             });
-           
+
             if (response.ok) {
                 // Registration successful, handle accordingly (e.g., navigate to another screen)
                 console.log('User registered successfully');
@@ -205,6 +207,7 @@ const SignUp = () => {
                     <Text style={styles.labelTextInput}>Date of Birth</Text>
                     <TouchableOpacity onPress={showDatePicker}>
                         <TextInput style={styles.select_dropdown} value={format(dateOfBirth, 'dd/MM/yyyy')} editable={false} />
+                        <Icon name="event" size={20} color="#0068C6" style={{ position: 'absolute', right: 10, top: 15 }} />
                     </TouchableOpacity>
 
                     {show && (
@@ -218,6 +221,8 @@ const SignUp = () => {
                         />
                     )}
                 </View>
+
+
             </View>
             <View style={{ margin: 10 }}>
 
@@ -225,7 +230,7 @@ const SignUp = () => {
             <TouchableOpacity onPress={handleSignUp}
                 style={[styles.submitButton, { backgroundColor: isFormValid ? '#0068C6' : '#57A8E8' }]}
                 disabled={!isFormValid}
-                >
+            >
                 <Text style={styles.textButton}>CONTINUE</Text>
             </TouchableOpacity>
         </View>

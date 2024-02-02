@@ -1,20 +1,3 @@
-// const express = require('express');
-// const cors = require('cors');
-// const app = express();
-
-// app.use(cors());
-
-
-// app.get('/api', (req, res) => {
-//     return res.send('Hello World!');
-// });
-
-// app.listen(3000, () => {
-//     console.log('Server is running on port 3000');
-// });
-
-
-
 const express = require('express');
 const admin = require('firebase-admin');
 const serviceAccount = require("../emer1-29456-firebase-adminsdk-c8u1s-e3947fe53c.json");
