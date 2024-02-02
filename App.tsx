@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, {useEffect,useState} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -111,26 +112,30 @@ function App(): React.JSX.Element {
       </ScrollView>
     </SafeAreaView>
   );
+=======
+import React from "react";
+import{View , StyleSheet} from "react-native";
+import SignUp from "./src/components/page/SignUpFrom"
+
+const App = () => {
+  return(
+    <View style={styles.container}>
+      <SignUp/>
+    </View>
+  )
+>>>>>>> origin/testerror
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  container:{
+    flex:1,
+    backgroundColor:"#fff",
+    alignItems:"center",
+    justifyContent:"center",
+    margin:10,
   },
 });
+<<<<<<< HEAD
 
 export default App;
 */
@@ -171,3 +176,6 @@ const App = () => {
 
 export default App
 >>>>>>> origin/Pete
+=======
+export default App;
+>>>>>>> origin/testerror
