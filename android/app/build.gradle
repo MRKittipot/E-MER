@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.evm"
+    namespace "com.addvehiclepage"
     defaultConfig {
-        applicationId "com.evm"
+        applicationId "com.addvehiclepage"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -117,8 +117,4 @@ dependencies {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
-<<<<<<< HEAD
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-=======
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
->>>>>>> origin/Pete
