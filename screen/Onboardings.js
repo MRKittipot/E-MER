@@ -37,7 +37,7 @@ const CustomDot = ({ selected }) => {
 export class Onboardings extends Component {
   handleDone = () => {
     const { navigation } = this.props;
-    navigation.navigate('Home');
+    navigation.navigate('Signin');
   }
 
   render() {

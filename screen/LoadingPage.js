@@ -1,10 +1,9 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View, Button} from 'react-native';
 import {useEffect, useState} from 'react';
-import Signin from './SigninPage';
 
 
-const Loadingscreen = () => {
+const Loadingscreen = ({navigation}) => {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
@@ -14,12 +13,13 @@ const Loadingscreen = () => {
   if (isLoading) {
     return(
     <View style={style.container}>
-      <ActivityIndicator size="large" color="blue"/>
+      <ActivityIndicator size="large" color="#0068c6"/>
     </View>)
   }
   return (
     <View>
-       <Signin/>
+       <Text> Complete </Text>
+       <Button title="Go to sign in" color="#0068c6" onPress={()=>navigation.navigate("Signin")}/>
     </View>
   );
 };

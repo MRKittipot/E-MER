@@ -92,7 +92,7 @@ const SignUp = () => {
         } catch (error) {
             // Handle network or other errors
             console.log('Unexpected error occurred:', error);
-            console.error('Error during registration:', (error as Error).message);
+            console.error('Error during registration:', (error).message);
         }
 
         // Reset the form after submission if needed
