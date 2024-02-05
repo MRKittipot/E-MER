@@ -13,7 +13,7 @@ export default _signinWithGoogle = async () => {
         const {idToken} = await GoogleSignin.signIn();
         const googleCredentials = auth.GoogleAuthProvider.credential(idToken);
         auth().signInWithCredential(googleCredentials);
-        return userInfo;
+        return userInfo.idToken;
     }catch(error){
         console.log("==>Google Sign in :",error);
         return null
