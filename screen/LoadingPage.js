@@ -17,9 +17,13 @@ const Loadingscreen = ({navigation}) => {
     </View>)
   }
   return (
-    <View>
-       <Text> Complete </Text>
-       <Button title="Go to sign in" color="#0068c6" onPress={()=>navigation.navigate("Signin")}/>
+    <View style={{
+      alignContent:"center",
+      justifyContent:"center",
+      flex:1
+    }}>
+       <Text>Complete Register</Text>
+       <Button title="Go back to Sign in" color="#0068c6" onPress={()=>navigation.navigate("Signin")}/>
     </View>
   );
 };

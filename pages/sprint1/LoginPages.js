@@ -60,7 +60,7 @@ export default function LoginPages({navigation}) {
           }}>
           <GGSigninButton
             image={require('../../assets/google-logo.png')}
-            bg={'#e54545'}
+            bg={'#ffffff'}
             onPress={() => googleSignin()}
           />
           <Button onPress={() => navigation.navigate('HomePage')} />

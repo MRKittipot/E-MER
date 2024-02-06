@@ -7,7 +7,7 @@ import Splash from './screen/Splash';
 import Onboardings from './screen/Onboardings';
 import Home from './screen/Home';
 import SigninPage from './screen/SigninPage';
-import Signup from "./screen/Signup"
+import Signup from "./screen/SignUpFrom"
 import Loading from "./screen/LoadingPage"
 
 const Stack = createNativeStackNavigator();

@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "283829410001",
-    "project_id": "emer-b5c0e",
-    "storage_bucket": "emer-b5c0e.appspot.com"
+    "project_number": "775274243522",
+    "project_id": "evmprojectse",
+    "storage_bucket": "evmprojectse.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:283829410001:android:0c154b4f87ce498f514df0",
+        "mobilesdk_app_id": "1:775274243522:android:37f71489c90e2e3e06e25b",
         "android_client_info": {
-          "package_name": "com.emerproject"
+          "package_name": "com.evm"
         }
       },
       "oauth_client": [
         {
-          "client_id": "283829410001-30r20445cs9n0ji5gd18m70aqt2jhmmq.apps.googleusercontent.com",
+          "client_id": "775274243522-t72vvamjsuuvg0e7m0ciou367ejq191s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.evm",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "775274243522-4mkst1obhqfqjcbehj60euk76ocubpph.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBq66DC-yle1AV9tKjxyJDlRDM0Z5YFdyk"
+          "current_key": "AIzaSyD8Sqr45bdYLp86ZJSwZrIfJc_7XSjRvXc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "283829410001-g8lnafgv63tp56nau885quol22ik7ptp.apps.googleusercontent.com",
+              "client_id": "775274243522-4mkst1obhqfqjcbehj60euk76ocubpph.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

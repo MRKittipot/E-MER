@@ -1,5 +1,5 @@
 import {Link} from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -10,7 +10,23 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import GGLogoutbutton from '../src/components/Login/GoogleLogout';
+
+import GoogleonPress from '../config/firebase/GoogleSignin';
+
 const Signin = ({navigation}) => {
+  async function googleSignin() {
+    await GoogleonPress().then(data => {
+      if (!data) {
+        console.log('Error : No Data');
+        return;
+      }
+      console.log('=>Success', data);
+    });
+  }
+  const [Email,setEmail] = useState("")
+  const [Password,setPassword] = useState("")
+
   return (
     <View>
       <Image
@@ -29,9 +45,9 @@ const Signin = ({navigation}) => {
         Runs out? Call EV
       </Text>
       <Text style={style.Inputtitleemail}>Email</Text>
-      <TextInput keyboardType="email-address" style={style.Inputsection} />
+      <TextInput keyboardType="email-address" style={style.Inputsection} value={Email} onChangeText={(Email)=>{setEmail(Email)}}/>
       <Text style={style.Inputtitlepassword}>Password</Text>
-      <TextInput keyboardType="default" style={style.Inputsection} />
+      <TextInput keyboardType="default" style={style.Inputsection} value={Password} onChangeText={(Password)=>{setPassword(Password)}}/>
       <TouchableOpacity
         style={{
           backgroundColor: '#0068c6',
@@ -42,7 +58,7 @@ const Signin = ({navigation}) => {
           fontSize: 16,
           borderColor: '#0068c6',
           borderWidth: 1,
-        }}>
+        }} onPress={()=>onSubmit()}>
         <Text
           style={{
             color: 'white',
@@ -63,7 +79,8 @@ const Signin = ({navigation}) => {
           borderColor: '#A2A1A1',
           borderWidth: 1,
           fontSize: 16,
-        }}>
+        }}
+        onPress={()=>googleSignin()}>
         <Text
           style={{
             color: '#0068c6',
@@ -71,6 +88,10 @@ const Signin = ({navigation}) => {
             marginBottom: 10,
             marginTop: 10,
           }}>
+            <Image source={require('../assets/google-logo.png')} style={{
+              width:20,
+              height:20
+            }} />
           Sign in with Google
         </Text>
       </TouchableOpacity>
@@ -90,6 +111,7 @@ const Signin = ({navigation}) => {
           forget password
         </Text>
       </Text>
+      <GGLogoutbutton/>
     </View>
   );
 };
