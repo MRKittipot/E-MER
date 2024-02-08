@@ -1,5 +1,5 @@
 import {Link} from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 
 import GGLogoutbutton from '../src/components/Login/GoogleLogout';
-
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import GoogleonPress from '../config/firebase/GoogleSignin';
+import {auth} from "../config/Firebaseconfig"
 
 const Signin = ({navigation}) => {
   async function googleSignin() {
@@ -22,10 +23,22 @@ const Signin = ({navigation}) => {
         return;
       }
       console.log('=>Success', data);
+      navigation.navigate("Home")
     });
   }
-  const [Email,setEmail] = useState("")
-  const [Password,setPassword] = useState("")
+
+  async function OnhandleSignin(email, password) {
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        console.log('Sign in! Successful');
+        navigation.navigate("Home");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
 
   return (
     <View>
@@ -45,9 +58,24 @@ const Signin = ({navigation}) => {
         Runs out? Call EV
       </Text>
       <Text style={style.Inputtitleemail}>Email</Text>
-      <TextInput keyboardType="email-address" style={style.Inputsection} value={Email} onChangeText={(Email)=>{setEmail(Email)}}/>
+      <TextInput
+        keyboardType="email-address"
+        style={style.Inputsection}
+        value={Email}
+        onChangeText={Email => {
+          setEmail(Email);
+        }}
+      />
       <Text style={style.Inputtitlepassword}>Password</Text>
-      <TextInput keyboardType="default" style={style.Inputsection} value={Password} onChangeText={(Password)=>{setPassword(Password)}}/>
+      <TextInput
+        keyboardType="default"
+        style={style.Inputsection}
+        value={Password}
+        secureTextEntry
+        onChangeText={Password => {
+          setPassword(Password);
+        }}
+      />
       <TouchableOpacity
         style={{
           backgroundColor: '#0068c6',
@@ -55,43 +83,50 @@ const Signin = ({navigation}) => {
           marginRight: 28,
           marginTop: 18,
           borderRadius: 20,
-          fontSize: 16,
           borderColor: '#0068c6',
           borderWidth: 1,
-        }} onPress={()=>onSubmit()}>
+        }}
+        onPress={() => OnhandleSignin(Email, Password)}>
         <Text
           style={{
             color: 'white',
             alignSelf: 'center',
-            marginBottom: 10,
-            marginTop: 10,
+            marginBottom: 12,
+            marginTop: 12,
+            fontSize: 16,
           }}>
           Sign in
         </Text>
       </TouchableOpacity>
-      <Text style={style.section}>or</Text>
+      <Text style={{alignSelf: 'center', fontWeight: '300', marginTop: 10}}>
+        or
+      </Text>
       <TouchableOpacity
         style={{
           marginLeft: 28,
           marginRight: 28,
-          marginTop: 18,
+          marginTop: 10,
           borderRadius: 20,
           borderColor: '#A2A1A1',
           borderWidth: 1,
-          fontSize: 16,
+          backgroundColor:"rgb(255,255,255)"
         }}
-        onPress={()=>googleSignin()}>
+        onPress={() => googleSignin()}>
         <Text
           style={{
             color: '#0068c6',
             alignSelf: 'center',
-            marginBottom: 10,
             marginTop: 10,
+            marginBottom: 12,
+            fontSize: 16,
           }}>
-            <Image source={require('../assets/google-logo.png')} style={{
-              width:20,
-              height:20
-            }} />
+          <Image
+            source={require('../assets/google-logo.png')}
+            style={{
+              width: 20,
+              height: 20,
+            }}
+          />
           Sign in with Google
         </Text>
       </TouchableOpacity>
@@ -99,19 +134,29 @@ const Signin = ({navigation}) => {
         <Text style={style.section}>
           Don't Have an Account, Yet?
           <Text
-            style={style.section}
+            style={{
+              color: '#0068C6',
+              textDecorationLine: 'underline',
+              marginLeft: 5,
+            }}
             onPress={() => navigation.navigate('Signup')}>
             Sign Up
           </Text>
         </Text>
       </View>
-      <Text style={style.section}>
+      <Text style={{alignSelf: 'center', color: '#A1A2A2'}}>
         Can't Remember Password?
-        <Text style={style.section} onPress={() => navigation.navigate('Home')}>
-          forget password
+        <Text
+          style={{
+            color: '#0068C6',
+            textDecorationLine: 'underline',
+            marginLeft: 5,
+            fontWeight:"300"
+          }}
+          onPress={() => navigation.navigate('LoadingPage')}>
+          Forget password
         </Text>
       </Text>
-      <GGLogoutbutton/>
     </View>
   );
 };
@@ -127,7 +172,7 @@ const style = StyleSheet.create({
   section: {
     fontWeight: '300',
     alignSelf: 'center',
-    marginTop:18
+    marginTop: 18,
   },
   Inputtitleemail: {
     marginLeft: 27,
@@ -142,10 +187,12 @@ const style = StyleSheet.create({
   Inputsection: {
     marginLeft: 27,
     marginRight: 27,
-    borderColor: '#A2A1A1',
+    borderColor: "#A1A2A2",
     borderWidth: 1,
     borderRadius: 20,
-    paddingLeft:20
+    paddingLeft: 20,
+    backgroundColor:"rgb(255,255,255)",
+    elevation:4
   },
 });
 

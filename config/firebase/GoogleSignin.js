@@ -1,7 +1,6 @@
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth'
 
-
 export default GoogleonPress = async () => {
     try{
         GoogleSignin.configure({

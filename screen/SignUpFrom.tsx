@@ -1,4 +1,7 @@
-import React, {useState, useCallback} from 'react';
+import {auth} from '../config/Firebaseconfig';
+import {ref, push, set} from 'firebase/database';
+import React, {useState} from 'react';
+import {db} from '../config/Firebaseconfig';
 import {
   View,
   TextInput,
@@ -10,17 +13,19 @@ import {
 import SelectDropdown from 'react-native-select-dropdown';
 import * as SplashScreen from 'expo-splash-screen';
 import axios from 'axios';
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
-//import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPasswordBorderColor, setConfirmPasswordBorderColor] = useState('#A2A1A1');
+  const [confirmPasswordBorderColor, setConfirmPasswordBorderColor] =
+    useState('#A2A1A1');
   const [sex, setSex] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [show, setShow] = useState(false);
@@ -72,8 +77,8 @@ const SignUp = ({navigation}) => {
     ) {
       console.log('Please fill in all required fields');
       return;
-    }else{
-      navigation.navigate("LoadingPage")
+    } else {
+      navigation.navigate('LoadingPage');
     }
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -93,31 +98,31 @@ const SignUp = ({navigation}) => {
     // Prepare data for the API request
     const userData = {
       name,
-      email,
-      password,
       sex,
       dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
     };
 
     try {
       // Call your backend API endpoint for user registration
-      const response = await fetch(
-        'https://120a-2405-9800-b641-80ac-24f2-585d-f7c3-91b4.ngrok-free.app/signup',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-        },
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
       );
 
-      if (response.ok) {
-        // Registration successful, handle accordingly (e.g., navigate to another screen)
+      if (response.user) {
+        const newUserRef = push(ref(db, 'users'));
+        set(newUserRef, userData)
+          .then(() => {
+            console.log('Data pushed to Firebase successfully');
+          })
+          .catch(error => {
+            console.error('Error pushing data to Firebase: ', error);
+          });
         console.log('User registered successfully');
       } else {
         // Handle errors from the server
-        console.error('Registration failed:', await response.text());
+        console.error('Registration failed:');
       }
     } catch (error) {
       // Handle network or other errors
@@ -138,7 +143,6 @@ const SignUp = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Icon name="left" size={20} color="black" style={{}}/>
       <Text style={styles.title}>Create Account</Text>
       <Text
         style={{
@@ -194,7 +198,10 @@ const SignUp = ({navigation}) => {
       <View style={styles.inputBox}>
         <Text style={styles.labelTextInput}>Password</Text>
         <TextInput
-          style={[styles.input, {borderColor: passwordError ? 'red' : '#A1A2A2'}]}
+          style={[
+            styles.input,
+            {borderColor: passwordError ? 'red' : '#A1A2A2'},
+          ]}
           secureTextEntry
           value={password}
           onChangeText={text => {
@@ -283,17 +290,17 @@ const SignUp = ({navigation}) => {
         </View>
         <View style={styles.dateOfBirth}>
           <Text style={styles.labelTextInput}>Date of Birth</Text>
-          <TouchableOpacity onPress={showDatePicker}>
+          <TouchableOpacity onPress={showDatePicker} style={{position:"relative"}}>
             <TextInput
               style={styles.select_dropdown}
               value={format(dateOfBirth, 'dd/MM/yyyy')}
               editable={false}
             />
             <Icon
-              name="calendar"
-              size={20}
+              name="event"
+              size={30}
               color="#0068C6"
-              style={{position: 'absolute', right: 10, top: 15}}
+              style={{position: 'absolute',right:30, top:10}}
             />
           </TouchableOpacity>
 
@@ -335,9 +342,10 @@ const styles = StyleSheet.create({
     borderColor: '#A1A2A2',
     borderWidth: 1,
     marginBottom: 0,
-    paddingLeft: 8,
-    borderRadius: 30,
+    paddingLeft: 20,
+    borderRadius: 20,
     backgroundColor: '#ffffff',
+    elevation:4
   },
   title: {
     fontSize: 24,
@@ -346,10 +354,9 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     backgroundColor: '#0068C6',
-    padding: 10,
-    margin: 15,
-    borderRadius: 30,
-    height: '9%',
+    borderRadius: 20,
+    paddingTop:10,
+    paddingBottom:10
   },
   textButton: {
     color: 'white',
@@ -373,9 +380,9 @@ const styles = StyleSheet.create({
   },
   select_dropdown: {
     height: 50,
-    borderColor: 'gray',
+    borderColor: '#A1A2A2',
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 20,
     backgroundColor: '#ffffff',
     width: '90%',
     textAlign: 'center',
