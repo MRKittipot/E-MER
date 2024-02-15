@@ -38,6 +38,18 @@ app.post('/signup', (req, res) => {
   return res.status(200).json({ success: true });
 });
 
+app.get("login",(req,res)=>{
+  const  userEmail=req.query.userEmail;
+  
+  let userData={};
+  db.ref(`/users/${userEmail}`).once("value")
+  .then((snapshot)=> {
+      console.log(snapshot.val())
+      userData= snapshot.val()
+      res.send(userData);
+  })
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
