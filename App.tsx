@@ -9,22 +9,24 @@ import Home from './screen/Home';
 import SigninPage from './screen/SigninPage';
 import Signup from "./screen/SignUpFrom"
 import Loading from "./screen/LoadingPage"
-
+// import Tab_menu from '../E-MER/src/components/Menu_naigation/Tab_menu'
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar translucent backgroundColor="transparent" />
+      
       <Stack.Navigator
         initialRouteName="Splash"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="Onboardings" component={Onboardings} />
-        <Stack.Screen name="Signin" component={SigninPage} />
+        screenOptions={{headerShown: false}} >
+        {/* <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="Onboardings" component={Onboardings} /> */}
+        {/* <Stack.Screen name="Onboardings" component={Onboardings} /> */}
+        {/* <Stack.Screen name="Signin" component={SigninPage} /> */}
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name ="LoadingPage" component={Loading}/>
+        {/* <Stack.Screen name="Signup" component={Signup} /> */}
+        {/* <Stack.Screen name ="LoadingPage" component={Loading}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

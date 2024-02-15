@@ -1,16 +1,13 @@
-﻿import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import GGLogoutbutton from '../src/components/Login/GoogleLogout';
+﻿import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu';
 
 export default class Home extends Component {
   render() {
     return (
-      <View style={{flex:1, justifyContent:'center', alignItems:"center"}}>
-        <Text style={{fontWeight:'bold', fontSize:24, color:'#000'}}> HomePage </Text>
-        <GGLogoutbutton/>
-      </View>
-    )
+      <Tabs_menu />
+    );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

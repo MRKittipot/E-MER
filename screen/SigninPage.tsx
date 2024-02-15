@@ -15,6 +15,7 @@ import {signInWithEmailAndPassword} from 'firebase/auth';
 import GoogleonPress from '../config/firebase/GoogleSignin';
 import {auth} from "../config/Firebaseconfig"
 
+import Tab_menu from "../src/components/Menu_naigation/Tab_menu"
 const Signin = ({navigation}) => {
   async function googleSignin() {
     await GoogleonPress().then(data => {
