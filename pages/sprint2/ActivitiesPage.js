@@ -1,27 +1,61 @@
-﻿import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+﻿import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React from 'react'
+import History from '../../src/components/ActivityPage/History'
+import PaymentHistory from '../../src/components/ActivityPage/PaymentHistory'
 
-// Defining the ActivitiesPage functional component
-export default function ActivitiesPage() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>
-                Panachai
-            </Text>
-        </View>
-    );
+const ActivityPage = () => {
+  return (
+    <ScrollView style={styles.ActivityPage}>
+      <Text style={styles.Head}>History</Text>
+      <History />
+
+      <Text style={styles.Head}>Payment History</Text>
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+      <PaymentHistory />
+    </ScrollView>
+  )
 }
 
-// Defining styles using StyleSheet.create
+export default ActivityPage
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    text: {
-        fontWeight: "bold",
-        fontSize: 30,
-        color: 'black'
-    }
-});
+  ActivityPage: {
+    margin: "7%"
+  },
+  Head: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+
+
+})
