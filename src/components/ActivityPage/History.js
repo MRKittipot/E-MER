@@ -5,7 +5,7 @@ const History = ({ navigation }) => {
     return (
         <View style={styles.History}>
             <View style={styles.CardHistory}>
-                <Image source={require('../Images/CO2.png')} style={styles.ActtvityImage} />
+                <Image source={require('../../../img/CO2.png')} style={styles.ActtvityImage} />
                 <View>
                     <Text style={styles.DetailHistory}>{0.01} Kgly</Text>
                     <Text style={styles.DetailHistory}>CO2</Text>
@@ -13,7 +13,7 @@ const History = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.CardHistory}>
-                <Image source={require('../Images/Tree.png')} style={styles.ActtvityImage} />
+                <Image source={require('../../../img/Tree.png')} style={styles.ActtvityImage} />
                 <View style={styles.DetailHistory}>
                     <Text style={styles.DetailHistory}>{0.61} Treesly</Text>
                     <Text style={styles.DetailHistory}>Tree</Text>
