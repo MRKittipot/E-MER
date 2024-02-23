@@ -8,7 +8,7 @@ const SignIn = () => {
   return (
     <View>
         <View style = {{ paddingTop: 30, alignItems: 'center'}}>
-            <Image source = {require('../img/logo_emer.png')} style ={{ width: 120, height: 180}} />
+            <Image source = {require('../images/logo_emer-transformed.png')} style ={{ width: 120, height: 180}} />
         </View>
         <View style = {{marginTop: 15,
                         justifyContent : 'center',
@@ -71,7 +71,7 @@ const SignIn = () => {
                                                             paddingHorizontal: 60,
                                                             paddingVertical: 10,
                                                             marginTop: 5}} >
-                    <Image source = {require('../img/Google.png')} style ={{ width: 33, height: 33}} />
+                    <Image source = {require('../images/Google.png')} style ={{ width: 33, height: 33}} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress= {() => {}} style= {{borderColor: '#A2A1A1',
                                                             borderWidth: 1,
@@ -79,7 +79,7 @@ const SignIn = () => {
                                                             paddingHorizontal: 60,
                                                             paddingVertical: 5,
                                                             marginTop: 5}} >
-                    <Image source = {require('../img/Facebook.png')} style ={{ width: 40, height: 40}} />
+                    <Image source = {require('../images/Facebook.png')} style ={{ width: 40, height: 40}} />
                 </TouchableOpacity>
             </View>   
             <View style = {{justifyContent : 'center',
