@@ -3,26 +3,28 @@ import React from 'react'
 
 const PaymentHistory = () => {
   return (
-    <View style={styles.Payment}>
+    // <View style={styles.elevation}>
+      <View style={[styles.Payment, styles.elevation]}>
 
-      <View style={styles.DateCardPayment}>
-        <Text style={styles.DatePayment}>{"Mar"}</Text>
-        <Text style={styles.DatePayment}>{14}</Text>
-      </View>
-
-      <View style={styles.CardPayment}>
-        <View style={styles.NamePay}>
-          <Text style={styles.DetailPayment}>Name: </Text>
-          <Text style={{ fontSize: 16, color: "white", fontWeight: 'bold', color: "black" }}>{"Panachai Likhitpanyarat"}</Text>
+        <View style={styles.DateCardPayment}>
+          <Text style={styles.DatePayment}>{"Mar"}</Text>
+          <Text style={styles.DatePayment}>{14}</Text>
         </View>
-        <Text style={styles.DetailPayment}>Date: {17 + " " + "กุมภาพันธ์" + " " + 2567}</Text>
-        <View style={styles.ValuePay}>
-          <Text style={styles.DetailPayment}>Battery: {30 + "%"}</Text>
-          <Text style={{ fontSize: 16, color: "#0068C6" }}>Price {500} Bath</Text>
-        </View>
-      </View>
 
-    </View>
+        <View style={styles.CardPayment}>
+          <View style={styles.NamePay}>
+            <Text style={styles.DetailPayment}>Name: </Text>
+            <Text style={{ fontSize: 16, color: "white", fontWeight: 'bold', color: "black" }}>{"Panachai Likhitpanyarat"}</Text>
+          </View>
+          <Text style={styles.DetailPayment}>Date: {17 + " " + "กุมภาพันธ์" + " " + 2567}</Text>
+          <View style={styles.ValuePay}>
+            <Text style={styles.DetailPayment}>Battery: {30 + "%"}</Text>
+            <Text style={{ fontSize: 16, color: "#0068C6" }}>Price {500} Bath</Text>
+          </View>
+        </View>
+
+      </View>
+    // </View>
   )
 }
 
@@ -64,22 +66,18 @@ const styles = StyleSheet.create({
   Payment: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: "7%",
+    // marginTop: "1%",
 
     // backgroundColor: 'red',
     height: 100,
-    borderRadius: 11,
-    borderColor: "black",
-    borderWidth: 1,
+    // borderRadius: 11,
+    // borderColor: "black",
+    // borderWidth: 1,
 
-    // shadowColor: "black",
-    // shadowOffset: {
-    //   width: 6,
-    //   height: 6
-    // },
-    // shadowOpacity: 0.6,
-    // shadowRadius: 4,
-    // elevation: 1
-    
-  }
+  },
+  elevation: {
+    marginTop: "7%",
+    shadowColor: 'black',
+    elevation: 2,
+  },
 })
