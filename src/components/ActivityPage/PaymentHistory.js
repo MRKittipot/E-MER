@@ -3,12 +3,12 @@ import React from 'react'
 
 const PaymentHistory = () => {
   return (
-    // <View style={styles.elevation}>
-      <View style={[styles.Payment, styles.elevation]}>
+    <View style={styles.elevation}>
+      <View style={styles.Payment}>
 
         <View style={styles.DateCardPayment}>
-          <Text style={styles.DatePayment}>{"Mar"}</Text>
           <Text style={styles.DatePayment}>{14}</Text>
+          <Text style={styles.DatePayment}>{"Mar"}</Text>
         </View>
 
         <View style={styles.CardPayment}>
@@ -19,12 +19,12 @@ const PaymentHistory = () => {
           <Text style={styles.DetailPayment}>Date: {17 + " " + "กุมภาพันธ์" + " " + 2567}</Text>
           <View style={styles.ValuePay}>
             <Text style={styles.DetailPayment}>Battery: {30 + "%"}</Text>
-            <Text style={{ fontSize: 16, color: "#0068C6" }}>Price {500} Bath</Text>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: "#0068C6" }}>Price {500} Bath</Text>
           </View>
         </View>
 
       </View>
-    // </View>
+    </View >
   )
 }
 
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   },
   DatePayment: {
     fontSize: 16,
+    fontWeight: 'bold',
     alignSelf: 'center',
     color: 'white',
   },
@@ -66,18 +67,13 @@ const styles = StyleSheet.create({
   Payment: {
     flexDirection: 'row',
     alignItems: 'center',
-    // marginTop: "1%",
-
-    // backgroundColor: 'red',
-    height: 100,
-    // borderRadius: 11,
-    // borderColor: "black",
-    // borderWidth: 1,
-
-  },
-  elevation: {
     marginTop: "7%",
-    shadowColor: 'black',
-    elevation: 2,
+
+    height: 100,
+    borderWidth: 1,
+    borderColor: "#A2A1A1",
+    borderRadius: 11,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    elevation: 4,
   },
 })
