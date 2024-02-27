@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
-import History from '../components/History'
-import PaymentHistory from '../components/PaymentHistory'
+import History from '../../src/components/ActivityPage/History'
+import PaymentHistory from '../../src/components/ActivityPage/PaymentHistory'
 
 const ActivityPage = () => {
   return (
