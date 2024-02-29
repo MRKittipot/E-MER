@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
 // Defining the ActivitiesPage functional component
 export default function ActivitiesPage() {
     return (

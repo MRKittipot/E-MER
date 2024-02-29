@@ -1,6 +1,6 @@
 ﻿import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions, Linking, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions, Linking, Image } from 'react-native';
+import Icon, { Button } from 'react-native-vector-icons/Ionicons';
 
 const { height, width } = Dimensions.get('window');
 
@@ -14,18 +14,44 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
   };
 
   return (
-    <Animated.View style={[styles.detailContainer, { height: 300, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
+    <Animated.View style={[styles.detailContainer, { height: 350, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
       <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
         <Icon name="close-circle" size={30} color="red" />
       </TouchableOpacity>
       <View style={styles.detailContent}>
-        <Text style={styles.detailTitle}>{selectedMarker.title}</Text>
-        <Text>{selectedMarker.description}</Text>
+        <Image style={styles.imageDetail} source={require('../../../images/picON1.png')} />
+        <View style={styles.detailContentData}>
+          <Text style={styles.detailTitle}>{selectedMarker.title}</Text>
+          <Text>{selectedMarker.description}</Text>
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonStyles} onPress={handleNavigation}>
-          <Text style={styles.buttonText}>Go</Text>
-        </TouchableOpacity>
+
+      <View style={styles.chargerContainer}>
+        {selectedMarker.charger.map((charger, index) => (
+          <Text key={index} style={styles.chargerDetail}>{charger}</Text>
+        ))}
+      </View>
+
+      {/*statusContainer */}
+      <View style={styles.statusContainer}>
+        <View style={styles.statusContent}>
+          <Text style={{ fontWeight: 'bold' }}>Facilities Available: </Text>
+          <Text>{selectedMarker.facilities.join(', ')}</Text>
+        </View>
+        <View style={styles.statusContent}>
+          <Text style={{ fontWeight: 'bold' }}>Distance: </Text>
+          <Text>{selectedMarker.distance}</Text>
+        </View>
+        <View style={styles.statusContent}>
+          <Text style={{ fontWeight: 'bold' }}>Availability: </Text>
+          <Text>{selectedMarker.availability}</Text>
+        </View>
+      </View>
+
+      <View>
+        <Button style={styles.buttonStyle}>
+          g
+        </Button>
       </View>
     </Animated.View>
   );
@@ -44,34 +70,54 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   closeButton: {
-    alignSelf: 'flex-end',
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   detailContent: {
-    width: width * 0.8,
-    marginTop: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  detailContentData: {
+    marginLeft: 20,
+    flex: 1,
   },
   detailTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: "#000"
+    color: "#000",
+    marginBottom: 5,
+    width: '75%',
   },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 70,
-    left: (width - width * 0.8) / 2,
-    width: width * 0.8,
-    alignItems: 'center',
-  },
-  buttonStyles: {
-    backgroundColor: '#0068C9',
-    paddingVertical: 12,
-    paddingHorizontal: 42,
+  imageDetail: {
+    width: 50,
+    height: 50,
     borderRadius: 25,
   },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 18,
+  statusContainer: {
+    marginTop: 30,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  statusContent: {
+    // alignItems: 'center',
+    // marginBottom: 5,
+  },
+  chargerContainer: {
+    marginTop: 20,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  chargerDetail: {
+    marginHorizontal: 42,
+    fontWeight: 'bold'
+  },
+  buttonStyle:{
+    backgroundColor:"#0068C9"
   }
 });
 

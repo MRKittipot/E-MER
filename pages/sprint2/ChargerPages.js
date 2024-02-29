@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { markersData } from '../../src/Data/markersData';
 import MarkerDetail from '../../src/components/DetailsMarker/MarkerDetail';
+import SearchBar from '../../src/components/SearchBar/SearchBar';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -63,6 +64,10 @@ const ChargerPages = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.searchBox}>
+
+        <SearchBar />
+      </View>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -92,9 +97,10 @@ const ChargerPages = () => {
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
-          slideUpHeight={SLIDE_UP_HEIGHT} // Pass SLIDE_UP_HEIGHT as a prop
+          slideUpHeight={SLIDE_UP_HEIGHT}
         />
       )}
+
     </View>
   );
 };
@@ -113,6 +119,10 @@ const styles = StyleSheet.create({
     borderColor: '#0068C9',
     padding: 5,
   },
+  searchBox:{
+    
+  }
+
 });
 
 export default ChargerPages;
