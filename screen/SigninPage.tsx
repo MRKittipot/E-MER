@@ -1,5 +1,6 @@
 import {Link} from '@react-navigation/native';
 import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
@@ -11,11 +12,12 @@ import {
 } from 'react-native';
 
 import GGLogoutbutton from '../src/components/Login/GoogleLogout';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {sendPasswordResetEmail, signInWithEmailAndPassword} from 'firebase/auth';
 import GoogleonPress from '../config/firebase/GoogleSignin';
 import {auth} from "../config/Firebaseconfig"
-
-import Tab_menu from "../src/components/Menu_naigation/Tab_menu"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { firebase } from '@react-native-firebase/auth';
+import { useUserAuth } from '../context/userContext';
 const Signin = ({navigation}) => {
   async function googleSignin() {
     await GoogleonPress().then(data => {
@@ -32,15 +34,30 @@ const Signin = ({navigation}) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('Sign in! Successful');
+        console.log("Email :",email);
+        console.log("Password :",password);
         navigation.navigate("Home");
       })
       .catch(error => {
         console.error(error);
+        setValidation(false)
       });
   }
+
+  async function storeuserdata(userdata){
+    try {
+      await AsyncStorage.setItem('@userData', JSON.stringify(userdata));
+    } catch (error) {
+      console.log("Error storing user data: ", error);
+    }
+  }
+  const {user} = useUserAuth();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
-
+  const [Validation, setValidation] = useState(true);
+  if (user) {
+    navigation.navigate("Home")
+  }
   return (
     <View>
       <Image
@@ -61,7 +78,10 @@ const Signin = ({navigation}) => {
       <Text style={style.Inputtitleemail}>Email</Text>
       <TextInput
         keyboardType="email-address"
-        style={style.Inputsection}
+        style={[style.Inputsection,{
+          borderColor: Validation ? "#A1A2A2" : "red",
+          color: Validation ? "#A1A2A2" : "red"
+        }]}
         value={Email}
         onChangeText={Email => {
           setEmail(Email);
@@ -70,13 +90,17 @@ const Signin = ({navigation}) => {
       <Text style={style.Inputtitlepassword}>Password</Text>
       <TextInput
         keyboardType="default"
-        style={style.Inputsection}
+        style={[style.Inputsection,{
+          borderColor: Validation ? "#A1A2A2" : "red",
+          color: Validation ? "#A1A2A2" : "red"
+        }]}
         value={Password}
         secureTextEntry
         onChangeText={Password => {
           setPassword(Password);
         }}
       />
+      <Text style={{color: Validation ? "white":"red"}}>Email and Password doesn't correct</Text>
       <TouchableOpacity
         style={{
           backgroundColor: '#0068c6',
@@ -87,7 +111,7 @@ const Signin = ({navigation}) => {
           borderColor: '#0068c6',
           borderWidth: 1,
         }}
-        onPress={() => OnhandleSignin(Email, Password)}>
+        onPress={() => OnhandleSignin(Email,Password)}>
         <Text
           style={{
             color: 'white',
@@ -134,6 +158,7 @@ const Signin = ({navigation}) => {
       <View style={{display: 'flex'}}>
         <Text style={style.section}>
           Don't Have an Account, Yet?
+          <Text style={{color:"white"}}>""</Text>
           <Text
             style={{
               color: '#0068C6',
@@ -147,17 +172,18 @@ const Signin = ({navigation}) => {
       </View>
       <Text style={{alignSelf: 'center', color: '#A1A2A2'}}>
         Can't Remember Password?
+        <Text style={{color:"white"}}>""</Text>
         <Text
           style={{
             color: '#0068C6',
             textDecorationLine: 'underline',
-            marginLeft: 5,
-            fontWeight:"300"
+            fontWeight:"300",
           }}
-          onPress={() => navigation.navigate('LoadingPage')}>
+          onPress={() => navigation.navigate('ForgetPage')}>
           Forget password
         </Text>
       </Text>
+      <Text onPress={()=>navigation.navigate("Profile")}>Profile page</Text>
     </View>
   );
 };
@@ -195,6 +221,7 @@ const style = StyleSheet.create({
     backgroundColor:"rgb(255,255,255)",
     elevation:4
   },
+  
 });
 
 export default Signin;

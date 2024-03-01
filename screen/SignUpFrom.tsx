@@ -16,7 +16,7 @@ import axios from 'axios';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 const SignUp = ({navigation}) => {
@@ -143,6 +143,7 @@ const SignUp = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Icon name="chevron-left" size={30} color="#000000" onPress={()=>navigation.goBack()} style={{position:"relative",left:-10}}/>
       <Text style={styles.title}>Create Account</Text>
       <Text
         style={{
@@ -297,9 +298,9 @@ const SignUp = ({navigation}) => {
               editable={false}
             />
             <Icon
-              name="event"
+              name="calendar"
               size={30}
-              color="#0068C6"
+              color="#a2a1a1"
               style={{position: 'absolute',right:30, top:10}}
             />
           </TouchableOpacity>
@@ -321,7 +322,7 @@ const SignUp = ({navigation}) => {
         onPress={handleSignUp}
         style={[
           styles.submitButton,
-          {backgroundColor: isFormValid ? '#0068C6' : '#57A8E8'},
+          {backgroundColor: isFormValid ? '#57a8e8' : '#0068c6'},
         ]}
         disabled={!isFormValid}>
         <Text style={styles.textButton}>CONTINUE</Text>
@@ -332,10 +333,10 @@ const SignUp = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
-    width: '100%',
-    marginTop: 20,
+    //flex:1
+    marginTop: 50,
+    marginLeft:28,
+    marginRight:28
   },
   input: {
     height: 50,
@@ -351,6 +352,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 5,
     fontWeight: 'bold',
+    color:"#333333"
   },
   submitButton: {
     backgroundColor: '#0068C6',
@@ -442,4 +444,5 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
 });
+
 export default SignUp;

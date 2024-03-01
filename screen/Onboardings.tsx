@@ -3,6 +3,7 @@ import { StatusBar, StyleSheet, View, Dimensions, TouchableOpacity, Text } from 
 import { Image } from 'react-native-animatable';
 import Onboarding from 'react-native-onboarding-swiper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const { width, height } = Dimensions.get('window');
 
