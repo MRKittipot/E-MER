@@ -10,10 +10,41 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAnt from 'react-native-vector-icons/AntDesign';
+import {useUserAuth} from '../context/userContext';
+import {ref, onValue} from 'firebase/database';
+import {auth as a , db} from '../config/Firebaseconfig';
+import {signOut} from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
+  const [userData, setUserData] = useState(null);
+  const {user,provider} = useUserAuth();
+
+  const handleLogout = async () =>{
+    try {
+      console.log(provider);
+      if (provider == 'password') {
+        await signOut(a);
+      } else {
+        await auth().signOut();
+      }
+      console.log('User has been signed out');
+      navigation.navigate('Signin');
+    } catch (error) {
+      console.log(error);
+      navigation.navigate('Signin');
+    }
+  }
+
+  useEffect(() => {
+    console.log(JSON.stringify(user).length);
+    if (JSON.stringify(user).length == 2) {
+      navigation.navigate('Signin');
+    }
+  }, [user]);
+
   return (
     <View style={style.page}>
       <Text style={style.header}>My Account</Text>
@@ -31,26 +62,26 @@ const Profile = ({navigation}) => {
       <View style={style.optioncard}>
         <View style={style.detailcard}>
           <IconAnt name="car" size={30} color="#65676b" />
-          <Text style={{color:"black"}}>My Vehicle</Text>
+          <Text style={{color: 'black'}}>My Vehicle</Text>
           <Icon name="chevron-right" size={30} color="#65676b" />
         </View>
         <View style={style.detailcard}>
           <Icon name="credit-card" size={30} color="#65676b" />
-          <Text style={{color:"black"}}>Payment Method</Text>
+          <Text style={{color: 'black'}}>Payment Method</Text>
           <Icon name="chevron-right" size={30} color="#65676b" />
         </View>
         <View style={style.detailcard}>
           <Icon name="gift" size={30} color="#65676b" />
-          <Text style={{color:"black"}}>My Coupons</Text>
+          <Text style={{color: 'black'}}>My Coupons</Text>
           <Icon name="chevron-right" size={30} color="#65676b" />
         </View>
         <View style={style.detailcard}>
           <Icon name="settings" size={30} color="#65676b" />
-          <Text style={{color:"black"}}>My Setting</Text>
+          <Text style={{color: 'black'}}>My Setting</Text>
           <Icon name="chevron-right" size={30} color="#65676b" />
         </View>
       </View>
-      <TouchableOpacity style={style.signoutcard}>
+      <TouchableOpacity style={style.signoutcard} onPress={handleLogout}>
         <Text style={style.signouttext}>
           <Icon
             name="log-out"
@@ -100,8 +131,6 @@ const style = StyleSheet.create({
     height: 100,
     width: 100,
     alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
   },
   profilename: {
     alignSelf: 'center',

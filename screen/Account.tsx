@@ -2,18 +2,42 @@ import React from 'react';
 import {Text, Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useState, useEffect} from 'react';
-// import { useUserAuth } from '../context/userContext';
+import {auth as a} from "../config/Firebaseconfig"
+import {signOut} from "firebase/auth"
+import { useUserAuth } from '../context/userContext';
+import auth from "@react-native-firebase/auth"
+
 const Account = ({navigation}) => {
   const [Firstname, setFirstname] = useState('Manoj');
   const [Lastname, setLastname] = useState('Kajornroj');
   const [Email, setEmail] = useState('Manoj@gmail');
   const [DateofBirth, setDateofBirth] = useState('11 Dec 1995');
   const [Phonenumber, setPhonenumber] = useState('0851825708');
-  // const {user} = useUserAuth();
 
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
+  const {user,provider} = useUserAuth();
+
+  const handleLogout = async () =>{
+    try {
+      console.log(provider);
+      if (provider == 'password') {
+        await signOut(a);
+      } else {
+        await auth().signOut();
+      }
+      console.log('User has been signed out');
+      navigation.navigate('Signin');
+    } catch (error) {
+      console.log(error);
+      navigation.navigate('Signin');
+    }
+  }
+
+  useEffect(() => {
+    console.log(JSON.stringify(user).length);
+    if (JSON.stringify(user).length == 2) {
+      navigation.navigate('Signin');
+    }
+  }, [user]);
 
   return (
     <View style={style.page}>
@@ -71,7 +95,7 @@ const Account = ({navigation}) => {
               <View style={style.labelcard}>
                 <Text>Mail</Text>
               </View>
-              <Text style={style.textinf}>{}</Text>
+              <Text style={style.textinf}>{Email}</Text>
             </View>
           </View>
           <Icon
@@ -116,7 +140,7 @@ const Account = ({navigation}) => {
           />
         </View>
       </View>
-      <TouchableOpacity style={style.signoutcard}>
+      <TouchableOpacity style={style.signoutcard} onPress={()=>handleLogout()}>
         <Text style={style.signouttext}>
           <Icon
             name="log-out"
@@ -167,8 +191,6 @@ const style = StyleSheet.create({
     height: 100,
     width: 100,
     alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
   },
   optioncard: {
     borderRadius: 10,

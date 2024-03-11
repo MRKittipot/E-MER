@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   Modal,
+  Alert,
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import * as SplashScreen from 'expo-splash-screen';
@@ -34,6 +35,7 @@ const SignUp = ({navigation}) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(false);
+  const [modalVisible,setmodalVisible] = useState(false)
   const Gender = ['Male', 'Female', 'Other'];
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
@@ -77,9 +79,7 @@ const SignUp = ({navigation}) => {
     ) {
       console.log('Please fill in all required fields');
       return;
-    } else {
-      navigation.navigate('LoadingPage');
-    }
+    }  
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
@@ -90,13 +90,14 @@ const SignUp = ({navigation}) => {
     }
 
     if (password !== confirmPassword) {
-      console.log('Password and Confirm Password do not match');
+      Alert.alert('Password and Confirm Password do not match',"Please try again");
       setConfirmPasswordBorderColor('red');
       return;
     }
 
     // Prepare data for the API request
     const userData = {
+      email,
       name,
       sex,
       dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
@@ -120,14 +121,17 @@ const SignUp = ({navigation}) => {
             console.error('Error pushing data to Firebase: ', error);
           });
         console.log('User registered successfully');
+        navigation.navigate('LoadingPage');
       } else {
         // Handle errors from the server
         console.error('Registration failed:');
       }
     } catch (error) {
-      // Handle network or other errors
-      console.log('Unexpected error occurred:', error);
-      console.error('Error during registration:', error.message);
+      if (error.message.includes("email-already-in-use") || error.message.includes("auth/invalid-email")){
+        Alert.alert("Mail already in used","Please try again with your new mail")
+      }else{
+        Alert.alert(`message error : ${error.message}`)
+      }
     }
 
     // Reset the form after submission if needed
@@ -297,12 +301,6 @@ const SignUp = ({navigation}) => {
               value={format(dateOfBirth, 'dd/MM/yyyy')}
               editable={false}
             />
-            <Icon
-              name="calendar"
-              size={30}
-              color="#a2a1a1"
-              style={{position: 'absolute',right:30, top:10}}
-            />
           </TouchableOpacity>
 
           {show && (
@@ -333,7 +331,7 @@ const SignUp = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    //flex:1
+    flex:1,
     marginTop: 50,
     marginLeft:28,
     marginRight:28
@@ -388,8 +386,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '90%',
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: 'bold',
+    color:"blue",
+
   },
   sex: {
     width: '55%',

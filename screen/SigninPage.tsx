@@ -1,6 +1,6 @@
 import {Link} from '@react-navigation/native';
-import React, {useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState,useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {
   View,
   StyleSheet,
@@ -12,21 +12,26 @@ import {
 } from 'react-native';
 
 import GGLogoutbutton from '../src/components/Login/GoogleLogout';
-import {sendPasswordResetEmail, signInWithEmailAndPassword} from 'firebase/auth';
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import GoogleonPress from '../config/firebase/GoogleSignin';
-import {auth} from "../config/Firebaseconfig"
+import {auth} from '../config/Firebaseconfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { firebase } from '@react-native-firebase/auth';
+import {firebase} from '@react-native-firebase/auth';
 import { useUserAuth } from '../context/userContext';
 const Signin = ({navigation}) => {
+  
+  const {user} = useUserAuth()
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
-        console.log('Error : No Data');
+        console.log('Error : No Datas');
         return;
       }
       console.log('=>Success', data);
-      navigation.navigate("Home")
+      navigation.navigate('Profile');
     });
   }
 
@@ -34,30 +39,28 @@ const Signin = ({navigation}) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('Sign in! Successful');
-        console.log("Email :",email);
-        console.log("Password :",password);
-        navigation.navigate("Home");
+        console.log('Email :', email);
+        console.log('Password :', password);
+        navigation.navigate('Profile');
       })
       .catch(error => {
         console.error(error);
-        setValidation(false)
+        setValidation(false);
       });
   }
 
-  async function storeuserdata(userdata){
+  async function storeuserdata(userdata) {
     try {
       await AsyncStorage.setItem('@userData', JSON.stringify(userdata));
     } catch (error) {
-      console.log("Error storing user data: ", error);
+      console.log('Error storing user data: ', error);
     }
   }
-  const {user} = useUserAuth();
+  // const {user} = useUserAuth();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
-  if (user) {
-    navigation.navigate("Home")
-  }
+
   return (
     <View>
       <Image
@@ -78,10 +81,13 @@ const Signin = ({navigation}) => {
       <Text style={style.Inputtitleemail}>Email</Text>
       <TextInput
         keyboardType="email-address"
-        style={[style.Inputsection,{
-          borderColor: Validation ? "#A1A2A2" : "red",
-          color: Validation ? "#A1A2A2" : "red"
-        }]}
+        style={[
+          style.Inputsection,
+          {
+            borderColor: Validation ? '#A1A2A2' : 'red',
+            color: Validation ? '#A1A2A2' : 'red',
+          },
+        ]}
         value={Email}
         onChangeText={Email => {
           setEmail(Email);
@@ -90,17 +96,22 @@ const Signin = ({navigation}) => {
       <Text style={style.Inputtitlepassword}>Password</Text>
       <TextInput
         keyboardType="default"
-        style={[style.Inputsection,{
-          borderColor: Validation ? "#A1A2A2" : "red",
-          color: Validation ? "#A1A2A2" : "red"
-        }]}
+        style={[
+          style.Inputsection,
+          {
+            borderColor: Validation ? '#A1A2A2' : 'red',
+            color: Validation ? '#A1A2A2' : 'red',
+          },
+        ]}
         value={Password}
         secureTextEntry
         onChangeText={Password => {
           setPassword(Password);
         }}
       />
-      <Text style={{color: Validation ? "white":"red"}}>Email and Password doesn't correct</Text>
+      <Text style={{color: Validation ? 'white' : 'red'}}>
+        Email and Password doesn't correct
+      </Text>
       <TouchableOpacity
         style={{
           backgroundColor: '#0068c6',
@@ -111,7 +122,7 @@ const Signin = ({navigation}) => {
           borderColor: '#0068c6',
           borderWidth: 1,
         }}
-        onPress={() => OnhandleSignin(Email,Password)}>
+        onPress={() => OnhandleSignin(Email, Password)}>
         <Text
           style={{
             color: 'white',
@@ -134,7 +145,7 @@ const Signin = ({navigation}) => {
           borderRadius: 20,
           borderColor: '#A2A1A1',
           borderWidth: 1,
-          backgroundColor:"rgb(255,255,255)"
+          backgroundColor: 'rgb(255,255,255)',
         }}
         onPress={() => googleSignin()}>
         <Text
@@ -158,7 +169,7 @@ const Signin = ({navigation}) => {
       <View style={{display: 'flex'}}>
         <Text style={style.section}>
           Don't Have an Account, Yet?
-          <Text style={{color:"white"}}>""</Text>
+          <Text style={{color: 'white'}}>""</Text>
           <Text
             style={{
               color: '#0068C6',
@@ -172,18 +183,18 @@ const Signin = ({navigation}) => {
       </View>
       <Text style={{alignSelf: 'center', color: '#A1A2A2'}}>
         Can't Remember Password?
-        <Text style={{color:"white"}}>""</Text>
+        <Text style={{color: 'white'}}>""</Text>
         <Text
           style={{
             color: '#0068C6',
             textDecorationLine: 'underline',
-            fontWeight:"300",
+            fontWeight: '300',
           }}
           onPress={() => navigation.navigate('ForgetPage')}>
           Forget password
         </Text>
       </Text>
-      <Text onPress={()=>navigation.navigate("Profile")}>Profile page</Text>
+      <Text onPress={() => navigation.navigate('Profile')}>Profile page</Text>
     </View>
   );
 };
@@ -214,14 +225,13 @@ const style = StyleSheet.create({
   Inputsection: {
     marginLeft: 27,
     marginRight: 27,
-    borderColor: "#A1A2A2",
+    borderColor: '#A1A2A2',
     borderWidth: 1,
     borderRadius: 20,
     paddingLeft: 20,
-    backgroundColor:"rgb(255,255,255)",
-    elevation:4
+    backgroundColor: 'rgb(255,255,255)',
+    elevation: 4,
   },
-  
 });
 
 export default Signin;
