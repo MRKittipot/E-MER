@@ -48,10 +48,10 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
         </View>
       </View>
 
-      <View>
-        <Button style={styles.buttonStyle}>
-          g
-        </Button>
+      <View style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={handleNavigation}>
+          <Text>Go</Text>
+      </TouchableOpacity>
       </View>
     </Animated.View>
   );
@@ -116,9 +116,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 42,
     fontWeight: 'bold'
   },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
   buttonStyle:{
-    backgroundColor:"#0068C9"
+    backgroundColor:"#0068C9",
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    width:100,
+    height:50
   }
+  
 });
 
 export default MarkerDetail;
