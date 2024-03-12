@@ -50,17 +50,23 @@ This is one way to run your app — you can also run it directly from within And
 
 ใน sprint 2 ณ ตอนนี้ได้ทำการเพิ่มไฟล์
 1. `../E-MER/pages/sprint2/ActivitiesPage.js`
+   * `ActivitiesPage.js`
    - สามารถใส่ ข้อมูลได้เลย (คนที่รับผิดชอบหน้านี้)
 2. `../E-MER/pages/sprint2/BlogPages.js`
+   * `BlogPages.js`
    - สามารถใส่ ข้อมูลได้เลย (คนที่รับผิดชอบหน้านี้)
 3. `../E-MER/pages/sprint2/ChargerPages.js`
+   * `ChargerPages.js`
    - สามารถใส่ ข้อมูลได้เลย (คนที่รับผิดชอบหน้านี้)
 4. `../E-MER/pages/sprint2/ProfilePages.js`
+   * `ProfilePages.js`
    - สามารถใส่ ข้อมูลได้เลย (คนที่รับผิดชอบหน้านี้)
 
 และได้ทำการเพิ่ม Component
 1. `../E-MER/src/components/Menu_naigation/Button_tab.js`
+   * `Button_tab.js`
 2. `../E-MER/src/components/Menu_naigation/Tabs_menu.js`
+   * `Tabs_menu.js`
 
 
 และได้ทำการดึง Google maps API
