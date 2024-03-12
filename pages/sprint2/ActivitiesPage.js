@@ -1,13 +1,48 @@
 ﻿import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import History from '../../src/components/Activities/History';
+import PaymentHistory from '../../src/components/Activities/PaymentHistory';
 // Defining the ActivitiesPage functional component
 export default function ActivitiesPage() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>
-                Hello ActivitiesPage
-            </Text>
-        </View>
+        <ScrollView style={styles.ActivityPage}>
+        <Text style={styles.Head}>History</Text>
+        <History />
+  
+        <Text style={styles.Head}>Payment History</Text>
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+        <PaymentHistory />
+      </ScrollView>
     );
 }
 
@@ -22,5 +57,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 30,
         color: 'black'
-    }
+    },
+    ActivityPage: {
+        margin: "7%",
+      },
+      Head: {
+        fontSize: 30,
+        fontWeight: 'bold'
+      },
+    
 });
