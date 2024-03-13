@@ -16,11 +16,11 @@ const PhoneNumber = () => {
         Linking.openURL(phoneNumber)
       }
       const handleCall4 = () => {
-        const phoneNumber = 'tel:${1154}';
+        const phoneNumber = 'tel:${1554}';
         Linking.openURL(phoneNumber)
       }
       const handleCall5 = () => {
-        const phoneNumber = 'tel:${1169}';
+        const phoneNumber = 'tel:${1669}';
         Linking.openURL(phoneNumber)
       }
       const handleCall6 = () => {
@@ -32,7 +32,7 @@ const PhoneNumber = () => {
         Linking.openURL(phoneNumber)
       }
       const handleCall8 = () => {
-        const phoneNumber = 'tel:${1154}';
+        const phoneNumber = 'tel:${1196}';
         Linking.openURL(phoneNumber)
       }
       const handleCall9 = () => {
