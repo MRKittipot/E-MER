@@ -57,14 +57,14 @@ const PhoneNumber = () => {
         <Text style={{ textAlign: 'left', fontSize: 24, fontWeight: '900', margin: 15, color: '#333333', marginTop: 20 }}>Emergency Number</Text>
     <View style = {{flexDirection: 'row', marginTop: 15}}>
       <TouchableOpacity onPress={handleCall}  style = {style.BTIn1}>
-        <Image source = {require('../images/ตำรวจ.png')} style ={style.Img1} />
+        <Image source = {require('../../images/ตำรวจ.png')} style ={style.Img1} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.NumBut1}>191</Text>
           <Text style = {style.Font13}>เหตุด่วนเหตุร้าย</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall2} style = {style.BTIn1}>
-        <Image source = {require('../images/กองปราบปราม.png')} style ={style.Img2} />
+        <Image source = {require('../../images/กองปราบปราม.png')} style ={style.Img2} />
         <View>
           <Text style = {style.NumBut2}>1195</Text>
           <Text style = {style.Font13}>กองปราบปราม</Text>
@@ -74,14 +74,14 @@ const PhoneNumber = () => {
 
     <View style = {{flexDirection: 'row', marginTop: 20}}>
       <TouchableOpacity onPress={handleCall3} style = {style.BTIn2}>
-        <Image source = {require('../images/ตำรวจทางหลวง.png')} style ={style.Img3} />
+        <Image source = {require('../../images/ตำรวจทางหลวง.png')} style ={style.Img3} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.Font13P1010}>1193</Text>
           <Text style = {style.Font13}>ตำรวจทางหลวง</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall4} style = {style.BTIn2}>
-        <Image source = {require('../images/วชิรพยาบาล.png')} style ={style.Img4} />
+        <Image source = {require('../../images/วชิรพยาบาล.png')} style ={style.Img4} />
         <View>
           <Text style = {style.NumMar5}>1154</Text>
           <Text style = {style.Font13}>หน่วยแพทย์กู้ชีวิต</Text>
@@ -92,7 +92,7 @@ const PhoneNumber = () => {
 
     <View style = {{flexDirection: 'row', marginTop: 20}}>
       <TouchableOpacity onPress={handleCall5} style = {style.BTIn1}>
-        <Image source = {require('../images/สถาบันการแพทย์.png')} style ={style.Img1} />
+        <Image source = {require('../../images/สถาบันการแพทย์.png')} style ={style.Img1} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.NumMar10}>1169</Text>
           <Text style = {style.Font13}>สถาบันการแพทย์</Text>
@@ -100,7 +100,7 @@ const PhoneNumber = () => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall6} style = {style.BTIn1}>
-        <Image source = {require('../images/หน่วยแพทย์ฉุกเฉิน.png')} style ={style.Img1} />
+        <Image source = {require('../../images/หน่วยแพทย์ฉุกเฉิน.png')} style ={style.Img1} />
         <View>
           <Text style = {style.NumMar10}>1646</Text>
           <Text style = {style.Font13}>หน่วยแพทย์ฉุกเฉิน</Text>
@@ -111,7 +111,7 @@ const PhoneNumber = () => {
 
     <View style = {{flexDirection: 'row', marginTop: 20}}>
       <TouchableOpacity onPress={handleCall7} style = {style.BTIn2}>
-        <Image source = {require('../images/การทางพิเศษแห่งประเทศไทย.png')} style ={style.Img3} />
+        <Image source = {require('../../images/การทางพิเศษแห่งประเทศไทย.png')} style ={style.Img3} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.NumMar10}>1543</Text>
           <Text style = {style.Font13P5}>การทางพิเศษ</Text>
@@ -119,7 +119,7 @@ const PhoneNumber = () => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall8} style = {style.BTIn2}>
-        <Image source = {require('../images/พบเจออุบัติเหตุทางน้ำ.png')} style ={style.Img5} />
+        <Image source = {require('../../images/พบเจออุบัติเหตุทางน้ำ.png')} style ={style.Img5} />
         <View>
           <Text style = {style.NumMar5}>1154</Text>
           <Text style = {style.Font13}>พบเจออุบัติเหตุ</Text>
@@ -130,7 +130,7 @@ const PhoneNumber = () => {
 
     <View style = {{flexDirection: 'row', marginTop: 20}}>
       <TouchableOpacity onPress={handleCall9} style = {style.BTIn1}>
-        <Image source = {require('../images/แจ้งเหตุไฟไหม้ดับเพลิง.png')} style ={style.Img6} />
+        <Image source = {require('../../images/แจ้งเหตุไฟไหม้ดับเพลิง.png')} style ={style.Img6} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.NumMar15}>199</Text>
           <Text style = {style.Font13}>แจ้งเหตุไฟไหม้</Text>
@@ -138,7 +138,7 @@ const PhoneNumber = () => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall10} style = {style.BTIn1}>
-        <Image source = {require('../images/จส.100.png')} style ={style.Img7} />
+        <Image source = {require('../../images/จส.100.png')} style ={style.Img7} />
         <View>
           <Text style = {style.NumMar20}>1137</Text>
           <Text style = {style.Font13}>จส.100 แจ้งเหตุด่วน</Text>
@@ -149,7 +149,7 @@ const PhoneNumber = () => {
 
     <View style = {{flexDirection: 'row', marginTop: 20, marginBottom: 30}}>
       <TouchableOpacity onPress={handleCall11} style = {style.BTIn2}>
-        <Image source = {require('../images/กรมทางหลวงชนบท.png')} style ={style.Img3} />
+        <Image source = {require('../../images/กรมทางหลวงชนบท.png')} style ={style.Img3} />
         <View style = {{marginLeft: 5}}>
           <Text style = {style.NumMar10}>1146</Text>
           <Text style = {style.Font13}>กรมทางหลวง</Text>
@@ -157,7 +157,7 @@ const PhoneNumber = () => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleCall12} style = {style.BTIn2}>
-        <Image source = {require('../images/สถานีวิทยุร่วมด้วยช่วยกัน.png')} style ={style.Img8} />
+        <Image source = {require('../../images/สถานีวิทยุร่วมด้วยช่วยกัน.png')} style ={style.Img8} />
         <View>
           <Text style = {style.NumMar5}>1167</Text>
           <Text style = {style.Font13P15}>สถานีวิทยุ</Text>
