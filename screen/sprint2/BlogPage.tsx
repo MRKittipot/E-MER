@@ -1,8 +1,8 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
-import Slider from './Slider'
-import PlayList from './PlayList'
-import NewsEVM from './NewsEVM'
+import Slider from '../../pages/sprint2/Slider'
+import PlayList from '../../pages/sprint2/PlayList'
+import NewsEVM from '../../pages/sprint2/NewsEVM'
 
 const BlogPage = () => {
   return (
@@ -10,7 +10,6 @@ const BlogPage = () => {
         <View>
         <Text style={style.TextHeader}>Blogs</Text>
         <Text style={style.Textline2}>Information and News about electic cars</Text>
-        
             <Slider/>
             {/* <PlayList/> */}
             {/* <NewsEVM/> */}

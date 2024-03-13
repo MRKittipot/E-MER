@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAnt from 'react-native-vector-icons/AntDesign';
-import {useUserAuth} from '../context/userContext';
+import {useUserAuth} from '../../context/userContext';
 import {ref, onValue} from 'firebase/database';
-import {auth as a , db} from '../config/Firebaseconfig';
+import {auth as a, db} from '../../config/Firebaseconfig';
 import {signOut} from 'firebase/auth';
 import auth from '@react-native-firebase/auth';
 
@@ -20,9 +20,9 @@ const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
   const [userData, setUserData] = useState(null);
-  const {user,provider} = useUserAuth();
+  const {user, provider} = useUserAuth();
 
-  const handleLogout = async () =>{
+  const handleLogout = async () => {
     try {
       console.log(provider);
       if (provider == 'password') {
@@ -36,7 +36,7 @@ const Profile = ({navigation}) => {
       console.log(error);
       navigation.navigate('Signin');
     }
-  }
+  };
 
   useEffect(() => {
     console.log(JSON.stringify(user).length);
@@ -50,7 +50,7 @@ const Profile = ({navigation}) => {
       <Text style={style.header}>My Account</Text>
       <View style={style.profilecard}>
         <Image
-          source={require('../assets/google-logo.png')}
+          source={require('../../assets/google-logo.png')}
           style={style.profileimage}
         />
         <Text style={style.profilename}>{Name}</Text>

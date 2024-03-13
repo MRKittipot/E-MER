@@ -1,4 +1,4 @@
-﻿﻿import React, {useEffect, useState} from 'react';
+﻿﻿/*import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import GGLogoutbutton from '../src/components/Login/GoogleLogout';
 import {onAuthStateChanged} from 'firebase/auth';
@@ -71,4 +71,18 @@ const style = StyleSheet.create({
     backgroundColor: 'red',
   },
 });
-export default Home;
+export default Home;*/
+
+import React, {Component} from "react";
+import { StyleSheet } from "react-native";
+import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu'
+
+export default class Home extends Component {
+  render() {
+    return (
+      <Tabs_menu />
+    );
+  }
+}
+
+const styles = StyleSheet.create({});
