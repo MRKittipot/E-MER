@@ -41,7 +41,7 @@ const Signin = ({navigation}) => {
         console.log('Sign in! Successful');
         console.log('Email :', email);
         console.log('Password :', password);
-        navigation.navigate('Home');
+        navigation.navigate('Chat');
       })
       .catch(error => {
         console.error(error);

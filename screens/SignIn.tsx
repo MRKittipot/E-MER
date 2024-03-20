@@ -19,7 +19,7 @@ const SignIn = () => {
             <Text style = {{color : '#333333', fontSize : 14, fontWeight : 'bold', marginTop : 10}}>Welcome back, log in and get started</Text>                 
         </View>
         <View style = {{marginLeft: 25}}>
-            <Text style = {{color: '#A0A0A0', fontSize: 16, fontWeight: '700', marginTop: 25, alignItems : 'right' }}>Email address</Text> 
+            <Text style={{ color: '#A0A0A0', fontSize: 16, fontWeight: '700', marginTop: 25, alignItems: 'flex-end' }}>Email address</Text>
             <TextInput  style= {{height: 50,
                                 marginRight: 25,
                                 borderWidth: 1,
@@ -33,7 +33,7 @@ const SignIn = () => {
                         value= {text}
                         keyboardType="email-address"
             />
-            <Text style = {{color: '#A0A0A0', fontSize: 16, fontWeight: '700', marginTop: 10, alignItems : 'right' }}>Password</Text> 
+            <Text style={{ color: '#A0A0A0', fontSize: 16, fontWeight: '700', marginTop: 10, alignItems: 'flex-end' }}>Password</Text>
             <TextInput  style= {{height: 50,
                                 marginRight: 25,
                                 borderWidth: 1,
