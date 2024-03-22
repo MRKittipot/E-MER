@@ -1,12 +1,19 @@
-﻿import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+﻿import React, {useState, useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  PermissionsAndroid,
+  Platform,
+} from 'react-native';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { markersData } from '../../src/Data/markersData';
+import {markersData} from '../../src/Data/markersData';
 import MarkerDetail from '../../src/components/DetailsMarker/MarkerDetail';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.01;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
@@ -28,7 +35,8 @@ const ChargerPages = () => {
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
             title: 'Location Permission',
-            message: 'This app needs access to your location to show it on the map.',
+            message:
+              'This app needs access to your location to show it on the map.',
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
@@ -45,7 +53,7 @@ const ChargerPages = () => {
     }
   };
 
-  const handleMarkerPress = (marker) => {
+  const handleMarkerPress = marker => {
     setSelectedMarker(marker);
     Animated.timing(slideUpAnimation, {
       toValue: 1,
@@ -65,15 +73,14 @@ const ChargerPages = () => {
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
-
         <SearchBar />
       </View>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 13.726330428,
-          longitude: 100.523831238,
+          latitude: 13.734092,
+          longitude: 100.5240688,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}
@@ -84,8 +91,7 @@ const ChargerPages = () => {
           <Marker
             key={index}
             coordinate={marker.coordinate}
-            onPress={() => handleMarkerPress(marker)}
-          >
+            onPress={() => handleMarkerPress(marker)}>
             <View style={styles.markerContainer}>
               <Icon name="flash" size={20} color="#ffff" />
             </View>
@@ -100,7 +106,6 @@ const ChargerPages = () => {
           slideUpHeight={SLIDE_UP_HEIGHT}
         />
       )}
-
     </View>
   );
 };
@@ -119,10 +124,7 @@ const styles = StyleSheet.create({
     borderColor: '#0068C9',
     padding: 5,
   },
-  searchBox:{
-    
-  }
-
+  searchBox: {},
 });
 
 export default ChargerPages;

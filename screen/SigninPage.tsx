@@ -24,6 +24,7 @@ import { useUserAuth } from '../context/userContext';
 const Signin = ({navigation}) => {
   
   const {user} = useUserAuth()
+  
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {

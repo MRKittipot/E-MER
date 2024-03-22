@@ -122,12 +122,13 @@ import ListData from '../../src/components/Chat/ListData';
 import ChatBar from '../../src/components/Chat/ChatBar';
 import database from '@react-native-firebase/database';
 import {getAuth} from 'firebase/auth';
-
+import {useUserAuth} from '../../context/userContext';
 const ChatScreen = () => {
   const [listMsg, setListMsg] = useState([]);
   const auth = getAuth();
+  const {user, provider} = useUserAuth();
   useEffect(() => {
-    const messageRef = database().ref(`messages/${auth.currentUser.uid}`);
+    const messageRef = database().ref(`messages/${user.uid}`);
 
     messageRef.on('value', snapshot => {
       const data = snapshot.val();
@@ -137,13 +138,13 @@ const ChatScreen = () => {
     });
 
     return () => messageRef.off(); // Cleanup function to remove event listener on unmount
-  }, [auth.currentUser.uid]);
+  }, [user.uid]);
 
   const onClickButtonHandlerData = msg => {
     if (msg.trim() !== '') {
       const newMsg = {
         timestamp: Date.now(),
-        uid: auth.currentUser.uid,
+        uid: user.uid,
         key: database().ref(`messages/${auth.currentUser.uid}`).push().key,
         message: msg,
       };
@@ -151,9 +152,7 @@ const ChatScreen = () => {
       console.log('\n New Message:', newMsg, '\n');
       const newListMsg = [...listMsg, newMsg]; // Use spread operator for immutability
       setListMsg(newListMsg);
-      database()
-        .ref(`messages/${auth.currentUser.uid}/${newMsg.key}`)
-        .set(newMsg);
+      database().ref(`messages/${user.uid}/${newMsg.key}`).set(newMsg);
     }
   };
 

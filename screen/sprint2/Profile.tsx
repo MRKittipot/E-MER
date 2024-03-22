@@ -54,7 +54,7 @@ const Profile = ({navigation}) => {
           style={style.profileimage}
         />
         <Text style={style.profilename}>{Name}</Text>
-        <Text style={style.profilemail}>{Email}</Text>
+        <Text style={style.profilemail}>{user.email}</Text>
         <Text style={style.view} onPress={() => navigation.navigate('Account')}>
           View Profile
         </Text>

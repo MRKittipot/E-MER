@@ -35,7 +35,7 @@ const SignUp = ({navigation}) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(false);
-  const [modalVisible,setmodalVisible] = useState(false)
+  const [modalVisible, setmodalVisible] = useState(false);
   const Gender = ['Male', 'Female', 'Other'];
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
@@ -79,7 +79,7 @@ const SignUp = ({navigation}) => {
     ) {
       console.log('Please fill in all required fields');
       return;
-    }  
+    }
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
@@ -90,18 +90,15 @@ const SignUp = ({navigation}) => {
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Password and Confirm Password do not match',"Please try again");
+      Alert.alert(
+        'Password and Confirm Password do not match',
+        'Please try again',
+      );
       setConfirmPasswordBorderColor('red');
       return;
     }
 
     // Prepare data for the API request
-    const userData = {
-      email,
-      name,
-      sex,
-      dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
-    };
 
     try {
       // Call your backend API endpoint for user registration
@@ -110,6 +107,14 @@ const SignUp = ({navigation}) => {
         email,
         password,
       );
+
+      const userData = {
+        email,
+        response: response.user.uid,
+        name,
+        sex,
+        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
+      };
 
       if (response.user) {
         const newUserRef = push(ref(db, 'users'));
@@ -127,10 +132,16 @@ const SignUp = ({navigation}) => {
         console.error('Registration failed:');
       }
     } catch (error) {
-      if (error.message.includes("email-already-in-use") || error.message.includes("auth/invalid-email")){
-        Alert.alert("Mail already in used","Please try again with your new mail")
-      }else{
-        Alert.alert(`message error : ${error.message}`)
+      if (
+        error.message.includes('email-already-in-use') ||
+        error.message.includes('auth/invalid-email')
+      ) {
+        Alert.alert(
+          'Mail already in used',
+          'Please try again with your new mail',
+        );
+      } else {
+        Alert.alert(`message error : ${error.message}`);
       }
     }
 
@@ -147,7 +158,13 @@ const SignUp = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Icon name="chevron-left" size={30} color="#000000" onPress={()=>navigation.goBack()} style={{position:"relative",left:-10}}/>
+      <Icon
+        name="chevron-left"
+        size={30}
+        color="#000000"
+        onPress={() => navigation.goBack()}
+        style={{position: 'relative', left: -10}}
+      />
       <Text style={styles.title}>Create Account</Text>
       <Text
         style={{
@@ -295,7 +312,9 @@ const SignUp = ({navigation}) => {
         </View>
         <View style={styles.dateOfBirth}>
           <Text style={styles.labelTextInput}>Date of Birth</Text>
-          <TouchableOpacity onPress={showDatePicker} style={{position:"relative"}}>
+          <TouchableOpacity
+            onPress={showDatePicker}
+            style={{position: 'relative'}}>
             <TextInput
               style={styles.select_dropdown}
               value={format(dateOfBirth, 'dd/MM/yyyy')}
@@ -331,10 +350,10 @@ const SignUp = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     marginTop: 50,
-    marginLeft:28,
-    marginRight:28
+    marginLeft: 28,
+    marginRight: 28,
   },
   input: {
     height: 50,
@@ -344,19 +363,19 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 20,
     backgroundColor: '#ffffff',
-    elevation:4
+    elevation: 4,
   },
   title: {
     fontSize: 24,
     marginBottom: 5,
     fontWeight: 'bold',
-    color:"#333333"
+    color: '#333333',
   },
   submitButton: {
     backgroundColor: '#0068C6',
     borderRadius: 20,
-    paddingTop:10,
-    paddingBottom:10
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   textButton: {
     color: 'white',
@@ -388,8 +407,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
-    color:"blue",
-
+    color: 'blue',
   },
   sex: {
     width: '55%',
