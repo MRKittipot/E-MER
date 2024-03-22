@@ -110,12 +110,16 @@ const SignUp = ({navigation}) => {
 
       const userData = {
         email,
-        response: response.user.uid,
+        Uid: response.user.uid, //create user and send data name user need to console log
         name,
         sex,
         dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
       };
 
+      //provider use for change type between  sign in with google or sign in with email
+      //axios can use for react-native
+
+      //add mongoose api in here
       if (response.user) {
         const newUserRef = push(ref(db, 'users'));
         set(newUserRef, userData)
