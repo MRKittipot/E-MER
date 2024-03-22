@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-{
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.compile.nullAnalysis.mode": "automatic"
-=======
-{
-    "java.compile.nullAnalysis.mode": "automatic"
->>>>>>> origin/testerror
-}
