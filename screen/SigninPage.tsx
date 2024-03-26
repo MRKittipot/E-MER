@@ -24,6 +24,7 @@ import { useUserAuth } from '../context/userContext';
 const Signin = ({navigation}) => {
   
   const {user} = useUserAuth()
+  
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
@@ -31,7 +32,7 @@ const Signin = ({navigation}) => {
         return;
       }
       console.log('=>Success', data);
-      navigation.navigate('Profile');
+      navigation.navigate('Home');
     });
   }
 
@@ -41,7 +42,7 @@ const Signin = ({navigation}) => {
         console.log('Sign in! Successful');
         console.log('Email :', email);
         console.log('Password :', password);
-        navigation.navigate('Profile');
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.error(error);
@@ -194,7 +195,6 @@ const Signin = ({navigation}) => {
           Forget password
         </Text>
       </Text>
-      <Text onPress={() => navigation.navigate('Profile')}>Profile page</Text>
     </View>
   );
 };

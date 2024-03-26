@@ -53,7 +53,7 @@ const Onboardings = ({navigation}) => {
 
   useEffect(() => {
     if (user) {
-      navigation.replace('Profile'); //Skip to page that navigate 
+      navigation.replace('Home'); //Skip to page that navigate 
     }
   }, [user, navigation]);
 

@@ -41,12 +41,18 @@
     "express": "^4.18.2",
     "firebase": "^10.7.2",
     "firebase-admin": "^12.0.0",
+    "lottie-react-native": "^6.6.0",
     "nodemon": "^3.0.3",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.73.2",
     "react-native-animatable": "^1.4.0",
     "react-native-app-intro-slider": "^4.0.4",
+<<<<<<< HEAD
+=======
+    "react-native-dropdown-picker": "^5.4.6",
+    "react-native-google-places-autocomplete": "^2.5.6",
+>>>>>>> 4c1f5f3f9dae0f00e573f7f3e18e146b1a8f3816
     "react-native-maps": "^1.10.2",
     "react-native-onboarding-swiper": "^1.2.0",
     "react-native-safe-area-context": "^4.8.2",

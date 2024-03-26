@@ -1,0 +1,4 @@
+คำสั่งที่ต้องติดตั้งเพิ่มในไฟล์ของ โชติ
+
+1. npm install lottie-react-native --save
+2. npm install @react-navigation/native @react-navigation/native-stack
