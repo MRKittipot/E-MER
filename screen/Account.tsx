@@ -2,21 +2,20 @@ import React from 'react';
 import {Text, Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useState, useEffect} from 'react';
-import {auth as a} from "../config/Firebaseconfig"
-import {signOut} from "firebase/auth"
-import { useUserAuth } from '../context/userContext';
-import auth from "@react-native-firebase/auth"
+import {auth as a} from '../config/Firebaseconfig';
+import {signOut} from 'firebase/auth';
+import {useUserAuth} from '../context/userContext';
+import auth from '@react-native-firebase/auth';
 
 const Account = ({navigation}) => {
-  const [Firstname, setFirstname] = useState('Manoj');
-  const [Lastname, setLastname] = useState('Kajornroj');
+  const [Name, setname] = useState('Manoj Kajptnroj');
   const [Email, setEmail] = useState('Manoj@gmail');
   const [DateofBirth, setDateofBirth] = useState('11 Dec 1995');
   const [Phonenumber, setPhonenumber] = useState('0851825708');
 
-  const {user,provider} = useUserAuth();
+  const {user, provider} = useUserAuth();
 
-  const handleLogout = async () =>{
+  const handleLogout = async () => {
     try {
       console.log(provider);
       if (provider == 'password') {
@@ -30,7 +29,7 @@ const Account = ({navigation}) => {
       console.log(error);
       navigation.navigate('Signin');
     }
-  }
+  };
 
   useEffect(() => {
     console.log(JSON.stringify(user).length);
@@ -49,36 +48,24 @@ const Account = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <Text style={style.header}>My account</Text>
-      <Image
-        source={require('../assets/google-logo.png')}
-        style={style.profileimage}
-      />
+      <View style={style.img_container}>
+        <Image
+          source={require('../assets/google-logo.png')}
+          style={style.profileimage}
+        />
+        <View style={style.icon_container}>
+          <Icon name="plus-circle" size={18} color="#0068c6" />
+        </View>
+      </View>
       <View style={style.optioncard}>
         <View style={style.detailcard}>
           <View style={style.insidecard}>
             <Icon name="user" size={30} color="#65676b" />
             <View style={style.labelpart}>
               <View style={style.labelcard}>
-                <Text>Firstname</Text>
+                <Text>Name</Text>
               </View>
-              <Text style={style.textinf}>{Firstname}</Text>
-            </View>
-          </View>
-          <Icon
-            name="chevron-right"
-            size={30}
-            color="#65676b"
-            style={{justifyContent: 'flex-end', display: 'flex'}}
-          />
-        </View>
-        <View style={style.detailcard}>
-          <View style={style.insidecard}>
-            <Icon name="user" size={30} color="#65676b" />
-            <View style={style.labelpart}>
-              <View style={style.labelcard}>
-                <Text>Lastname</Text>
-              </View>
-              <Text style={style.textinf}>{Lastname}</Text>
+              <Text style={style.textinf}>{Name}</Text>
             </View>
           </View>
           <Icon
@@ -140,7 +127,9 @@ const Account = ({navigation}) => {
           />
         </View>
       </View>
-      <TouchableOpacity style={style.signoutcard} onPress={()=>handleLogout()}>
+      <TouchableOpacity
+        style={style.signoutcard}
+        onPress={() => handleLogout()}>
         <Text style={style.signouttext}>
           <Icon
             name="log-out"
@@ -168,6 +157,14 @@ const style = StyleSheet.create({
     marginLeft: 28,
     marginTop: 10,
     marginBottom: 20,
+  },
+  img_container:{
+    position:"relative"
+  },
+  icon_container:{
+    position:"absolute",
+    bottom:10,
+    right:170
   },
   signoutcard: {
     backgroundColor: '#0068c6',
