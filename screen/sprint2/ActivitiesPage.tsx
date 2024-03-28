@@ -16,6 +16,7 @@ export default function ActivitiesPage() {
   return (
     <View>
       <Text style={styles.Head}>Payment History</Text>
+      
       <ScrollView style={styles.ActivityPage}>
         <View>
           {data.map((item) => (
