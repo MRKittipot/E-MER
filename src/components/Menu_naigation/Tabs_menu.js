@@ -7,7 +7,8 @@ import Icon3 from 'react-native-vector-icons/Octicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BlogPages from '../../../screen/sprint2/BlogPage';
 import ChargerPages from '../../../screen/sprint2/ChargerPages';
-import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
+// import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
+import Status from '../../../screen/Status';
 import ProfilePages from '../../../screen/sprint2/Profile';
 import ChatPages from "../../../screen/sprint2/Chat"
 import PhoneNumber from "../../../screen/sprint2/PhoneNumber"
@@ -85,8 +86,10 @@ const Tabs_menu = ({navigation}) => {
         }}
       />
       <Tab.Screen
-        name="Activity"
-        component={ActivitiesPage}
+        // name="Activity"
+        // component={ActivitiesPage}
+        name="Status"
+        component={Status}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',

@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-const PaymentHistory = ({day, EN_munth, TH_munth, year, name, battery, price}) => {
+const PaymentHistory = ({day, munth, time, name, battery, price}) => {
   return (
     <View style={styles.Payment}>
 
       <View style={styles.DateCardPayment}>
         <Text style={styles.DatePayment}>{day}</Text>
-        <Text style={styles.DatePayment}>{EN_munth}</Text>
+        <Text style={styles.DatePayment}>{munth}</Text>
       </View>
 
       <View style={styles.CardPayment}>
@@ -15,7 +15,7 @@ const PaymentHistory = ({day, EN_munth, TH_munth, year, name, battery, price}) =
           <Text style={styles.DetailPayment}>Name: </Text>
           <Text style={{ fontSize: 16, color: "white", fontWeight: 'bold', color: "black" }}>{name}</Text>
         </View>
-        <Text style={styles.DetailPayment}>Date: {day + " " + TH_munth + " " + year}</Text>
+        <Text style={styles.DetailPayment}>Time: {time}</Text>
         <View style={styles.ValuePay}>
           <Text style={styles.DetailPayment}>Battery: {battery + "%"}</Text>
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: "#0068C6" }}>Price {price} Bath</Text>
