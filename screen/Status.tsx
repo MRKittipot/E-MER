@@ -7,26 +7,31 @@ import Cost_to_pay from "../src/components/Status/Cost_to_pay"
 
 
 const Status = () => {
-    const [Second, setSecond] = useState(0);
-    const [Minute, setMinute] = useState(0);
-    const [Houre, setHoure] = useState(0);
+    const [usageTime, setUsageTime] = useState(0);
 
     useEffect(() => {
         let interval = setInterval(() => {
-            setSecond((prevTime) => prevTime + 1);
+            setUsageTime((prevTime) => prevTime + 1);
         }, 1000);
 
-        // 1 loop useEffect
-        return () => { clearInterval(interval); };
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
+
+    const seconds = usageTime % 60;
+    const minutes = Math.floor((usageTime / 60) % 60);
+    const hours = Math.floor(usageTime / 3600);
+
+    const pad2 = (number) => {
+        return number < 10 ? `0${number}` : number.toString();
+    };
 
     return (
         <View>
             <Text style={styles.Head}>Status</Text>
             <View style={styles.status}>
-                {/* <Text style={styles.time}>00 : 15 : 24 hr.</Text> */}
-                <Text style={styles.time}>{Second}</Text>
-                {/* <Text style={styles.time}>{Minute}</Text> */}
+                <Text style={styles.time}>{pad2(hours)} : {pad2(minutes)} : {pad2(seconds)} hr.</Text>
                 <Timestamp />
                 <View style={styles.energy_and_cost_card}>
                     <Energy />
