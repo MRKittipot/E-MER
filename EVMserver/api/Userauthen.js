@@ -1,3 +1,4 @@
+const { Collection } = require("mongoose");
 const usermodel = require("../model/User");
 
 //=================================================================================//
@@ -111,12 +112,29 @@ const updateUserinfo = async (req,res) =>{
   }
 }
 
+//send data to check in mongodb
 
+const SenddatatoMongodb = async (req,res)=>{
+  try{
+    const foundData = await usermodel.findOne(req.body.data);
+    if(foundData){
+      console.log("Data Found in MongoDB:",foundData);
+      res.status(200).send("Data found in MongoDB");
+    }else{
+      console.log("Data Not Found in MongoDB");
+      res.status(404).send("Data not found in MongoDB");
+    }
+  }catch(error){
+    console.log("Error inserting or finding data in MongoDB",error);
+    res.status(500).send("Error inserting or finding data in MongoDB")
+  }
+};
 
 module.exports = {
     getAccount,
     createAccount,
     login,
     updateUserPhoto,
-    updateUserinfo
+    updateUserinfo,
+    SenddatatoMongodb
 };
