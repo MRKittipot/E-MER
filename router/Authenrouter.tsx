@@ -17,7 +17,7 @@ const fetchadddata = async (req,res) => {
 
 //fetch data but doesn't use
 
-const fetchdata = async (req,res) =>{
+/*const fetchdata = async (req,res) =>{
     try{
         let filterData = data.filter((item)=>{
             return item.id == parseInt(req.params.id);
@@ -32,4 +32,5 @@ const fetchdata = async (req,res) =>{
         console.log(error);
         res.status(500).send("Internal Server Error");
     }
-}
+}*/
+

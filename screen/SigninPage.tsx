@@ -21,6 +21,7 @@ import {auth} from '../config/Firebaseconfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
 import { useUserAuth } from '../context/userContext';
+import axios from 'axios';
 const Signin = ({navigation}) => {
   
   const {user} = useUserAuth()
@@ -50,17 +51,19 @@ const Signin = ({navigation}) => {
       });
   }
 
-  async function storeuserdata(userdata) {
-    try {
-      await AsyncStorage.setItem('@userData', JSON.stringify(userdata));
-    } catch (error) {
-      console.log('Error storing user data: ', error);
-    }
-  }
   // const {user} = useUserAuth();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
+
+  async function handleSigninbyMongodb(){
+    try{
+      const response = await axios.post("/api/user/Signup", {data: {Email, Password}});
+      console.log(response.data);
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   return (
     <View>
