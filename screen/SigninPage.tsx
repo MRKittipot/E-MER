@@ -58,7 +58,7 @@ const Signin = ({navigation}) => {
 
   async function handleSigninbyMongodb(){
     try{
-      const response = await axios.post("/api/user/Signup", {data: {Email, Password}});
+      const response = await axios.post("/api/user/Login", {data: {Email,Password}});
       console.log(response.data);
     }catch(error){
       console.log(error);
@@ -126,7 +126,7 @@ const Signin = ({navigation}) => {
           borderColor: '#0068c6',
           borderWidth: 1,
         }}
-        onPress={() => OnhandleSignin(Email, Password)}>
+        onPress={() => handleSigninbyMongodb()}>
         <Text
           style={{
             color: 'white',
