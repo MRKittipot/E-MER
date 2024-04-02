@@ -12,6 +12,7 @@ import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
 import Status from '../../../screen/Status';
 import AddVehicle from '../../../screen/AddVehicle';
 import AddVehicleSelecCar from '../../../screen/AddVehicleSelecCar'
+import Summaryorder from '../../../screen/Summaryorder'
 //////////////////////////////////////////////////////////////////////////////
 import ProfilePages from '../../../screen/sprint2/Profile';
 import ChatPages from "../../../screen/sprint2/Chat"
@@ -99,8 +100,11 @@ const Tabs_menu = ({navigation}) => {
         // name="Add Vehicle"
         // component={AddVehicle}
 
-        name="Select Vehicle"
-        component={AddVehicleSelecCar}
+        // name="Select Vehicle"
+        // component={AddVehicleSelecCar}
+
+        name="Summary order"
+        component={Summaryorder}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
