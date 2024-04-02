@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
 const Summaryorder = () => {
 
@@ -24,8 +24,11 @@ const Summaryorder = () => {
       <View style={styles.SummaryCard}>
         {/* 2.1 */}
         <View style={styles.HeadOrder}>
-          <Text style={styles.TextSummaryOrder}>Panachai Likhitpanyarat</Text>
-          <Text style={{ fontSize: 20 }}>Order number : {orderNumber}</Text>
+          <Image style={{ width: 50, height: 50 }} source={require('../images/electric.png')} />
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.TextSummaryOrder}>Panachai Likhitpanyarat</Text>
+            <Text style={{ fontSize: 20 }}>Order number : {orderNumber}</Text>
+          </View>
         </View>
 
         {/* 2.2 */}
@@ -49,7 +52,10 @@ const Summaryorder = () => {
 
       {/* 3 */}
       <View style={styles.SummaryCard}>
-        <Text style={styles.boldFont}>Amount to pay</Text>
+        <View style={styles.AmountPayHeadDetail}>
+          <Text style={styles.boldFont}>Amount to pay</Text>
+          <Image style={{ width: 20, height: 20, marginLeft: 5 }} source={require('../images/money.png')} />
+        </View>
         {/* 3.1 */}
         <View style={styles.AmountPayHead}>
           <View>
@@ -66,7 +72,7 @@ const Summaryorder = () => {
 
         {/* 3.2 */}
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <View style={{ flexDirection: "row"}}>
+          <View style={{ flexDirection: "row" }}>
             <Text style={styles.boldFont}>Total  </Text>
             <Text style={{ color: "#000000" }}>{total + 100} - {total + 150}</Text>
           </View>
@@ -74,19 +80,6 @@ const Summaryorder = () => {
         </View>
       </View>
     </View>
-
-
-
-
-
-
-
-
-
-
-
-
-
   );
 };
 
@@ -107,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 11,
     marginHorizontal: "7%",
     marginTop: "7%",
-    padding: "7%"
+    padding: "7%",
   },
   HeadOrder: {
     alignItems: "center",
@@ -117,7 +110,8 @@ const styles = StyleSheet.create({
     borderLeftColor: '#FFFFFF',
     borderBottomColor: '#A2A1A1',
     paddingBottom: "7%",
-    marginBottom: "7%"
+    marginBottom: "7%",
+    flexDirection: "row"
   },
   TextSummaryOrder: {
     fontSize: 20,
@@ -139,6 +133,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#A2A1A1',
     paddingBottom: "7%",
     marginBottom: "7%"
+  },
+  AmountPayHeadDetail: {
+    flexDirection: "row",
+    alignItems: "center"
   },
   boldFont: {
     fontWeight: "bold",
