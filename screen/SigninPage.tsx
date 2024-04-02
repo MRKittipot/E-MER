@@ -58,7 +58,8 @@ const Signin = ({navigation}) => {
 
   async function handleSigninbyMongodb(){
     try{
-      const response = await axios.post("/api/user/Login", {data: {Email,Password}});
+      let data = {}
+      const response = await axios.post("/api/user/Login", data = {"Email":Email,"Password":Password});
       console.log(response.data);
     }catch(error){
       console.log(error);
