@@ -51,7 +51,7 @@ const getAccount = async (req,res) => {
 const login = async (req,res) =>{
   try{
     const useremail = req.body.Email;
-    const userpassword = req.body.Password
+    const userpassword = req.body.Password;
     const checkstatus = await usermodel.find({Email : useremail,Password : userpassword })
     if(checkstatus){
       console.log("=========================================");
@@ -119,14 +119,14 @@ const SenddatatoMongodb = async (req,res)=>{
     const foundData = await usermodel.findOne(req.body.data);
     if(foundData){
       console.log("Data Found in MongoDB:",foundData);
-      res.status(200).send("Data found in MongoDB");
+      res.status(200).send(true);
     }else{
       console.log("Data Not Found in MongoDB");
-      res.status(404).send("Data not found in MongoDB");
+      res.status(404).send(false);
     }
   }catch(error){
     console.log("Error inserting or finding data in MongoDB",error);
-    res.status(500).send("Error inserting or finding data in MongoDB")
+    res.status(500).send(false)
   }
 };
 
