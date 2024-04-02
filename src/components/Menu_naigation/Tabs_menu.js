@@ -96,11 +96,11 @@ const Tabs_menu = ({navigation}) => {
         // name="Status"
         // component={Status}
 
-        name="Add Vehicle"
-        component={AddVehicle}
+        // name="Add Vehicle"
+        // component={AddVehicle}
 
-        // name="Select Vehicle"
-        // component={AddVehicleSelecCar}
+        name="Select Vehicle"
+        component={AddVehicleSelecCar}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
