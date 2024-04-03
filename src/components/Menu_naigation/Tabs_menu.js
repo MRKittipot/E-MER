@@ -74,7 +74,7 @@ const Tabs_menu = ({navigation}) => {
       />
       <Tab.Screen
         name="Call"
-        component={PhoneNumber}
+        component={ChatPages}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
