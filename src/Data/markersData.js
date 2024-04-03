@@ -3,7 +3,7 @@
       coordinate: { latitude: 13.73467, longitude: 100.5249575 },
       title: "PTT Station สถานีบริการ สาขาสามย่าน",
       description: "Description 1",
-      charger: ["CSS2","CSS2","CSS2"],
+      charger: ["CSS2","DCS","CSS2"],
       facilities: ["Restroom", "Cafe"],
       distance: "2.5 km",
       availability: "Open 24",
@@ -11,7 +11,7 @@
    {
       coordinate: { latitude: 13.734092, longitude: 100.5240688 },
       title: "EVolt Charging Station",
-      charger: ["CSS2","CSS2","CSS2"],
+      charger: ["CSS2","CSS2"],
       facilities: ["Restroom", "Cafe"],
       distance: "2.5 km",
       availability: "Open 24",

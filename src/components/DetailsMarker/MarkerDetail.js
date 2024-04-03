@@ -41,7 +41,7 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
   };
 
   return (
-    <Animated.View style={[styles.detailContainer, { height: 370, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
+    <Animated.View style={[styles.detailContainer, { height: 400, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
       <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
         <Icon name="close-circle" size={30} color="red" />
       </TouchableOpacity>
@@ -52,15 +52,20 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
           <Text>{selectedMarker.description}</Text>
         </View>
       </View>
-
       <View style={styles.chargerContainer}>
-        {selectedMarker.charger.map((charger, index) => (
-          <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Icon name="close-circle" size={30} color="red" style={{ marginRight: 5 }} />
-            <Text style={styles.chargerDetail}>{charger}</Text>
-          </View>
-        ))}
-      </View>
+  {selectedMarker.charger.map((charger, index) => (
+    <View key={index} style={styles.chargerDetail}>
+      {charger.includes("CSS2") && (
+        <Icon name="cafe-outline" size={30} color="#000" style={{ marginRight: 11 }} />
+      )}
+      {charger.includes("DCS") && (
+        <Icon name="fast-food-outline" size={30} color="#000" style={{ marginRight: 11 }} />
+      )}
+      <Text style={{ fontWeight: 'bold' }}>{charger}</Text>
+    </View>
+  ))}
+</View>
+
 
       {/*statusContainer */}
       <View style={styles.statusContainer}>
@@ -155,19 +160,21 @@ const styles = StyleSheet.create({
   },
   chargerContainer: {
     marginTop: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'center',
     width: "100%",
   },
   chargerDetail: {
     fontWeight: 'bold',
+    flexDirection: 'row',
     borderWidth: 1,
-    width: 80,
+    borderColor: '#D9D9D9',
+    width: 100,
     height: 40, // ปรับความสูงเพื่อให้ข้อความอยู่ตรงกลางของกล่อง
     borderRadius: 5,
     textAlign: 'center', // จัดให้ข้อความอยู่กลางตามแนวนอน
-    lineHeight: 40, // กำหนดความสูงของบรรทัดเท่ากับความสูงของข้อความเพื่อจัดให้อยู่ตรงกลางในแนวดิ่ง
+    alignItems: 'center',
   },
   buttonContainer: {
     flex: 1,

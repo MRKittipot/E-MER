@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/Octicons';
@@ -9,14 +9,16 @@ import BlogPages from '../../../pages/sprint2/BlogPages';
 import ChargerPages from '../../../pages/sprint2/ChargerPages';
 import ActivitiesPage from '../../../pages/sprint2/ActivitiesPage';
 import ProfilePages from '../../../pages/sprint2/ProfilePages';
+import CallFunction from '../CallFunction/CallFunction';
 import Button_tab from './Button_tab';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Tab = createBottomTabNavigator();
 const homeIcon = <Icon name="home" size={25} />;
 const chargerIcon = <Icon2 name="charging-station" size={25} />;
+const carIcon = <Icon2 name="car-alt" size={25} />;
 const historyIcon = <Icon2 name="history" size={25} />;
-const personIcon = <Icon3 name="person" size={25} />;
+const personIcon = <Icon2 name="person" size={25} />;
 
 const Tabs_menu = () => {
     return (
@@ -61,19 +63,31 @@ const Tabs_menu = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Call' component={BlogPages}
+            <Tab.Screen
+                name='Call'
                 options={{
                     tabBarLabelStyle: {
                         fontWeight: 'bold',
                         fontSize: 13
-                        // You can add more styles as needed
                     },
                     tabBarIcon: ({ focused }) => (
-                        <></>
+                        <View style={styles.tabIconContainer}>
+                            <Icon2 color={focused ? "#0068C9" : 'black'} name="car-alt" size={27} />
+                        </View>
                     )
                 }}
-            />
-            <Tab.Screen name='Activity' component={ActivitiesPage} 
+            >
+                {() => (
+                    <TouchableOpacity onPress={() => {CallFunction}}>
+                        <View style={styles.tab}>
+                            <Text style={styles.tabLabel}>Call</Text>
+                        </View>
+                    </TouchableOpacity>
+                )}
+            </Tab.Screen>
+
+
+            <Tab.Screen name='Activity' component={ActivitiesPage}
                 options={{
                     tabBarLabelStyle: {
                         fontWeight: 'bold',
@@ -87,7 +101,7 @@ const Tabs_menu = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Profile' component={ProfilePages} 
+            <Tab.Screen name='Profile' component={ProfilePages}
                 options={{
                     tabBarLabelStyle: {
                         fontWeight: 'bold',
