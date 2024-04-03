@@ -17,7 +17,7 @@ const AddVehicleSelecCar = () => {
             </View>
             <View style={{ marginBottom: "7%" }}>
                 <Text style={styles.FontShow}>ปี : {2020}</Text>
-                <Text style={styles.FontShow}>คำอธิบาย : {"มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย"}</Text>
+                <Text style={styles.FontShow}>คำอธิบาย : {"มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ"}</Text>
             </View>
 
             {/* componente หัวชาร์จให้เลือก มาใส่ต่อจากนี้ */}
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     },
     AddVehicleLittle: {
         marginBottom: "7%",
+        fontSize: 18,
     },
     ImgShow: {
         alignSelf: "center",
@@ -54,6 +55,8 @@ const styles = StyleSheet.create({
     },
     FontShow: {
         fontSize: 20,
-        fontWeight: "bold",
+        // fontWeight: "bold",
+        fontWeight: "500",
+        // fontWeight: "100",
     }
 })

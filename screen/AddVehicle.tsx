@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     AddVehicleLittle: {
         marginLeft: "7%",
         marginBottom: "7%",
+        fontSize: 18,
     },
     AddVehicleToppic: {
         color: '#000000',
