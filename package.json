@@ -1,5 +1,5 @@
 {
-  "name": "EVm",
+  "name": "AddVehiclePage",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,6 +10,18 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@rneui/base": "^4.0.0-rc.7",
+    "@rneui/themed": "^4.0.0-rc.8",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "react": "18.2.0",
+    "react-native": "0.73.2",
+    "react-native-paper": "^5.11.7",
+    "react-native-safe-area-context": "^4.8.2",
+    "react-native-screens": "^3.29.0",
+=======
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/datetimepicker": "^7.6.2",
     "@react-native-firebase/app": "^18.7.3",
@@ -37,14 +49,18 @@
     "react-native": "0.73.2",
     "react-native-animatable": "^1.4.0",
     "react-native-app-intro-slider": "^4.0.4",
+<<<<<<< HEAD
+=======
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-google-places-autocomplete": "^2.5.6",
+>>>>>>> 4c1f5f3f9dae0f00e573f7f3e18e146b1a8f3816
     "react-native-maps": "^1.10.2",
     "react-native-onboarding-swiper": "^1.2.0",
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.29.0",
     "react-native-select-dropdown": "^3.4.0",
     "react-native-splash-screen": "^3.3.0",
+>>>>>>> dd0149646a11229bb5843ddb6d45aa1d9b65fe4f
     "react-native-vector-icons": "^10.0.3"
   },
   "devDependencies": {
