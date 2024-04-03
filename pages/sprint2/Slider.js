@@ -1,6 +1,7 @@
-import { View, Text, FlatList, StyleSheet, Image, Dimensions } from 'react-native'; // นำเข้า Dimensions
+import { View, Text, FlatList, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native'; // นำเข้า Dimensions
 import React, { useState, useEffect } from 'react';
 import PlayList from './PlayList';
+import NewsEVM from './NewsEVM';
 
 const Slider = () => {
     const [sliderList, setSliderList] = useState([]);
@@ -22,17 +23,23 @@ const Slider = () => {
 
     return (
         <View>
-        <FlatList
-            data={sliderList}
-            horizontal = {true}
-            renderItem={({ item,index }) => (
-                <View>
-                    <Image source={{ uri: item.imageUrl }} style={style.SliderImage} />
-                    <Text style = {style.nameText}>{item.name}</Text>
-                </View>
-            )}
-        />
-        <PlayList/>
+            <FlatList
+                data={sliderList}
+                horizontal = {true}
+                renderItem={({ item,index }) => (
+                    // <TouchableOpacity onPress={() => {
+                    //     if(item.name === '') {
+                    //         navigation.navigation(''); //นำไปยังหน้าที่ต้องการ
+                    //     }
+                    // }}>
+                    <View>
+                        <Image source={{ uri: item.imageUrl }} style={style.SliderImage} />
+                        <Text style = {style.nameText}>{item.name}</Text>
+                    </View>
+                )}
+            />
+            <NewsEVM/>
+            <PlayList/>
         </View>
     )
 }

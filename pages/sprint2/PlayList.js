@@ -41,8 +41,10 @@ const PlayList = () => {
 
 const style = StyleSheet.create({
     container : {
-        marginTop : 15,
-        marginLeft : 15
+        marginTop : 20,
+        marginLeft : 15,
+        marginRight : 10, 
+        paddingBottom: 35
     },
     heading : {
         fontSize : 18,
