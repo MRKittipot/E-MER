@@ -1,4 +1,4 @@
-﻿export const markersData = [
+export const markersData = [
    {
       coordinate: { latitude: 13.73467, longitude: 100.5249575 },
       title: "PTT Station สถานีบริการ สาขาสามย่าน",
