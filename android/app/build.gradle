@@ -2,7 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
 
 /**
@@ -121,8 +121,4 @@ dependencies {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
-<<<<<<< HEAD
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
-=======
-apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
->>>>>>> dd0149646a11229bb5843ddb6d45aa1d9b65fe4f
