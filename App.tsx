@@ -27,16 +27,15 @@ const App = () => {
         <Stack.Navigator
           initialRouteName="Splash"
           screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="Splash" component={Splash} />
-          <Stack.Screen name="Onboardings" component={Onboardings} /> */}
+          <Stack.Screen name="Splash" component={Splash} />
+          <Stack.Screen name="Onboardings" component={Onboardings} /> 
           <Stack.Screen name="Signin" component={SigninPage} />
-          {/* <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="LoadingPage" component={Loading} />
           <Stack.Screen name="ForgetPage" component={Forgetpassword} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Account" component={Account} /> */}
-          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Account" component={Account} /> 
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>

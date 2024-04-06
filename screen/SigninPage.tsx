@@ -43,7 +43,7 @@ const Signin = ({navigation}) => {
         console.log('Sign in! Successful');
         console.log('Email :', email);
         console.log('Password :', password);
-        navigation.navigate('Chat');
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.error(error);
