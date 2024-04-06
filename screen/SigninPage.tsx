@@ -1,5 +1,5 @@
 import {Link} from '@react-navigation/native';
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
   View,
@@ -20,12 +20,11 @@ import GoogleonPress from '../config/firebase/GoogleSignin';
 import {auth} from '../config/Firebaseconfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
-import { useUserAuth } from '../context/userContext';
+import {useUserAuth} from '../context/userContext';
 import axios from 'axios';
 const Signin = ({navigation}) => {
-  
-  const {user} = useUserAuth()
-  
+  const {user} = useUserAuth();
+
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
@@ -56,12 +55,15 @@ const Signin = ({navigation}) => {
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
 
-  async function handleSigninbyMongodb(){
-    try{
-      let data = {}
-      const response = await axios.post("/api/user/Login", data = {"Email":Email,"Password":Password});
+  async function handleSigninbyMongodb() {
+    try {
+      let data = {};
+      const response = await axios.post(
+        '/api/user/Login',
+        (data = {Email: Email, Password: Password}),
+      );
       console.log(response.data);
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -114,9 +116,11 @@ const Signin = ({navigation}) => {
           setPassword(Password);
         }}
       />
-      <Text style={{color: Validation ? 'white' : 'red'}}>
-        Email and Password doesn't correct
-      </Text>
+      {Validation ? (
+        <Text></Text> //Leng Method 
+      ) : (
+        <Text  style={{color: 'red'}}>Email and Password doesn't correct</Text>
+      )}
       <TouchableOpacity
         style={{
           backgroundColor: '#0068c6',
