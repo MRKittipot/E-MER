@@ -1,4 +1,4 @@
-package com.addvehiclepage
+package com.EVm
 
 import android.app.Application
 import com.facebook.react.PackageList

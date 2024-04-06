@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "AddVehiclePage.app"
-               BlueprintName = "AddVehiclePage"
-               ReferencedContainer = "container:AddVehiclePage.xcodeproj">
+               BuildableName = "EVm.app"
+               BlueprintName = "EVm"
+               ReferencedContainer = "container:EVm.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "AddVehiclePageTests.xctest"
-               BlueprintName = "AddVehiclePageTests"
-               ReferencedContainer = "container:AddVehiclePage.xcodeproj">
+               BuildableName = "EVmTests.xctest"
+               BlueprintName = "EVmTests"
+               ReferencedContainer = "container:EVm.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "AddVehiclePage.app"
-            BlueprintName = "AddVehiclePage"
-            ReferencedContainer = "container:AddVehiclePage.xcodeproj">
+            BuildableName = "EVm.app"
+            BlueprintName = "EVm"
+            ReferencedContainer = "container:EVm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "AddVehiclePage.app"
-            BlueprintName = "AddVehiclePage"
-            ReferencedContainer = "container:AddVehiclePage.xcodeproj">
+            BuildableName = "EVm.app"
+            BlueprintName = "EVm"
+            ReferencedContainer = "container:EVm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
