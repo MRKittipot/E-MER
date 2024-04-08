@@ -59,116 +59,118 @@ const PhoneNumber = () => {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        alignItems: 'flex-start',
-        margin: 10,
-        paddingBottom: 50
-      }}>
-      <Text
-        style={{
-          textAlign: 'left',
-          fontSize: 24,
-          fontWeight: '900',
-          margin: 15,
-          color: '#333333',
-          marginTop: 40,
+    <View style={styles.container}>
+      <Text style={styles.emergencyText}>Emergency Number</Text>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          alignItems: 'flex-start',
+          margin: 10,
+          paddingBottom: 50
         }}>
-        Emergency Number
-      </Text>
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall} style={style.BTIn1}>
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Fornt13L1P1}>เหตุด่วนเหตุร้าย</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall2} style={style.BTIn1}>
-          <View>
-            <Text style={style.Fornt13L1P2}>กองปราบปราม</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L1P1}>เหตุด่วนเหตุร้าย</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall2} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L1P2}>กองปราบปราม</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall3} style={style.BTIn2}>
-          <View style={{marginLeft: 5}}>
-            {/* <Text style={style.Font13P1010}>1193</Text> */}
-            <Text style={style.Fornt13L1P1}>ตำรวจทางหลวง</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall4} style={style.BTIn2}>
-          <View>
-            <Text style={style.Fornt13L2P21}>หน่วยแพทย์กู้ชีวิต</Text>
-            <Text style={style.Fornt13L2P2}>วชิรพยาบาล</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall3} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L1P1}>ตำรวจทางหลวง</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall4} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L2P21}>หน่วยแพทย์กู้ชีวิต</Text>
+              <Text style={styles.Fornt13L2P2}>วชิรพยาบาล</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall5} style={style.BTIn1}>
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Fornt13L3P11}>สถาบันการแพทย์</Text>
-            <Text style={style.Fornt13L3P12}>ฉุกเฉินแห่งชาติ</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall6} style={style.BTIn1}>
-          <View>
-            <Text style={style.Fornt13L3P11}>หน่วยแพทย์ฉุกเฉิน</Text>
-            <Text style={style.Fornt13L3P22}>(กทม.)</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall5} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L3P11}>สถาบันการแพทย์</Text>
+              <Text style={styles.Fornt13L3P12}>ฉุกเฉินแห่งชาติ</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall6} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L3P11}>หน่วยแพทย์ฉุกเฉิน</Text>
+              <Text style={styles.Fornt13L3P22}>(กทม.)</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall7} style={style.BTIn2}>
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Fornt13L4P12}>การทางพิเศษ</Text>
-            <Text style={style.Fornt13L4P2}>แห่งประเทศไทย</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall8} style={style.BTIn2}>
-          <View>
-            <Text style={style.Fornt13L4P221}>พบเจออุบัติเหตุ</Text>
-            <Text style={style.Fornt13L4P222}>ทางน้ำ</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall7} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L4P12}>การทางพิเศษ</Text>
+              <Text style={styles.Fornt13L4P2}>แห่งประเทศไทย</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall8} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L4P221}>พบเจออุบัติเหตุ</Text>
+              <Text style={styles.Fornt13L4P222}>ทางน้ำ</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall9} style={style.BTIn1}>
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Fornt13L5P1}>แจ้งเหตุไฟไหม้</Text>
-            <Text style={style.Fornt13L5P12}>ดับเพลิง</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall10} style={style.BTIn1}>
-          <View>
-            <Text style={style.Fornt13L5P221}>จส.100 แจ้งเหตุด่วน</Text>
-            <Text style={style.Fornt13L5P222}>เพื่อประสานงานต่อ</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall9} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L5P1}>แจ้งเหตุไฟไหม้</Text>
+              <Text style={styles.Fornt13L5P12}>ดับเพลิง</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall10} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L5P221}>จส.100 แจ้งเหตุด่วน</Text>
+              <Text style={styles.Fornt13L5P222}>เพื่อประสานงานต่อ</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 30}}>
-        <TouchableOpacity onPress={handleCall11} style={style.BTIn2}>
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Fornt13L4P221}>กรมทางหลวง</Text>
-            <Text style={style.Fornt13L3P22}>ชนบท</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall12} style={style.BTIn2}>
-          <View>
-            <Text style={style.Fornt13L6P21}>สถานีวิทยุ</Text>
-            <Text style={style.Fornt13L6P22}>ร่วมด้วยช่วยกัน</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 30}}>
+          <TouchableOpacity onPress={handleCall11} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L4P221}>กรมทางหลวง</Text>
+              <Text style={styles.Fornt13L3P22}>ชนบท</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall12} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L6P21}>สถานีวิทยุ</Text>
+              <Text style={styles.Fornt13L6P22}>ร่วมด้วยช่วยกัน</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  emergencyText: {
+    textAlign: 'left',
+    fontSize: 24,
+    fontWeight: '900',
+    marginLeft: 25,
+    color: '#333333',
+    marginTop: 50,
+  },
   BTIn1: {
     width: 175,
     height: 85,

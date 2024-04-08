@@ -44,7 +44,7 @@ const style = StyleSheet.create({
         marginTop : 20,
         marginLeft : 15,
         marginRight : 10, 
-        paddingBottom: 35
+        paddingBottom: 20
     },
     heading : {
         fontSize : 18,
