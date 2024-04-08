@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { markersData } from '../../src/Data/markersData';
 import MarkerDetail from '../../src/components/DetailsMarker/MarkerDetail';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
+import CallFunction from '../../src/components/CallFunction/CallFunction';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -97,7 +98,13 @@ const ChargerPages = ({ navigation }) => {
         ))}
       </MapView>
       {selectedMarker && (
-        <MarkerDetail
+        // <MarkerDetail
+        //   selectedMarker={selectedMarker}
+        //   slideUpAnimation={slideUpAnimation}
+        //   handleClose={handleClose}
+        //   slideUpHeight={SLIDE_UP_HEIGHT}
+        // />
+        <CallFunction
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
   },
   callButton: {
     position: 'absolute',
-    bottom: height * 0.1,
+    bottom: height * 0.15,
     right: 20,
     backgroundColor: '#fff',
     borderRadius: 30,

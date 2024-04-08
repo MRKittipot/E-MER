@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/Octicons';
@@ -9,9 +9,9 @@ import BlogPages from '../../../pages/sprint2/BlogPages';
 import ChargerPages from '../../../pages/sprint2/ChargerPages';
 import ActivitiesPage from '../../../pages/sprint2/ActivitiesPage';
 import ProfilePages from '../../../pages/sprint2/ProfilePages';
-import CallFunction from '../CallFunction/CallFunction';
 import Button_tab from './Button_tab';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import CallFunction from '../CallFunction/CallFunction';
 
 const Tab = createBottomTabNavigator();
 const homeIcon = <Icon name="home" size={25} />;
@@ -63,30 +63,20 @@ const Tabs_menu = () => {
                     )
                 }}
             />
-            <Tab.Screen
-                name='Call'
+            <Tab.Screen name='Call' component={CallFunction}
                 options={{
                     tabBarLabelStyle: {
                         fontWeight: 'bold',
                         fontSize: 13
+                        // You can add more styles as needed
                     },
                     tabBarIcon: ({ focused }) => (
                         <View style={styles.tabIconContainer}>
-                            <Icon2 color={focused ? "#0068C9" : 'black'} name="car-alt" size={27} />
+                            <Icon2 color={focused ? "#0068C9" : Colors.dark} name="car-alt" size={27} />
                         </View>
                     )
                 }}
-            >
-                {() => (
-                    <TouchableOpacity onPress={() => {CallFunction}}>
-                        <View style={styles.tab}>
-                            <Text style={styles.tabLabel}>Call</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
-            </Tab.Screen>
-
-
+            />
             <Tab.Screen name='Activity' component={ActivitiesPage}
                 options={{
                     tabBarLabelStyle: {
