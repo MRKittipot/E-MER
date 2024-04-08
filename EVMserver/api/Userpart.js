@@ -52,7 +52,7 @@ const login = async (req,res) =>{
   try{
     const useremail = req.body.Email;
     const userpassword = req.body.Password;
-    const checkstatus = await usermodel.find({Email : useremail,Password : userpassword })
+    const checkstatus = await usermodel.findOne({Email : useremail,Password : userpassword })
     if(checkstatus){
       console.log("=========================================");
       console.log("Login Complete");
