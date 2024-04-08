@@ -1,18 +1,14 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 import Slider from '../../pages/sprint2/Slider'
-import PlayList from '../../pages/sprint2/PlayList'
-import NewsEVM from '../../pages/sprint2/NewsEVM'
 
 const BlogPage = () => {
   return (
-    <ScrollView contentContainerStyle = {{flexGrow: 1, alignItems: 'flex-start', margin: 10}}>
+    <ScrollView contentContainerStyle = {{flexGrow: 1, margin: 10, paddingBottom: 50}}>
         <View>
         <Text style={style.TextHeader}>Blogs</Text>
         <Text style={style.Textline2}>Information and News about electic cars</Text>
             <Slider/>
-            {/* <PlayList/> */}
-            {/* <NewsEVM/> */}
         </View>
     </ScrollView>
 
@@ -26,7 +22,7 @@ const style = StyleSheet.create({
         fontWeight: '900', 
         marginLeft: 15, 
         color: '#333333', 
-        marginTop: 20
+        marginTop: 40
     },
     Textline2 : {
       textAlign: 'left', 
