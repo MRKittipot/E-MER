@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  Image,
   ScrollView,
   Linking,
   TouchableOpacity,
@@ -60,174 +59,118 @@ const PhoneNumber = () => {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        alignItems: 'flex-start',
-        margin: 10,
-      }}>
-      <Text
-        style={{
-          textAlign: 'left',
-          fontSize: 24,
-          fontWeight: '900',
-          margin: 15,
-          color: '#333333',
-          marginTop: 20,
+    <View style={styles.container}>
+      <Text style={styles.emergencyText}>Emergency Number</Text>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          alignItems: 'flex-start',
+          margin: 10,
+          paddingBottom: 50
         }}>
-        Emergency Number
-      </Text>
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/ตำรวจ.png')}
-            style={style.Img1}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.NumBut1}>191</Text>
-            <Text style={style.Font13}>เหตุด่วนเหตุร้าย</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall2} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/กองปราบปราม.png')}
-            style={style.Img2}
-          />
-          <View>
-            <Text style={style.NumBut2}>1195</Text>
-            <Text style={style.Font13}>กองปราบปราม</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L1P1}>เหตุด่วนเหตุร้าย</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall2} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L1P2}>กองปราบปราม</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall3} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/ตำรวจทางหลวง.png')}
-            style={style.Img3}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.Font13P1010}>1193</Text>
-            <Text style={style.Font13}>ตำรวจทางหลวง</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall4} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/วชิรพยาบาล.png')}
-            style={style.Img4}
-          />
-          <View>
-            <Text style={style.NumMar5}>1554</Text>
-            <Text style={style.Font13}>หน่วยแพทย์กู้ชีวิต</Text>
-            <Text style={style.Font13P10}>วชิรพยาบาล</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall3} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L1P1}>ตำรวจทางหลวง</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall4} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L2P21}>หน่วยแพทย์กู้ชีวิต</Text>
+              <Text style={styles.Fornt13L2P2}>วชิรพยาบาล</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall5} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/สถาบันการแพทย์.png')}
-            style={style.Img1}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.NumMar10}>1669</Text>
-            <Text style={style.Font13}>สถาบันการแพทย์</Text>
-            <Text style={style.Font13P5}>ฉุกเฉินแห่งชาติ</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall6} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/หน่วยแพทย์ฉุกเฉิน.png')}
-            style={style.Img1}
-          />
-          <View>
-            <Text style={style.NumMar10}>1646</Text>
-            <Text style={style.Font13}>หน่วยแพทย์ฉุกเฉิน</Text>
-            <Text style={style.Font13P25}>(กทม.)</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall5} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L3P11}>สถาบันการแพทย์</Text>
+              <Text style={styles.Fornt13L3P12}>ฉุกเฉินแห่งชาติ</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall6} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L3P11}>หน่วยแพทย์ฉุกเฉิน</Text>
+              <Text style={styles.Fornt13L3P22}>(กทม.)</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall7} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/การทางพิเศษแห่งประเทศไทย.png')}
-            style={style.Img3}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.NumMar10}>1543</Text>
-            <Text style={style.Font13P5}>การทางพิเศษ</Text>
-            <Text style={style.Font13}>แห่งประเทศไทย</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall8} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/พบเจออุบัติเหตุทางน้ำ.png')}
-            style={style.Img5}
-          />
-          <View>
-            <Text style={style.NumMar5}>1196</Text>
-            <Text style={style.Font13}>พบเจออุบัติเหตุ</Text>
-            <Text style={style.Font13P20}>ทางน้ำ</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall7} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L4P12}>การทางพิเศษ</Text>
+              <Text style={styles.Fornt13L4P2}>แห่งประเทศไทย</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall8} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L4P221}>พบเจออุบัติเหตุ</Text>
+              <Text style={styles.Fornt13L4P222}>ทางน้ำ</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={handleCall9} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/แจ้งเหตุไฟไหม้.png')}
-            style={style.Img6}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.NumMar15}>199</Text>
-            <Text style={style.Font13}>แจ้งเหตุไฟไหม้</Text>
-            <Text style={style.Font13P15}>ดับเพลิง</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall10} style={style.BTIn1}>
-          <Image
-            source={require('../../assets/จส.100.png')}
-            style={style.Img7}
-          />
-          <View>
-            <Text style={style.NumMar20}>1137</Text>
-            <Text style={style.Font13}>จส.100 แจ้งเหตุด่วน</Text>
-            <Text style={style.Font13}>เพื่อประสานงานต่อ</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <TouchableOpacity onPress={handleCall9} style={styles.BTIn1}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L5P1}>แจ้งเหตุไฟไหม้</Text>
+              <Text style={styles.Fornt13L5P12}>ดับเพลิง</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall10} style={styles.BTIn1}>
+            <View>
+              <Text style={styles.Fornt13L5P221}>จส.100 แจ้งเหตุด่วน</Text>
+              <Text style={styles.Fornt13L5P222}>เพื่อประสานงานต่อ</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 30}}>
-        <TouchableOpacity onPress={handleCall11} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/กรมทางหลวงชนบท.png')}
-            style={style.Img3}
-          />
-          <View style={{marginLeft: 5}}>
-            <Text style={style.NumMar10}>1146</Text>
-            <Text style={style.Font13}>กรมทางหลวง</Text>
-            <Text style={style.Font13P20}>ชนบท</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleCall12} style={style.BTIn2}>
-          <Image
-            source={require('../../assets/สถานีวิทยุร่วมด้วยช่วยกัน.png')}
-            style={style.Img8}
-          />
-          <View>
-            <Text style={style.NumMar5}>1167</Text>
-            <Text style={style.Font13P15}>สถานีวิทยุ</Text>
-            <Text style={style.Font13}>ร่วมด้วยช่วยกัน</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 30}}>
+          <TouchableOpacity onPress={handleCall11} style={styles.BTIn2}>
+            <View style={{marginLeft: 5}}>
+              <Text style={styles.Fornt13L4P221}>กรมทางหลวง</Text>
+              <Text style={styles.Fornt13L3P22}>ชนบท</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCall12} style={styles.BTIn2}>
+            <View>
+              <Text style={styles.Fornt13L6P21}>สถานีวิทยุ</Text>
+              <Text style={styles.Fornt13L6P22}>ร่วมด้วยช่วยกัน</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  emergencyText: {
+    textAlign: 'left',
+    fontSize: 24,
+    fontWeight: '900',
+    marginLeft: 25,
+    color: '#333333',
+    marginTop: 50,
+  },
   BTIn1: {
     width: 175,
     height: 85,
@@ -244,133 +187,117 @@ const style = StyleSheet.create({
     borderRadius: 25,
     flexDirection: 'row',
   },
-  NumMar5: {
-    fontSize: 30,
+  Fornt13L1P2: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
+    marginTop: 30,
+    marginLeft: 20,
+  },
+  Fornt13L1P1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 30,
+    marginLeft: 10,
+  },
+  Fornt13L2P21: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 18,
+    marginLeft: 10,
+  },
+  Fornt13L3P11: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 17,
+    marginLeft: 7,
+  },
+  Fornt13L5P222: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginLeft: 9,
+  },
+  Fornt13L4P221: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 17,
+    marginLeft: 20,
+  },
+  Fornt13L5P1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 17,
+    marginLeft: 15,
+  },
+  Fornt13L4P12: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 17,
+    marginLeft: 23,
+  },
+  Fornt13L2P2: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginLeft: 35,
+  },
+  Fornt13L5P221: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop:17,
     marginLeft: 5,
   },
-  NumMar10: {
-    fontSize: 30,
+  Fornt13L4P222: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginLeft: 55,
+  },
+  Fornt13L5P12: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginLeft: 45,
+  },
+  Fornt13L6P21: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 17,
+    marginLeft: 43,
+  },
+  Fornt13L4P2: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
     marginLeft: 10,
   },
-  NumMar15: {
-    fontSize: 30,
+  Fornt13L3P12: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
     marginLeft: 15,
   },
-  NumMar20: {
-    fontSize: 30,
+  Fornt13L6P22: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginLeft: 20,
+    marginLeft: 18,
   },
-  NumBut1: {
-    fontSize: 30,
+  Fornt13L3P22: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginTop: 10,
-    marginLeft: 20,
-  },
-  NumBut2: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginTop: 10,
-    marginLeft: 5,
-  },
-  Font13: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
-  Font13P5: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 5,
-  },
-  Font13P10: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 10,
-  },
-  Font13P15: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 15,
-  },
-  Font13P20: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 20,
-  },
-  Font13P25: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 25,
-  },
-  Font13P1010: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginTop: 10,
-    marginLeft: 10,
-  },
-  Img1: {
-    width: 55,
-    height: 55,
-    marginTop: 10,
-    marginLeft: 5,
-  },
-  Img2: {
-    width: 70,
-    height: 60,
-    marginTop: 15,
-    marginLeft: 5,
-  },
-  Img3: {
-    width: 55,
-    height: 55,
-    marginTop: 15,
-    marginLeft: 10,
-  },
-  Img4: {
-    width: 65,
-    height: 62,
-    marginTop: 10,
-    marginLeft: 5,
-  },
-  Img5: {
-    width: 66,
-    height: 66,
-    marginTop: 10,
-    marginLeft: 5,
-  },
-  Img6: {
-    width: 55,
-    height: 80,
-    marginTop: 5,
-    marginLeft: 10,
-  },
-  Img7: {
-    width: 50,
-    height: 85,
-    marginLeft: 5,
-  },
-  Img8: {
-    width: 66,
-    height: 75,
-    marginTop: 10,
-    marginLeft: 5,
-  },
+    marginLeft: 55,
+  }
 });
 
 export default PhoneNumber;

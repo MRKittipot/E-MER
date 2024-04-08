@@ -1,3 +1,4 @@
+
 import { View, Text, StyleSheet,FlatList, Image } from 'react-native'
 import React from 'react'
 
@@ -23,7 +24,7 @@ const NewsEVM = () => {
 
   return (
     <View style = {style.container}>
-      <Text style = {style.heading}>Activities & News</Text>
+      <Text style = {style.heading}>E-MER News</Text>
       <FlatList
       data = {courseList}
       horizontal = {true}
@@ -41,8 +42,9 @@ const NewsEVM = () => {
 
 const style = StyleSheet.create({
     container : {
-        marginTop : 15,
-        marginLeft : 15
+        marginTop : 20,
+        marginLeft : 15,
+        marginRight : 10 
     },
     heading : {
         fontSize : 18,

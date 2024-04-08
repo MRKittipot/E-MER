@@ -6,9 +6,7 @@ import PaymentHistory from '../../src/components/Activities/PaymentHistory';
 export default function ActivitiesPage() {
     return (
         <ScrollView style={styles.ActivityPage}>
-        <Text style={styles.Head}>History</Text>
-        <History />
-  
+
         <Text style={styles.Head}>Payment History</Text>
         <PaymentHistory />
         <PaymentHistory />
@@ -63,7 +61,8 @@ const styles = StyleSheet.create({
       },
       Head: {
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginVertical: 20
       },
     
 });

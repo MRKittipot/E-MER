@@ -33,26 +33,6 @@ const Tabs_menu = ({navigation}) => {
         },
       }}>
       <Tab.Screen
-        name="Blog"
-        component={BlogPages}
-        options={{
-          tabBarLabelStyle: {
-            fontWeight: 'bold',
-            fontSize: 13,
-            // You can add more styles as needed
-          },
-          tabBarIcon: ({focused}) => (
-            <View style={styles.tabIconContainer}>
-              <Icon
-                color={focused ? '#0068C9' : Colors.dark}
-                name="home"
-                size={25}
-              />
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Charger"
         component={ChargerPages}
         options={{
@@ -66,6 +46,26 @@ const Tabs_menu = ({navigation}) => {
               <Icon2
                 color={focused ? '#0068C9' : Colors.dark}
                 name="charging-station"
+                size={25}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Blog"
+        component={BlogPages}
+        options={{
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            fontSize: 13,
+            // You can add more styles as needed
+          },
+          tabBarIcon: ({focused}) => (
+            <View style={styles.tabIconContainer}>
+              <Icon
+                color={focused ? '#0068C9' : Colors.dark}
+                name="home"
                 size={25}
               />
             </View>
