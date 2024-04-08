@@ -185,11 +185,6 @@ const style = StyleSheet.create({
     borderRadius: 25,
     flexDirection: 'row',
   },
-  Font13: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
   Fornt13L1P2: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -300,36 +295,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffffff',
     marginLeft: 55,
-  },
-  Font13P5: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 5,
-  },
-  Font13P10: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 10,
-  },
-  Font13P15: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 15,
-  },
-  Font13P20: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 20,
-  },
-  Font13P25: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingLeft: 25,
   }
 });
 
