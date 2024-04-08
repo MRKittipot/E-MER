@@ -7,7 +7,7 @@ const BlogPage = () => {
     <ScrollView contentContainerStyle = {{flexGrow: 1, margin: 10, paddingBottom: 50}}>
         <View>
         <Text style={style.TextHeader}>Blogs</Text>
-        <Text style={style.Textline2}>Information and News about electic cars</Text>
+        <Text style={style.Textline2}>Information and News about electic cars test</Text>
             <Slider/>
         </View>
     </ScrollView>
