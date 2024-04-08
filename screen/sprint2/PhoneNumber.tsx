@@ -330,13 +330,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffffff',
     paddingLeft: 25,
-  },
-  Font13P1010: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginTop: 10,
-    marginLeft: 10,
   }
 });
 
