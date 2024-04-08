@@ -1,5 +1,5 @@
 import {Link} from '@react-navigation/native';
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 //import {useNavigation} from '@react-navigation/native';
 import {
   View,
@@ -20,10 +20,9 @@ import GoogleonPress from '../config/firebase/GoogleSignin';
 import {auth} from '../config/Firebaseconfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
-import { useUserAuth } from '../context/userContext';
+import {useUserAuth} from '../context/userContext';
 import axios from 'axios';
 const Signin = ({navigation}) => {
-  
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
@@ -55,12 +54,21 @@ const Signin = ({navigation}) => {
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
 
-  async function handleSigninbyMongodb(){
-    try{
-      const response = await axios.post("http://localhost:5000/api/user/Login", {Email,Password});
+  async function handleSigninbyMongodb() {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/user/Login',
+        {Email, Password},
+      );
       console.log(response.data);
-    }catch(error){
-      console.log(error);
+    } catch (error) {
+      if (error.response) {
+        console.log('Server error:', error.response.data);
+      } else if (error.request) {
+        console.log('No Response from server :',error.request.data);
+      } else {
+        console.log('post failed', error.message);
+      }
     }
   }
 
