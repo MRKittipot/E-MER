@@ -1,6 +1,6 @@
 import {Link} from '@react-navigation/native';
 import React, {useState,useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+//import {useNavigation} from '@react-navigation/native';
 import {
   View,
   StyleSheet,
@@ -23,8 +23,6 @@ import {firebase} from '@react-native-firebase/auth';
 import { useUserAuth } from '../context/userContext';
 import axios from 'axios';
 const Signin = ({navigation}) => {
-  
-  const {user} = useUserAuth()
   
   async function googleSignin() {
     await GoogleonPress().then(data => {
@@ -51,15 +49,15 @@ const Signin = ({navigation}) => {
       });
   }
 
-  // const {user} = useUserAuth();
+  const {user} = useUserAuth();
+
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
 
   async function handleSigninbyMongodb(){
     try{
-      let data = {}
-      const response = await axios.post("/api/user/Login", data = {"Email":Email,"Password":Password});
+      const response = await axios.post("http://localhost:5000/api/user/Login", {Email,Password});
       console.log(response.data);
     }catch(error){
       console.log(error);
