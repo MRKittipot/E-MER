@@ -7,6 +7,6 @@ const {
 } = require("../api/Reservepart")
 
 router.post("/savebill",postReservation);
-router.post("/getbill",getReservation);
+router.get("/getbill",getReservation);
 
-module.exports = router;
+module.exports = router; 
