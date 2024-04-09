@@ -4,10 +4,32 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ChargeTypeAddVehicle = () => {
   return (
-    <View>
-      <Icon name="ev-plug-ccs2" size={45} color="#000000" />
-      <Icon name="ev-plug-type2" size={45} color="#000000" />
-      <Icon name="ev-plug-chademo" size={45} color="#000000" />
+    <View style={styles.ChargeTypeAddVehicleCard}>
+
+      <View>
+        <View style={styles.ChargeType}>
+          <Icon name="ev-plug-ccs2" size={45} color="#000000" />
+          <Text style={styles.ChargeTypeText}>CCS2</Text>
+        </View>
+        <Text style={styles.BottomText}>DC charger CCS2</Text>
+      </View>
+
+      <View>
+        <View style={styles.ChargeType}>
+          <Icon name="ev-plug-type2" size={45} color="#000000" />
+          <Text style={styles.ChargeTypeText}>TYPE2</Text>
+        </View>
+        <Text style={styles.BottomText}>Charger Typer2</Text>
+      </View>
+
+      <View>
+        <View style={styles.ChargeType}>
+          <Icon name="ev-plug-chademo" size={45} color="#000000" />
+          <Text style={styles.ChargeTypeText}>CHAdeMO</Text>
+        </View>
+        <Text style={styles.BottomText}>Charger Chademo</Text>
+      </View>
+
     </View>
   )
 }
@@ -21,9 +43,23 @@ const styles = StyleSheet.create({
   },
   ChargeType: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    borderColor: "#D9D9D9",
+    borderWidth: 2,
+    borderRadius: 50,
+    paddingHorizontal: 4
   },
   ChargeTypeText: {
-    marginLeft: 10
-  }
+    marginLeft: 5,
+    color: "#000000",
+    fontWeight: "bold"
+  },
+  BottomText: {
+    alignSelf: "center",
+    fontSize: 10,
+    marginTop: 5,
+    color: "#000000",
+    fontWeight: "bold"
+  },
+  
 })
