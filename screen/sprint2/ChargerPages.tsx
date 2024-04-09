@@ -104,7 +104,7 @@ const ChargerPages = ({ navigation }) => {
         //   handleClose={handleClose}
         //   slideUpHeight={SLIDE_UP_HEIGHT}
         // />
-        <CallFunction
+        <MarkerDetail
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
