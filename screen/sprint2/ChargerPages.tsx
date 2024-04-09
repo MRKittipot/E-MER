@@ -1,26 +1,21 @@
-﻿import React, {useState, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Animated,
-  PermissionsAndroid,
-  Platform,
-} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+﻿import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {markersData} from '../../src/Data/markersData';
+import { markersData } from '../../src/Data/markersData';
 import MarkerDetail from '../../src/components/DetailsMarker/MarkerDetail';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
+import CallFunction from '../../src/components/CallFunction/CallFunction';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.01;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const SLIDE_UP_HEIGHT = height * 0.75; // 75% of screen height
 
-const ChargerPages = () => {
+const ChargerPages = ({ navigation }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [showCallButton, setShowCallButton] = useState(true);
   const slideUpAnimation = new Animated.Value(0);
 
   useEffect(() => {
@@ -35,8 +30,7 @@ const ChargerPages = () => {
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
             title: 'Location Permission',
-            message:
-              'This app needs access to your location to show it on the map.',
+            message: 'This app needs access to your location to show it on the map.',
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
@@ -53,8 +47,9 @@ const ChargerPages = () => {
     }
   };
 
-  const handleMarkerPress = marker => {
+  const handleMarkerPress = (marker) => {
     setSelectedMarker(marker);
+    setShowCallButton(false); // Hide call button when marker is pressed
     Animated.timing(slideUpAnimation, {
       toValue: 1,
       duration: 300,
@@ -67,7 +62,10 @@ const ChargerPages = () => {
       toValue: 0,
       duration: 300,
       useNativeDriver: true,
-    }).start(() => setSelectedMarker(null));
+    }).start(() => {
+      setSelectedMarker(null);
+      setShowCallButton(true); // Show call button when closing marker detail
+    });
   };
 
   return (
@@ -79,19 +77,20 @@ const ChargerPages = () => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 13.734092,
-          longitude: 100.5240688,
+          latitude: 13.726330428,
+          longitude: 100.523831238,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}
-        showsUserLocation={true} // Ensure showsUserLocation is explicitly set to true
-        followsUserLocation={true} // Optionally, enable followsUserLocation if you want the map to track the user's location
+        showsUserLocation={true}
+        followsUserLocation={true}
       >
         {markersData.map((marker, index) => (
           <Marker
             key={index}
             coordinate={marker.coordinate}
-            onPress={() => handleMarkerPress(marker)}>
+            onPress={() => handleMarkerPress(marker)}
+          >
             <View style={styles.markerContainer}>
               <Icon name="flash" size={20} color="#ffff" />
             </View>
@@ -99,12 +98,23 @@ const ChargerPages = () => {
         ))}
       </MapView>
       {selectedMarker && (
-        <MarkerDetail
+        // <MarkerDetail
+        //   selectedMarker={selectedMarker}
+        //   slideUpAnimation={slideUpAnimation}
+        //   handleClose={handleClose}
+        //   slideUpHeight={SLIDE_UP_HEIGHT}
+        // />
+        <CallFunction
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
           slideUpHeight={SLIDE_UP_HEIGHT}
         />
+      )}
+      {showCallButton && (
+        <TouchableOpacity style={styles.callButton}>
+          <Icon color="#FF4B33" name="call" size={30} />
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -124,7 +134,24 @@ const styles = StyleSheet.create({
     borderColor: '#0068C9',
     padding: 5,
   },
-  searchBox: {},
+  searchBox: {
+    // Add your styles here
+  },
+  callButton: {
+    position: 'absolute',
+    bottom: height * 0.15,
+    right: 20,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    transform: [
+      { scaleX: -1 },
+    ]
+  },
 });
 
 export default ChargerPages;
