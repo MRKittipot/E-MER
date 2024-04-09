@@ -6,6 +6,7 @@ export default GoogleonPress = async () => {
         GoogleSignin.configure({
             offlineAccess:false,
             webClientId:'775274243522-4mkst1obhqfqjcbehj60euk76ocubpph.apps.googleusercontent.com',
+            //webClientId:'254109520523-qjonk2795g4rk7sv6u86sru278fmndnk.apps.googleusercontent.com',
             scopes:['profile','email']
         })
         await GoogleSignin.hasPlayServices();

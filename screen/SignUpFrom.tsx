@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   Modal,
+  Alert,
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import * as SplashScreen from 'expo-splash-screen';
@@ -16,7 +17,7 @@ import axios from 'axios';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 const SignUp = ({navigation}) => {
@@ -34,6 +35,7 @@ const SignUp = ({navigation}) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(false);
+  const [modalVisible, setmodalVisible] = useState(false);
   const Gender = ['Male', 'Female', 'Other'];
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
@@ -77,8 +79,6 @@ const SignUp = ({navigation}) => {
     ) {
       console.log('Please fill in all required fields');
       return;
-    } else {
-      navigation.navigate('LoadingPage');
     }
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -90,17 +90,15 @@ const SignUp = ({navigation}) => {
     }
 
     if (password !== confirmPassword) {
-      console.log('Password and Confirm Password do not match');
+      Alert.alert(
+        'Password and Confirm Password do not match',
+        'Please try again',
+      );
       setConfirmPasswordBorderColor('red');
       return;
     }
 
     // Prepare data for the API request
-    const userData = {
-      name,
-      sex,
-      dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
-    };
 
     try {
       // Call your backend API endpoint for user registration
@@ -110,6 +108,18 @@ const SignUp = ({navigation}) => {
         password,
       );
 
+      const userData = {
+        email,
+        Uid: response.user.uid, //create user and send data name user need to console log
+        name,
+        sex,
+        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
+      };
+
+      //provider use for change type between  sign in with google or sign in with email
+      //axios can use for react-native
+
+      //add mongoose api in here
       if (response.user) {
         const newUserRef = push(ref(db, 'users'));
         set(newUserRef, userData)
@@ -120,14 +130,23 @@ const SignUp = ({navigation}) => {
             console.error('Error pushing data to Firebase: ', error);
           });
         console.log('User registered successfully');
+        navigation.navigate('LoadingPage');
       } else {
         // Handle errors from the server
         console.error('Registration failed:');
       }
     } catch (error) {
-      // Handle network or other errors
-      console.log('Unexpected error occurred:', error);
-      console.error('Error during registration:', error.message);
+      if (
+        error.message.includes('email-already-in-use') ||
+        error.message.includes('auth/invalid-email')
+      ) {
+        Alert.alert(
+          'Mail already in used',
+          'Please try again with your new mail',
+        );
+      } else {
+        Alert.alert(`message error : ${error.message}`);
+      }
     }
 
     // Reset the form after submission if needed
@@ -143,6 +162,13 @@ const SignUp = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Icon
+        name="chevron-left"
+        size={30}
+        color="#000000"
+        onPress={() => navigation.goBack()}
+        style={{position: 'relative', left: -10}}
+      />
       <Text style={styles.title}>Create Account</Text>
       <Text
         style={{
@@ -290,17 +316,13 @@ const SignUp = ({navigation}) => {
         </View>
         <View style={styles.dateOfBirth}>
           <Text style={styles.labelTextInput}>Date of Birth</Text>
-          <TouchableOpacity onPress={showDatePicker} style={{position:"relative"}}>
+          <TouchableOpacity
+            onPress={showDatePicker}
+            style={{position: 'relative'}}>
             <TextInput
               style={styles.select_dropdown}
               value={format(dateOfBirth, 'dd/MM/yyyy')}
               editable={false}
-            />
-            <Icon
-              name="event"
-              size={30}
-              color="#0068C6"
-              style={{position: 'absolute',right:30, top:10}}
             />
           </TouchableOpacity>
 
@@ -321,7 +343,7 @@ const SignUp = ({navigation}) => {
         onPress={handleSignUp}
         style={[
           styles.submitButton,
-          {backgroundColor: isFormValid ? '#0068C6' : '#57A8E8'},
+          {backgroundColor: isFormValid ? '#57a8e8' : '#0068c6'},
         ]}
         disabled={!isFormValid}>
         <Text style={styles.textButton}>CONTINUE</Text>
@@ -333,9 +355,9 @@ const SignUp = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    width: '100%',
-    marginTop: 20,
+    marginTop: 50,
+    marginLeft: 28,
+    marginRight: 28,
   },
   input: {
     height: 50,
@@ -345,18 +367,19 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 20,
     backgroundColor: '#ffffff',
-    elevation:4
+    elevation: 4,
   },
   title: {
     fontSize: 24,
     marginBottom: 5,
     fontWeight: 'bold',
+    color: '#333333',
   },
   submitButton: {
     backgroundColor: '#0068C6',
     borderRadius: 20,
-    paddingTop:10,
-    paddingBottom:10
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   textButton: {
     color: 'white',
@@ -386,8 +409,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '90%',
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: 'bold',
+    color: 'blue',
   },
   sex: {
     width: '55%',
@@ -442,4 +466,5 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
 });
+
 export default SignUp;
