@@ -35,7 +35,6 @@ const App = () => {
           <Stack.Screen name="LoadingPage" component={Loading} />
           <Stack.Screen name="ForgetPage" component={Forgetpassword} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Account" component={Account} /> 
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>

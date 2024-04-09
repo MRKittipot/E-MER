@@ -55,9 +55,40 @@ const Profile = ({navigation}) => {
         />
         <Text style={style.profilename}>{Name}</Text>
         <Text style={style.profilemail}>{user.email}</Text>
-        <Text style={style.view} onPress={() => navigation.navigate('Account')}>
-          View Profile
-        </Text>
+        <View style={style.detailcard}>
+          <View style={style.insidecard}>
+            <Icon name="calendar" size={30} color="#65676b" />
+            <View style={style.labelpart}>
+              <View style={style.labelcard}>
+                <Text>Date of Birth</Text>
+              </View>
+              <Text style={style.textinf}>06/03/2002</Text>
+            </View>
+          </View>
+          <Icon
+            name="chevron-right"
+            size={30}
+            color="#65676b"
+            style={{justifyContent: 'flex-end', display: 'flex'}}
+          />
+        </View>
+        <View style={style.detailcard}>
+          <View style={style.insidecard}>
+            <Icon name="phone" size={30} color="#65676b" />
+            <View style={style.labelpart}>
+              <View style={style.labelcard}>
+                <Text>Phone</Text>
+              </View>
+              <Text style={style.textinf}>0982462121</Text>
+            </View>
+          </View>
+          <Icon
+            name="chevron-right"
+            size={30}
+            color="#65676b"
+            style={{justifyContent: 'flex-end', display: 'flex'}}
+          />
+        </View>
       </View>
       <View style={style.optioncard}>
         <View style={style.detailcard}>
@@ -113,7 +144,7 @@ const style = StyleSheet.create({
     backgroundColor: '#EEEEEE',
     marginLeft: 28,
     marginRight: 28,
-    height: 219,
+    height: 300,
     alignContent: 'center',
     justifyContent: 'center',
     marginTop: 25,
@@ -173,5 +204,26 @@ const style = StyleSheet.create({
     marginLeft: 28,
     marginRight: 28,
     alignItems: 'center',
+  },  
+  insidecard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  labelpart: {
+    marginLeft: 15,
+    flexDirection: 'row',
+    width: 200,
+    justifyContent: 'space-between',
+  },
+  labelcard: {
+    marginRight: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
+  textinf: {
+    color: '#0068c6',
+    textAlign: 'right',
   },
 });
