@@ -22,7 +22,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
 import {useUserAuth} from '../context/userContext';
 import axios from 'axios';
+
+
 const Signin = ({navigation}) => {
+
+  //const myIP = "192.168.1.101";
+
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
@@ -34,34 +39,29 @@ const Signin = ({navigation}) => {
     });
   }
 
-  async function OnhandleSignin(email, password) {
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        console.log('Sign in! Successful');
-        console.log('Email :', email);
-        console.log('Password :', password);
-        navigation.navigate('Home');
-      })
-      .catch(error => {
-        console.error(error);
-        setValidation(false);
-      });
-  }
-
   const {user} = useUserAuth();
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
+  const [Status, setStatus] = useState(false);
 
   async function handleSigninbyMongodb() {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/user/Login',
+        'http://10.0.2.2:5000/api/user/Login',
         {Email, Password},
       );
       console.log(response.data);
-    } catch (error) {
+      //set status
+      setStatus(true);
+      //traffic for navigation
+      if(Status){
+        navigation.navigate("Home");
+      }else{
+        console.log("Log in Fail");  
+      };
+    } catch(error) {
       if (error.response) {
         console.log('Server error:', error.response.data);
       } else if (error.request) {
@@ -69,7 +69,7 @@ const Signin = ({navigation}) => {
       } else {
         console.log('post failed', error.message);
       }
-    }
+    } 
   }
 
   return (

@@ -13,8 +13,6 @@ import Signup from './screen/SignUpFrom';
 import Loading from './screen/LoadingPage';
 import Forgetpassword from './screen/ForgetPassword';
 import Profile from './screen/sprint2/Profile';
-import Account from './screen/Account';
-import Chat from './screen/sprint2/Chat';
 import ProtectRoute from './auth/protectRoute.jsx';
 
 const Stack = createNativeStackNavigator();

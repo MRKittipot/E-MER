@@ -55,7 +55,7 @@ const login = async (req,res) =>{
     if(checkstatus){
       console.log("=========================================");
       console.log("Login Complete");
-      res.status(200).send('Login Successfully')
+      res.status(200).send("Login Successfully");
     }else{
       console.log("User not found");
     }
