@@ -68,6 +68,11 @@ const ChargerPages = ({ navigation }) => {
     });
   };
 
+  const navigateToPhoneNumberPage = () => {
+    // Navigate to the phone number page
+    navigation.navigate('PhoneNumber');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
@@ -104,7 +109,7 @@ const ChargerPages = ({ navigation }) => {
         //   handleClose={handleClose}
         //   slideUpHeight={SLIDE_UP_HEIGHT}
         // />
-        <MarkerDetail
+        <CallFunction
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
@@ -112,7 +117,7 @@ const ChargerPages = ({ navigation }) => {
         />
       )}
       {showCallButton && (
-        <TouchableOpacity style={styles.callButton}>
+        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
           <Icon color="#FF4B33" name="call" size={30} />
         </TouchableOpacity>
       )}

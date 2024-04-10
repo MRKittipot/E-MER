@@ -15,6 +15,9 @@ import Forgetpassword from './screen/ForgetPassword';
 import Profile from './screen/sprint2/Profile';
 import ProtectRoute from './auth/protectRoute.jsx';
 
+import PhoneNumber from './screen/sprint2/PhoneNumber';
+import Summaryorder from './screen/Summaryorder';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -33,6 +36,8 @@ const App = () => {
           <Stack.Screen name="LoadingPage" component={Loading} />
           <Stack.Screen name="ForgetPage" component={Forgetpassword} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
+          <Stack.Screen name="Summaryorder" component={Summaryorder} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>
