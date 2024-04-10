@@ -20,7 +20,6 @@ const AddVehicleSelecCar = () => {
                 <Text style={styles.FontShow}>คำอธิบาย : {"มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ"}</Text>
             </View>
 
-            {/* componente หัวชาร์จให้เลือก มาใส่ต่อจากนี้ */}
             <ChargeTypeAddVehicle />
 
 
