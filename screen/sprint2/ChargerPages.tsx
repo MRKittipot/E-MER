@@ -102,6 +102,9 @@ const ChargerPages = ({ navigation }) => {
           </Marker>
         ))}
       </MapView>
+      ส่วนนี้คือกดจาก marker ถ้าจะให้เขาดู function ให้คอมเม้นอันนั้นนะ อันนี้กูจะให้เขาดู call function เลย comment MarkerDetail ไว้
+      // 
+      
       {selectedMarker && (
         // <MarkerDetail
         //   selectedMarker={selectedMarker}
