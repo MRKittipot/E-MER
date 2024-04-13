@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         padding: 3,
         color: "#0262BC", 
         backgroundColor: "#E9EAEE",
+        textAlign: "center",
     },
     radio: {
         borderWidth: 1,
