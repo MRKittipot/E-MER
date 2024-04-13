@@ -56,6 +56,14 @@ const Payment = () => {
                                 <TouchableOpacity style={styles.ButtonPayment} onPress={() => setShow(false)}>
                                     <Text style={{ textAlign: "center", color: "#FFFFFF" }}>Confirm</Text>
                                 </TouchableOpacity>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                <Text>asdf</Text>
                             </View>
                         </View>
                     </View>
