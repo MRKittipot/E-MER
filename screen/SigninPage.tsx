@@ -1,4 +1,3 @@
-import {Link} from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
 //import {useNavigation} from '@react-navigation/native';
 import {
@@ -11,23 +10,22 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import GGLogoutbutton from '../src/components/Login/GoogleLogout';
-import {
+//import GGLogoutbutton from '../src/components/Login/GoogleLogout';
+/*import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-} from 'firebase/auth';
-import GoogleonPress from '../config/firebase/GoogleSignin';
-import {auth} from '../config/Firebaseconfig';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+} from 'firebase/auth';*/
+//import GoogleonPress from '../config/firebase/GoogleSignin';
+//import {auth} from '../config/Firebaseconfig';
+/*import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
-import {useUserAuth} from '../context/userContext';
+import {useUserAuth} from '../context/userContext';*/
 import axios from 'axios';
-
 
 const Signin = ({navigation}) => {
 
-  //const myIP = "192.168.1.101";
-
+  /*
+  //-----Google Signin-----//
   async function googleSignin() {
     await GoogleonPress().then(data => {
       if (!data) {
@@ -40,6 +38,8 @@ const Signin = ({navigation}) => {
   }
 
   const {user} = useUserAuth();
+  //----------------------//
+  */
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -53,14 +53,13 @@ const Signin = ({navigation}) => {
         {Email, Password},
       );
       console.log(response.data);
-      //set status
-      setStatus(true);
-      //traffic for navigation
-      if(Status){
+      if (response.data.length > 0){
+        console.log(response.data.length);
+        //setStatus(true);
         navigation.navigate("Home");
-      }else{
-        console.log("Log in Fail");  
-      };
+      }
+      //set status
+      //traffic for navigation
     } catch(error) {
       if (error.response) {
         console.log('Server error:', error.response.data);
@@ -69,7 +68,7 @@ const Signin = ({navigation}) => {
       } else {
         console.log('post failed', error.message);
       }
-    } 
+    }
   }
 
   return (
@@ -143,38 +142,6 @@ const Signin = ({navigation}) => {
             fontSize: 16,
           }}>
           Sign in
-        </Text>
-      </TouchableOpacity>
-      <Text style={{alignSelf: 'center', fontWeight: '300', marginTop: 10}}>
-        or
-      </Text>
-      <TouchableOpacity
-        style={{
-          marginLeft: 28,
-          marginRight: 28,
-          marginTop: 10,
-          borderRadius: 20,
-          borderColor: '#A2A1A1',
-          borderWidth: 1,
-          backgroundColor: 'rgb(255,255,255)',
-        }}
-        onPress={() => googleSignin()}>
-        <Text
-          style={{
-            color: '#0068c6',
-            alignSelf: 'center',
-            marginTop: 10,
-            marginBottom: 12,
-            fontSize: 16,
-          }}>
-          <Image
-            source={require('../assets/google-logo.png')}
-            style={{
-              width: 20,
-              height: 20,
-            }}
-          />
-          Sign in with Google
         </Text>
       </TouchableOpacity>
       <View style={{display: 'flex'}}>

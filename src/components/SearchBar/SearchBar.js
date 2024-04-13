@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
     paddingHorizontal: 20,
-    flex: 0.5
+    flex: 0.5,
   },
 });
 

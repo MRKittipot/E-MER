@@ -141,16 +141,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000000"
   }
-
-
-
-
-
-
-
-
-
-
 })
 
 export default Summaryorder;

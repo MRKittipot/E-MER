@@ -19,6 +19,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
 import Icon from 'react-native-vector-icons/Feather';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { Jwt } from 'jsonwebtoken';
 
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('');
@@ -37,10 +38,13 @@ const SignUp = ({navigation}) => {
   const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [modalVisible, setmodalVisible] = useState(false);
   const Gender = ['Male', 'Female', 'Other'];
+  const [Phone, setPhone] = useState('');
+
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
     setMode(currentMode);
   };
+
   const showDatePicker = () => {
     showMode('date');
   };
@@ -75,7 +79,8 @@ const SignUp = ({navigation}) => {
       !password ||
       !confirmPassword ||
       !sex ||
-      !dateOfBirth
+      !dateOfBirth ||
+      !Phone //Add Phone number 13/4/67
     ) {
       console.log('Please fill in all required fields');
       return;
@@ -113,7 +118,8 @@ const SignUp = ({navigation}) => {
         Uid: response.user.uid, //create user and send data name user need to console log
         name,
         sex,
-        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
+        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), 
+        Phone //Add Phone into UserData  
       };
 
       //provider use for change type between  sign in with google or sign in with email

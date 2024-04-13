@@ -37,14 +37,14 @@ const Profile = ({navigation}) => {
       navigation.navigate('Signin');
     }
   };
-
+  /*
   useEffect(() => {
     console.log(JSON.stringify(user).length);
     if (JSON.stringify(user).length == 2) {
       navigation.navigate('Signin');
     }
   }, [user]);
-
+  */
   return (
     <View style={style.page}>
       <Text style={style.header}>My Account</Text>

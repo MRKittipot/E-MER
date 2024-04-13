@@ -113,7 +113,7 @@ const ChargerPages = ({ navigation }) => {
       )}
       {showCallButton && (
         <TouchableOpacity style={styles.callButton}>
-          <Icon color="#FF4B33" name="call" size={30} />
+          <Icon color="#ffffff" name="call" size={30} />
         </TouchableOpacity>
       )}
     </View>
@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
   },
   callButton: {
     position: 'absolute',
-    bottom: height * 0.15,
+    bottom: height * 0.1,
     right: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#0068c6',
     borderRadius: 30,
     width: 60,
     height: 60,

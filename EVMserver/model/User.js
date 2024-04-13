@@ -28,8 +28,8 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Uid : {
-        type: String,
+    PhotoURL : {
+        type : String,
         required: true
     }
 })
