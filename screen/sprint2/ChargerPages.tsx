@@ -68,6 +68,11 @@ const ChargerPages = ({ navigation }) => {
     });
   };
 
+  const navigateToPhoneNumberPage = () => {
+    // Navigate to the phone number page
+    navigation.navigate('PhoneNumber');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
@@ -97,6 +102,9 @@ const ChargerPages = ({ navigation }) => {
           </Marker>
         ))}
       </MapView>
+      ส่วนนี้คือกดจาก marker ถ้าจะให้เขาดู function ให้คอมเม้นอันนั้นนะ อันนี้กูจะให้เขาดู call function เลย comment MarkerDetail ไว้
+      // 
+      
       {selectedMarker && (
         // <MarkerDetail
         //   selectedMarker={selectedMarker}
@@ -104,7 +112,7 @@ const ChargerPages = ({ navigation }) => {
         //   handleClose={handleClose}
         //   slideUpHeight={SLIDE_UP_HEIGHT}
         // />
-        <MarkerDetail
+        <CallFunction
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
@@ -112,8 +120,8 @@ const ChargerPages = ({ navigation }) => {
         />
       )}
       {showCallButton && (
-        <TouchableOpacity style={styles.callButton}>
-          <Icon color="#ffffff" name="call" size={30} />
+        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
+          <Icon color="#FF4B33" name="call" size={30} />
         </TouchableOpacity>
       )}
     </View>
