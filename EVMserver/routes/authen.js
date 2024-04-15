@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     updateUserPhoto,
     updateUserinfo,
-} = require("../api/Userpart")
+} = require("../api/User/Userpart")
 const createAccount = require("../api/User/Signupapi")
 const getAccount = require("../api/User/Getuserapi");
 const login = require("../api/User/Loginapi");

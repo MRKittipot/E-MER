@@ -40,6 +40,24 @@ const SignUp = ({navigation}) => {
   const Gender = ['Male', 'Female', 'Other'];
   const [Phone, setPhone] = useState('');
 
+  const EmeruserData = {
+    "Name": name,
+    "Email":email,
+    "Password":password,
+    "Sex": sex,
+    "DateofBitrh": dateOfBirth
+  }
+
+  const sendData = async () => {
+    try{
+      const response = await axios.post('http://10.0.2.2:5000/api/user/Signup',EmeruserData)
+      console.log(response.data);
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
     setMode(currentMode);
@@ -79,8 +97,7 @@ const SignUp = ({navigation}) => {
       !password ||
       !confirmPassword ||
       !sex ||
-      !dateOfBirth ||
-      !Phone //Add Phone number 13/4/67
+      !dateOfBirth
     ) {
       console.log('Please fill in all required fields');
       return;
@@ -105,28 +122,26 @@ const SignUp = ({navigation}) => {
 
     // Prepare data for the API request
 
-    try {
+    //try {
       // Call your backend API endpoint for user registration
-      const response = await createUserWithEmailAndPassword(
+      /*const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
-      );
+      );*/
 
-      const userData = {
+      /*const userData = {
         email,
-        Uid: response.user.uid, //create user and send data name user need to console log
         name,
         sex,
         dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), 
-        Phone //Add Phone into UserData  
-      };
+      };*/
 
       //provider use for change type between  sign in with google or sign in with email
       //axios can use for react-native
 
       //add mongoose api in here
-      if (response.user) {
+      /*if (response.user) {
         const newUserRef = push(ref(db, 'users'));
         set(newUserRef, userData)
           .then(() => {
@@ -153,7 +168,9 @@ const SignUp = ({navigation}) => {
       } else {
         Alert.alert(`message error : ${error.message}`);
       }
-    }
+    }*/
+
+    sendData()
 
     // Reset the form after submission if needed
     setName('');

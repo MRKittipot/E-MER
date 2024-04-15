@@ -20,7 +20,9 @@ import {
 /*import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/auth';
 import {useUserAuth} from '../context/userContext';*/
-import axios from 'axios';
+//import axios from 'axios';
+import {useUserAuth} from '../context/userContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signin = ({navigation}) => {
 
@@ -37,39 +39,70 @@ const Signin = ({navigation}) => {
     });
   }
 
-  const {user} = useUserAuth();
   //----------------------//
   */
+ const {user,Signin} = useUserAuth();
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
-  const [Status, setStatus] = useState(false);
+  const [Data, setData] = useState("")
 
-  async function handleSigninbyMongodb() {
-    try {
-      const response = await axios.post(
-        'http://10.0.2.2:5000/api/user/Login',
-        {Email, Password},
-      );
-      console.log(response.data);
-      if (response.data.length > 0){
-        console.log(response.data.length);
-        //setStatus(true);
-        navigation.navigate("Home");
-      }
-      //set status
-      //traffic for navigation
-    } catch(error) {
-      if (error.response) {
-        console.log('Server error:', error.response.data);
-      } else if (error.request) {
-        console.log('No Response from server :',error.request.data);
+  const saveToken = async(Token) => {
+    try{
+      await AsyncStorage.setItem("Token",Token);
+      console.log("Data Saved successfully");
+      console.log(Data);
+      
+    }catch(error){
+      console.log("Error saving Data :",error);
+    }
+  };
+
+  const getData = async() =>{
+    try{
+      const value = await AsyncStorage.getItem( "Token" );
+      if (value !== null) {
+        // Value was successfully read!
+        setData(value)
+        console.log("Data received Successfully");
+        console.log(Data);
+        
+        navigation.navigate("Profile")
       } else {
-        console.log('post failed', error.message);
+        // Value could not be retrieved.
+        console.log("Please Login First");
+        navigation.navigate('Signin')
       }
+    } catch(error) {
+      // Error retrieving data
+      console.log("Error: ", error);
+    }
+  };
+
+
+  const handleSigninbyMongodb = async () => {
+    try {
+
+      const login = await Signin(Email,Password);
+      
+      if (login == "Incorrect password" || login == "User Not Found") {
+        console.log(
+          login
+        );
+      } else {
+        console.log(login);
+        saveToken(login.EmerToken);
+        navigation.navigate("Profile")
+        }
+    } catch(error) {
+      console.log(error,"frontend error");
     }
   }
+
+  useEffect(()=>{
+    getData();
+  },[])
 
   return (
     <View>

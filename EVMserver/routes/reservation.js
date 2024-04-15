@@ -4,7 +4,7 @@ const router = express.Router();
 const {
     getReservation,
     postReservation
-} = require("../api/Reservepart")
+} = require("../api/Reservation/Reservepart")
 
 router.post("/savebill",postReservation);
 router.get("/getbill",getReservation);

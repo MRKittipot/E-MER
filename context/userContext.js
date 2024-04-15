@@ -14,6 +14,7 @@ import auth from '@react-native-firebase/auth';
 import {auth as a, db} from '../config/Firebaseconfig';
 import {useNavigation} from '@react-navigation/native';
 const userAuthContext = createContext();
+import axios from 'axios';
 
 export function UserAuthContextProvider({children}) {
   const [user, setUser] = useState({});
@@ -144,6 +145,23 @@ export function UserAuthContextProvider({children}) {
     return unsubscribe;
   }, []);
 
+  async function Signin(Email,Password) {
+    try {
+      const response = await axios.post(
+        'http://10.0.2.2:5000/api/user/Login',
+        {Email, Password},
+      );
+      if (response.data == "Incorrect password" || response.data == "User Not Found") {
+        return response.data
+        } else {
+          setUserdata(response.data)
+          return response.data
+        }
+    } catch(error) {
+      console.log(error,"userauthcontext");
+    }
+  }
+
   return (
     <userAuthContext.Provider
       value={{
@@ -157,6 +175,7 @@ export function UserAuthContextProvider({children}) {
         emailAuth,
         provider,
         userData,
+        Signin
       }}>
       {children}
     </userAuthContext.Provider>
