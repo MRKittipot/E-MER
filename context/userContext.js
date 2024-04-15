@@ -13,12 +13,15 @@ import {
 import auth from '@react-native-firebase/auth';
 import {auth as a, db} from '../config/Firebaseconfig';
 import {useNavigation} from '@react-navigation/native';
-const userAuthContext = createContext();
 import axios from 'axios';
+import { createWatchProgram } from 'typescript';
+
+const userAuthContext = createContext();
 
 export function UserAuthContextProvider({children}) {
   const [user, setUser] = useState({});
   const [userData, setUserdata] = useState({});
+  const [Token,setToken] = useState("")
   const [provider, setProvider] = useState({});
   function logIn(email, password) {
     return signInWithPopup(
@@ -161,6 +164,15 @@ export function UserAuthContextProvider({children}) {
       console.log(error,"userauthcontext");
     }
   }
+
+  /*
+  async function DeleteToken(Token){
+    try{
+      await setToken("")
+    }catch(error){
+      console.log("usercontext/Cannot Delete Token :",error);
+    }
+  }*/
 
   return (
     <userAuthContext.Provider

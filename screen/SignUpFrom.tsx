@@ -169,8 +169,13 @@ const SignUp = ({navigation}) => {
         Alert.alert(`message error : ${error.message}`);
       }
     }*/
-
-    sendData()
+    try{
+      const response = await axios.post("http://localhost:5000/api/user/Signup", EmeruserData)
+      console.log(response);
+    }catch(error){
+      console.log(error);
+      
+    }
 
     // Reset the form after submission if needed
     setName('');
