@@ -8,12 +8,13 @@ const updatePassword = async(req,res) => {
 
         const hashedpassword = await bcrypt.hash(newpassword , 10);
 
-        const response = usermodel.findOne(userdataemail);
+        const response = await usermodel.findOne({Email:userdataemail});
         if(response){
-            console.log(response);
-            const update = await usermodel.updateOne(
-                {Email: userdataemail , 
-                Password : hashedpassword})
+            const update = await usermodel.findByIdAndUpdate(
+                response._id,
+                {Password : hashedpassword},
+                {new : true}
+            );
             console.log("Update Password Successfully");
             res.status(200).send(update);
         }else{
