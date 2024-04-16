@@ -19,6 +19,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
 import Icon from 'react-native-vector-icons/Feather';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { Jwt } from 'jsonwebtoken';
 
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('');
@@ -37,10 +38,31 @@ const SignUp = ({navigation}) => {
   const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [modalVisible, setmodalVisible] = useState(false);
   const Gender = ['Male', 'Female', 'Other'];
+  const [Phone, setPhone] = useState('');
+
+  const EmeruserData = {
+    "Name": name,
+    "Email":email,
+    "Password":password,
+    "Sex": sex,
+    "DateofBitrh": dateOfBirth
+  }
+
+  const sendData = async () => {
+    try{
+      const response = await axios.post('http://10.0.2.2:5000/api/user/Signup',EmeruserData)
+      console.log(response.data);
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);
     setMode(currentMode);
   };
+
   const showDatePicker = () => {
     showMode('date');
   };
@@ -100,27 +122,26 @@ const SignUp = ({navigation}) => {
 
     // Prepare data for the API request
 
-    try {
+    //try {
       // Call your backend API endpoint for user registration
-      const response = await createUserWithEmailAndPassword(
+      /*const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
-      );
+      );*/
 
-      const userData = {
+      /*const userData = {
         email,
-        Uid: response.user.uid, //create user and send data name user need to console log
         name,
         sex,
-        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), // Adjust the date format if needed
-      };
+        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), 
+      };*/
 
       //provider use for change type between  sign in with google or sign in with email
       //axios can use for react-native
 
       //add mongoose api in here
-      if (response.user) {
+      /*if (response.user) {
         const newUserRef = push(ref(db, 'users'));
         set(newUserRef, userData)
           .then(() => {
@@ -147,6 +168,13 @@ const SignUp = ({navigation}) => {
       } else {
         Alert.alert(`message error : ${error.message}`);
       }
+    }*/
+    try{
+      const response = await axios.post("http://localhost:5000/api/user/Signup", EmeruserData)
+      console.log(response);
+    }catch(error){
+      console.log(error);
+      
     }
 
     // Reset the form after submission if needed

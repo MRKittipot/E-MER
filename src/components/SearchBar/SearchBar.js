@@ -2,7 +2,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-// import { markersData } from '../../src/Data/markersData'; // Import markersData
 const { height, width } = Dimensions.get('window');
 
 const SearchBar = () => {
@@ -14,7 +13,7 @@ const SearchBar = () => {
           console.log(data, details);
         }}
         query={{
-          key: 'AIzaSyA5pxMtmvljUhHhRgv1BTP1LuqAQSJG650',
+          key: 'AIzaSyD-IG6lkLkvi1PnO4YeWbUfkyNkB_j8HRo',
           language: 'en',
         }}
         onFail={(error) => console.log(error)}
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
     paddingHorizontal: 20,
-    flex: 0.5
+    flex: 0.5,
   },
 });
 

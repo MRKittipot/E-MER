@@ -1,4 +1,4 @@
-const ReservationModel = require("../model/Reservation"); // Use camelCase for variable names
+const ReservationModel = require("../../model/Reservation"); // Use camelCase for variable names
 const express = require("express");
 const router = express.Router();
 

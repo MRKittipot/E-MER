@@ -13,9 +13,11 @@ import Signup from './screen/SignUpFrom';
 import Loading from './screen/LoadingPage';
 import Forgetpassword from './screen/ForgetPassword';
 import Profile from './screen/sprint2/Profile';
-import Account from './screen/Account';
-import Chat from './screen/sprint2/Chat';
-import ProtectRoute from './auth/protectRoute.jsx';
+//import ProtectRoute from './auth/protectRoute.jsx';
+import MPhoneNumber from './screen/sprint2/MPhoneNumber';
+
+import PhoneNumber from './screen/sprint2/PhoneNumber';
+import Summaryorder from './screen/Summaryorder';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,14 +29,17 @@ const App = () => {
         <Stack.Navigator
           initialRouteName="Splash"
           screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="Splash" component={Splash} /> */}
-          {/* <Stack.Screen name="Onboardings" component={Onboardings} /> 
-          <Stack.Screen name="Signin" component={SigninPage} /> */}
+           <Stack.Screen name="Splash" component={Splash} />
+          <Stack.Screen name="Onboardings" component={Onboardings} /> 
+          <Stack.Screen name="Signin" component={SigninPage} />
           <Stack.Screen name="Home" component={Home} />
-          {/* <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="LoadingPage" component={Loading} />
           <Stack.Screen name="ForgetPage" component={Forgetpassword} />
-          <Stack.Screen name="Profile" component={Profile} /> */}
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="MPhoneNumber" component={MPhoneNumber} />
+          <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
+          <Stack.Screen name="Summaryorder" component={Summaryorder} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>

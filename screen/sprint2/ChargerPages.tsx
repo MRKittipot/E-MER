@@ -1,5 +1,4 @@
-<<<<<<< HEAD:pages/sprint2/ChargerPages.js
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -69,6 +68,11 @@ const ChargerPages = ({ navigation }) => {
     });
   };
 
+  const navigateToPhoneNumberPage = () => {
+    // Navigate to the phone number page
+    navigation.navigate('PhoneNumber');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
@@ -98,6 +102,9 @@ const ChargerPages = ({ navigation }) => {
           </Marker>
         ))}
       </MapView>
+      ส่วนนี้คือกดจาก marker ถ้าจะให้เขาดู function ให้คอมเม้นอันนั้นนะ อันนี้กูจะให้เขาดู call function เลย comment MarkerDetail ไว้
+      // 
+      
       {selectedMarker && (
         // <MarkerDetail
         //   selectedMarker={selectedMarker}
@@ -113,7 +120,7 @@ const ChargerPages = ({ navigation }) => {
         />
       )}
       {showCallButton && (
-        <TouchableOpacity style={styles.callButton}>
+        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
           <Icon color="#FF4B33" name="call" size={30} />
         </TouchableOpacity>
       )}
@@ -140,9 +147,9 @@ const styles = StyleSheet.create({
   },
   callButton: {
     position: 'absolute',
-    bottom: height * 0.15,
+    bottom: height * 0.1,
     right: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#0068c6',
     borderRadius: 30,
     width: 60,
     height: 60,
@@ -227,6 +234,11 @@ const ChargerPages = ({ navigation }) => {
     });
   };
 
+  const navigateToPhoneNumberPage = () => {
+    // Navigate to the phone number page
+    navigation.navigate('PhoneNumber');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
@@ -256,6 +268,9 @@ const ChargerPages = ({ navigation }) => {
           </Marker>
         ))}
       </MapView>
+      ส่วนนี้คือกดจาก marker ถ้าจะให้เขาดู function ให้คอมเม้นอันนั้นนะ อันนี้กูจะให้เขาดู call function เลย comment MarkerDetail ไว้
+      // 
+      
       {selectedMarker && (
         // <MarkerDetail
         //   selectedMarker={selectedMarker}
@@ -271,7 +286,7 @@ const ChargerPages = ({ navigation }) => {
         />
       )}
       {showCallButton && (
-        <TouchableOpacity style={styles.callButton}>
+        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
           <Icon color="#FF4B33" name="call" size={30} />
         </TouchableOpacity>
       )}
@@ -298,9 +313,9 @@ const styles = StyleSheet.create({
   },
   callButton: {
     position: 'absolute',
-    bottom: height * 0.15,
+    bottom: height * 0.1,
     right: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#0068c6',
     borderRadius: 30,
     width: 60,
     height: 60,
@@ -314,4 +329,3 @@ const styles = StyleSheet.create({
 });
 
 export default ChargerPages;
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e:screen/sprint2/ChargerPages.tsx

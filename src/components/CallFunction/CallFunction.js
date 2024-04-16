@@ -7,6 +7,7 @@ import React, { useMemo, useState} from 'react';
 import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios'; // Fix import statement
+import { useNavigation } from '@react-navigation/native'; // Import navigation hooks from react-navigation/native
 
 // test radio
 import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
@@ -14,7 +15,8 @@ import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
 
 const { height } = Dimensions.get('window');
 
-const Call = ({ slideUpAnimation, handleClose, slideUpHeight }) => {
+const Call = ({ slideUpAnimation, handleClose, slideUpHeight}) => {
+    const navigation = useNavigation(); // Get navigation object
 
 <<<<<<< HEAD
     const randonTimeNumber = (min, max) => {
@@ -38,6 +40,8 @@ const Call = ({ slideUpAnimation, handleClose, slideUpHeight }) => {
                 });
             console.log("Response", res.data);
 
+            // Navigate to Summaryorder and pass selectedId as parameter
+            navigation.navigate('Summaryorder', { selectedId });
         } catch (error) {
             console.log("Error", error); // Log the error for debugging
             // Provide appropriate feedback to the user (optional)

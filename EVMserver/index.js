@@ -15,6 +15,7 @@ app.use(bodyParser.json()); //important part
 app.use(bodyParser.urlencoded({ extended: false })); //important part
 app.use(cors());
 app.use(morgan('dev'))
+app.use(express.json());
 
 app.use("/api/user",authentication)
 app.use("/api/reservation",reservation)

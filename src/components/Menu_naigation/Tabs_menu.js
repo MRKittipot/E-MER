@@ -9,7 +9,7 @@ import BlogPages from '../../../screen/sprint2/BlogPage';
 import ChargerPages from '../../../screen/sprint2/ChargerPages';
 import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
 import ProfilePages from '../../../screen/sprint2/Profile';
-import ChatPages from "../../../screen/sprint2/Chat"
+//import ChatPages from "../../../screen/sprint2/Chat"
 import PhoneNumber from "../../../screen/sprint2/PhoneNumber"
 import Button_tab from './Button_tab';
 <<<<<<< HEAD
