@@ -10,32 +10,36 @@ import {
 } from 'react-native';
 import {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import { sendPasswordResetEmail } from 'firebase/auth';
+import {sendPasswordResetEmail} from 'firebase/auth';
 import {auth} from '../config/Firebaseconfig';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 const Forgetpassword = ({navigation}) => {
   const [Email, setEmail] = useState('');
+  const [newPassword, setnewPassword] = useState('');
 
-  const  handleSubmit = async ()=>{
-    console.log(Email);
-    try{
-      if (!Email) {
-        return Alert.alert('Error', "Please enter your email address", [{
-          text: 'Okay',
-          onPress: () => console.log('Sign Up Pressed')
-        }], {
-          cancelable: true
-        });
-    } else {
-      await sendPasswordResetEmail(auth,Email)
-      Alert.alert("Send Reset password Email Successful")
-      navigation.navigate("Signin");
+  const checkpassword = {
+    Email : Email,
+    Password : newPassword
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const status = await axios.post(
+        'http://10.0.2.2:5000/api/user/Resetpass',
+        checkpassword,
+      );
+      if (status) {
+        console.log(status);
+        Alert.alert("Status Done");
+        navigation.navigate("Login");
+      } else {
+        console.log('Please enter your email');
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }catch(error){
-    Alert.alert("Invalid Email Id","Please Enter Valid Email Id");
-    console.error(error.message);
-  }
   };
 
   return (
@@ -63,7 +67,19 @@ const Forgetpassword = ({navigation}) => {
         }}
         style={style.Textinput}
       />
-      <TouchableOpacity style={style.Submit} onPress={()=>{handleSubmit()}} >
+      <TextInput
+        keyboardType="email-address"
+        value={newPassword}
+        onChangeText={newpassword => {
+          setnewPassword(newpassword);
+        }}
+        style={style.Textinput}
+      />
+      <TouchableOpacity
+        style={style.Submit}
+        onPress={() => {
+          handleSubmit();
+        }}>
         <Text style={style.submittext}>Submit</Text>
       </TouchableOpacity>
     </View>
@@ -99,7 +115,6 @@ const style = StyleSheet.create({
     backgroundColor: 'rgb(255,255,255)',
     elevation: 4,
     marginTop: 20,
-    marginBottom: 20,
   },
   Button: {
     backgroundColor: '#0068c6',
@@ -126,6 +141,7 @@ const style = StyleSheet.create({
     borderRadius: 20,
     marginRight: 28,
     marginLeft: 28,
+    marginTop: 30
   },
   submittext: {
     color: 'white',
@@ -135,10 +151,10 @@ const style = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  headerposition:{
-    position:"relative",
-    top:-180
-  }
+  headerposition: {
+    position: 'relative',
+    top: -150,
+  },
 });
 
 export default Forgetpassword;

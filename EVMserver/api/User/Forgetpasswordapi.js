@@ -16,9 +16,10 @@ const updatePassword = async(req,res) => {
                 {new : true}
             );
             console.log("Update Password Successfully");
-            res.status(200).send(update);
+            res.status(200).send("Update Password Successfully");
         }else{
             console.log("Fail to Update");
+            res.status(401).send("Update Failed");
         }
     }catch(error){
         console.log(error);
