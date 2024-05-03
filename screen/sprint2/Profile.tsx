@@ -15,7 +15,7 @@ import {ref, onValue} from 'firebase/database';
 import {auth as a, db} from '../../config/Firebaseconfig';
 import {signOut} from 'firebase/auth';
 import auth from '@react-native-firebase/auth';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
@@ -24,17 +24,12 @@ const Profile = ({navigation}) => {
 
   const handleLogout = async () => {
     try {
-      console.log(provider);
-      if (provider == 'password') {
-        await signOut(a);
-      } else {
-        await auth().signOut();
-      }
+      await AsyncStorage.removeItem('Token')
       console.log('User has been signed out');
       navigation.navigate('Signin');
     } catch (error) {
-      console.log(error);
       navigation.navigate('Signin');
+      await AsyncStorage.removeItem('Token')
     }
   };
   /*

@@ -29,7 +29,7 @@ const SignUp = ({navigation}) => {
   const [confirmPasswordBorderColor, setConfirmPasswordBorderColor] =
     useState('#A2A1A1');
   const [sex, setSex] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [DateofBitrh, setDateOfBirth] = useState(new Date());
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState('date');
   const [passwordError, setPasswordError] = useState('');
@@ -45,7 +45,7 @@ const SignUp = ({navigation}) => {
     "Email":email,
     "Password":password,
     "Sex": sex,
-    "DateofBitrh": dateOfBirth
+    "DateofBitrh": DateofBitrh
   }
 
   const sendData = async () => {
@@ -83,7 +83,7 @@ const SignUp = ({navigation}) => {
           !!password &&
           !!confirmPassword &&
           !!sex &&
-          !!dateOfBirth &&
+          !!DateofBitrh &&
           !!name,
       );
     }
@@ -97,7 +97,7 @@ const SignUp = ({navigation}) => {
       !password ||
       !confirmPassword ||
       !sex ||
-      !dateOfBirth
+      !DateofBitrh
     ) {
       console.log('Please fill in all required fields');
       return;
@@ -134,7 +134,7 @@ const SignUp = ({navigation}) => {
         email,
         name,
         sex,
-        dateOfBirth: format(dateOfBirth, 'yyyy-MM-dd'), 
+        DateofBitrh: format(DateofBitrh, 'yyyy-MM-dd'), 
       };*/
 
       //provider use for change type between  sign in with google or sign in with email
@@ -222,7 +222,7 @@ const SignUp = ({navigation}) => {
                 !!password &&
                 !!confirmPassword &&
                 !!sex &&
-                !!dateOfBirth &&
+                !!DateofBitrh &&
                 !!name,
             );
           }}
@@ -243,7 +243,7 @@ const SignUp = ({navigation}) => {
                 !!password &&
                 !!confirmPassword &&
                 !!sex &&
-                !!dateOfBirth &&
+                !!DateofBitrh &&
                 !!name,
             );
           }}
@@ -267,7 +267,7 @@ const SignUp = ({navigation}) => {
                 !!password &&
                 !!confirmPassword &&
                 !!sex &&
-                !!dateOfBirth &&
+                !!DateofBitrh &&
                 !!name,
             );
           }}
@@ -335,21 +335,21 @@ const SignUp = ({navigation}) => {
                   !!password &&
                   !!confirmPassword &&
                   !!sex &&
-                  !!dateOfBirth &&
+                  !!DateofBitrh &&
                   !!name,
               );
             }}
             buttonStyle={styles.select_dropdown}
           />
         </View>
-        <View style={styles.dateOfBirth}>
+        <View style={styles.DateofBitrh}>
           <Text style={styles.labelTextInput}>Date of Birth</Text>
           <TouchableOpacity
             onPress={showDatePicker}
             style={{position: 'relative'}}>
             <TextInput
               style={styles.select_dropdown}
-              value={format(dateOfBirth, 'dd/MM/yyyy')}
+              value={format(DateofBitrh, 'dd/MM/yyyy')}
               editable={false}
             />
           </TouchableOpacity>
@@ -357,7 +357,7 @@ const SignUp = ({navigation}) => {
           {show && (
             <DateTimePicker
               testID="dateTimePicker"
-              value={dateOfBirth}
+              value={DateofBitrh}
               mode="date"
               is24Hour={true}
               display="default"
@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
     width: '55%',
   },
 
-  dateOfBirth: {
+  DateofBitrh: {
     width: '55%',
   },
 

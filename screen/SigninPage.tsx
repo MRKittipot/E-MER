@@ -66,7 +66,7 @@ const Signin = ({navigation}) => {
         // Value was successfully read!
         setData(value)
         console.log("Data received Successfully");
-        console.log(Data);
+        console.log(value);
         
         navigation.navigate("Profile")
       } else {
@@ -81,6 +81,7 @@ const Signin = ({navigation}) => {
   };
 
 
+  
   const handleSigninbyMongodb = async () => {
     try {
 
