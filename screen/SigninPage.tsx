@@ -41,7 +41,7 @@ const Signin = ({navigation}) => {
 
   //----------------------//
   */
- const {user,Signin} = useUserAuth();
+ const {user,Signin,saveUserData,getUserData} = useUserAuth();
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -50,7 +50,7 @@ const Signin = ({navigation}) => {
 
   const saveToken = async(Token) => {
     try{
-      await AsyncStorage.setItem("Token",Token);
+      await AsyncStorage.setItem("TokenEmer",Token);
       console.log("Data Saved successfully");
       console.log(Data);
       
@@ -61,14 +61,16 @@ const Signin = ({navigation}) => {
 
   const getData = async() =>{
     try{
-      const value = await AsyncStorage.getItem( "Token" );
+      const value = await AsyncStorage.getItem( "TokenEmer" );
+      console.log("value", value)
       if (value !== null) {
-        // Value was successfully read!
-        setData(value)
-        console.log("Data received Successfully");
-        console.log(value);
-        
+        const data = {
+          uid:value
+        }
+        const a = await getUserData(data);
+        if(a != null) {
         navigation.navigate("Profile")
+        }
       } else {
         // Value could not be retrieved.
         console.log("Please Login First");
@@ -81,7 +83,7 @@ const Signin = ({navigation}) => {
   };
 
 
-  
+
   const handleSigninbyMongodb = async () => {
     try {
 
@@ -93,8 +95,10 @@ const Signin = ({navigation}) => {
         );
       } else {
         console.log(login);
+        await saveUserData(login);
         saveToken(login.EmerToken);
         navigation.navigate("Profile")
+        
         }
     } catch(error) {
       console.log(error,"frontend error");

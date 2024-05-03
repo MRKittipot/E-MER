@@ -11,7 +11,7 @@ const DeleteUser = require("../api/User/Deleteaccountapi")
 const updatePassword = require("../api/User/Forgetpasswordapi")
 
 router.post("/Signup",createAccount);
-router.get("/getuser",getAccount);
+router.post("/getuser",getAccount);
 router.post("/Login",login);
 router.post("/Updatephoto",updateUserPhoto);
 router.post("/Updateuserinfo",updateUserinfo);

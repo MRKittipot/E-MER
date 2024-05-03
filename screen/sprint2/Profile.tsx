@@ -19,17 +19,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
-  const [userData, setUserData] = useState(null);
-  const {user, provider} = useUserAuth();
+  const {user, provider,userData} = useUserAuth();
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('Token')
+      await AsyncStorage.removeItem('TokenEmer')
       console.log('User has been signed out');
       navigation.navigate('Signin');
     } catch (error) {
       navigation.navigate('Signin');
-      await AsyncStorage.removeItem('Token')
     }
   };
   /*
@@ -39,7 +37,8 @@ const Profile = ({navigation}) => {
       navigation.navigate('Signin');
     }
   }, [user]);
-  */
+  */const a = new Date(userData.DateofBirth);
+const formattedDate = a.toISOString().substring(0, 10);
   return (
     <View style={style.page}>
       <Text style={style.header}>My Account</Text>
@@ -48,8 +47,8 @@ const Profile = ({navigation}) => {
           source={require('../../assets/google-logo.png')}
           style={style.profileimage}
         />
-        <Text style={style.profilename}>{Name}</Text>
-        <Text style={style.profilemail}>{user.email}</Text>
+        <Text style={style.profilename}>{userData.Name}</Text>
+        <Text style={style.profilemail}>{userData.Email}</Text>
         <View style={style.detailcard}>
           <View style={style.insidecard}>
             <Icon name="calendar" size={30} color="#65676b" />
@@ -57,7 +56,7 @@ const Profile = ({navigation}) => {
               <View style={style.labelcard}>
                 <Text>Date of Birth</Text>
               </View>
-              <Text style={style.textinf}>06/03/2002</Text>
+              <Text style={style.textinf}>{formattedDate}</Text>
             </View>
           </View>
           <Icon
@@ -74,7 +73,7 @@ const Profile = ({navigation}) => {
               <View style={style.labelcard}>
                 <Text>Phone</Text>
               </View>
-              <Text style={style.textinf}>0982462121</Text>
+              <Text style={style.textinf}>{userData.Phone}</Text>
             </View>
           </View>
           <Icon

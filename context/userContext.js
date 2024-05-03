@@ -15,7 +15,6 @@ import {auth as a, db} from '../config/Firebaseconfig';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import { createWatchProgram } from 'typescript';
-
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({children}) {
@@ -49,6 +48,18 @@ export function UserAuthContextProvider({children}) {
   function logOut() {
     return signOut(a);
   }
+
+  const saveUserData = async (data) => {
+    setUserdata(data);
+  }
+
+  const getUserData = async(token) => {
+    const response = await axios.post('http://10.0.2.2:5000/api/user/getuser',token);
+    console.log(response.data,"global state");
+    setUserdata(response.data);
+    return response.data
+  };
+
   const emailAuth = a;
   const fetchUserData = async () => {
     try {
@@ -148,6 +159,10 @@ export function UserAuthContextProvider({children}) {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    console.log("userData", userData)
+  },[userData])
+
   async function Signin(Email,Password) {
     try {
       const response = await axios.post(
@@ -187,7 +202,9 @@ export function UserAuthContextProvider({children}) {
         emailAuth,
         provider,
         userData,
-        Signin
+        Signin,
+        saveUserData,
+        getUserData
       }}>
       {children}
     </userAuthContext.Provider>
