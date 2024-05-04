@@ -5,7 +5,7 @@ const getAccount = async (req, res) => {
     try {
         const decoded = await jwt.verify(req.body.uid, process.env.SECRET_KEY);
 
-        console.log(decoded.id,"decoded");
+        console.log(decoded.id,": decoded from getuserapi");
 
         const userdata = await usermodel.findOne({ _id: decoded.id }); 
         console.log('User :', userdata);

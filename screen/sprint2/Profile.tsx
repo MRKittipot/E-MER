@@ -16,14 +16,16 @@ import {auth as a, db} from '../../config/Firebaseconfig';
 import {signOut} from 'firebase/auth';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Profilepic from "../../src/components/Profile/Profilepic"
+
 const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
-  const {user, provider,userData} = useUserAuth();
+  const {user, provider, userData} = useUserAuth();
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('TokenEmer')
+      await AsyncStorage.removeItem('TokenEmer');
       console.log('User has been signed out');
       navigation.navigate('Signin');
     } catch (error) {
@@ -37,8 +39,9 @@ const Profile = ({navigation}) => {
       navigation.navigate('Signin');
     }
   }, [user]);
-  */const a = new Date(userData.DateofBirth);
-const formattedDate = a.toISOString().substring(0, 10);
+  */
+  const a = new Date(userData.DateofBirth);
+  const formattedDate = a.toISOString().substring(0, 10);
   return (
     <View style={style.page}>
       <Text style={style.header}>My Account</Text>
@@ -73,7 +76,7 @@ const formattedDate = a.toISOString().substring(0, 10);
               <View style={style.labelcard}>
                 <Text>Phone</Text>
               </View>
-              <Text style={style.textinf}>{userData.Phone}</Text>
+              <Text style={style.textinf}>{userData.Phonenumber}</Text>
             </View>
           </View>
           <Icon
@@ -198,7 +201,7 @@ const style = StyleSheet.create({
     marginLeft: 28,
     marginRight: 28,
     alignItems: 'center',
-  },  
+  },
   insidecard: {
     flexDirection: 'row',
     alignItems: 'center',

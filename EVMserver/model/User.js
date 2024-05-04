@@ -25,9 +25,7 @@ let userSchema = mongoose.Schema({
     },
     Phonenumber : {
         type: String,
-    },
-    PhotoURL : {
-        type : String,
+        required:true
     }
 })
 

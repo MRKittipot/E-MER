@@ -9,7 +9,7 @@ import Onboardings from './screen/Onboardings';
 import Home from './screen/Home';
 import SigninPage from './screen/SigninPage';
 
-import Signup from './screen/SignUpFrom';
+import Signup from './screen/SignUpForm';
 import Loading from './screen/LoadingPage';
 import Forgetpassword from './screen/ForgetPassword';
 import Profile from './screen/sprint2/Profile';
