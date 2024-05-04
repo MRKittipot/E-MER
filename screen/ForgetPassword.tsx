@@ -20,22 +20,22 @@ const Forgetpassword = ({navigation}) => {
   const [newPassword, setnewPassword] = useState('');
 
   const checkpassword = {
-    Email : Email,
-    Password : newPassword
+    email : Email,
   };
 
   const handleSubmit = async () => {
     try {
       const status = await axios.post(
-        'http://10.0.2.2:5000/api/user/Resetpass',
+        'http://10.0.2.2:5000/api/user/SendEmailResetPassword',
         checkpassword,
       );
-      if (status) {
-        console.log(status);
-        Alert.alert("Status Done");
+      console.log(status.data)
+      if (status.data == "success") {
+        console.log(status.data);
+        Alert.alert("Please Check your email to reset password");
         navigation.navigate("Login");
-      } else {
-        console.log('Please enter your email');
+      } else  {
+        Alert.alert("Not found email in server");
       }
     } catch (error) {
       console.log(error);
@@ -60,6 +60,7 @@ const Forgetpassword = ({navigation}) => {
       />
       <Text style={style.Title}>What Mail you forgot Password</Text>
       <TextInput
+        placeholder='example@gmail.com'
         keyboardType="email-address"
         value={Email}
         onChangeText={Email => {
@@ -67,14 +68,15 @@ const Forgetpassword = ({navigation}) => {
         }}
         style={style.Textinput}
       />
-      <TextInput
+      {/* <TextInput
+        placeholder='password'
         keyboardType="email-address"
         value={newPassword}
         onChangeText={newpassword => {
           setnewPassword(newpassword);
         }}
         style={style.Textinput}
-      />
+      /> */}
       <TouchableOpacity
         style={style.Submit}
         onPress={() => {
