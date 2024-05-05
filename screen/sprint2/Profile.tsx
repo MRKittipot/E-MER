@@ -46,10 +46,7 @@ const Profile = ({navigation}) => {
     <View style={style.page}>
       <Text style={style.header}>My Account</Text>
       <View style={style.profilecard}>
-        <Image
-          source={require('../../assets/google-logo.png')}
-          style={style.profileimage}
-        />
+        <Profilepic/>
         <Text style={style.profilename}>{userData.Name}</Text>
         <Text style={style.profilemail}>{userData.Email}</Text>
         <View style={style.detailcard}>

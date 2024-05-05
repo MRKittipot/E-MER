@@ -26,7 +26,7 @@ const Profilepicture = () => {
       },
     };
 
-    Imagepicker.launchImageLibrary(options, async response => {
+    Imagepicker.launchImageLibrary(options,async response => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -39,7 +39,7 @@ const Profilepicture = () => {
             to: `${FileSystem.DIRECTORY_PICTURES}/profile_image.jpg`, // Adjust path and filename as needed
           });
 
-          Image.getSize(copiedUri, () => {
+          Imagepicker.getSize(copiedUri, () => {
             const aspectRatio = 90 / 90;
             const targetWidth = 90;
             const targetHeight = targetWidth / aspectRatio;
