@@ -14,7 +14,6 @@ import AddVehicle from '../../../screen/AddVehicle';
 import AddVehicleSelecCar from '../../../screen/AddVehicleSelecCar';
 import Summaryorder from '../../../screen/Summaryorder';
 import Payment from '../../../screen/Payment';
-import Test from '../../../screen/Test'
 //////////////////////////////////////////////////////////////////////////////
 import ProfilePages from '../../../screen/sprint2/Profile';
 import ChatPages from "../../../screen/sprint2/Chat"
@@ -111,8 +110,8 @@ const Tabs_menu = ({navigation}) => {
         // name="Payment"
         // component={Payment}
         
-        name="Tests"
-        component={Status}
+        name="Activity"
+        component={ActivitiesPage}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
