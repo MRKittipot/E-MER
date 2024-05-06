@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,15 +6,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  FileSystem,
+  FileSystem
 } from 'react-native';
-import * as Imagepicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Feather';
 
-const Profilepicture = () => {
-  const [imageSource, setImageSource] = useState(
-    Image.resolveAssetSource(require('./../../../assets/google-logo.png')),
-  );
+
+const ProfilePicture = () => {
+  const [imageSource, setImageSource] = useState(require('./../../../assets/google-logo.png'));
   const [imageSelected, setImageSelected] = useState(false);
 
   const selectImage = () => {
@@ -26,48 +25,29 @@ const Profilepicture = () => {
       },
     };
 
-    Imagepicker.launchImageLibrary(options,async response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.uri) {
-        const source = {uri: response.uri};
-        try {
-          const {uri: copiedUri} = await FileSystem.copyAsync({
-            from: response.uri,
-            to: `${FileSystem.DIRECTORY_PICTURES}/profile_image.jpg`, // Adjust path and filename as needed
-          });
-
-          Imagepicker.getSize(copiedUri, () => {
-            const aspectRatio = 90 / 90;
-            const targetWidth = 90;
-            const targetHeight = targetWidth / aspectRatio;
-            const resizedImageSource = {
-              uri: copiedUri,
-              width: targetWidth,
-              height: targetHeight,
-            };
-            setImageSource(resizedImageSource);
-            setImageSelected(true);
-          });
-        } catch (error) {
-          console.error('Error copying image:', error);
-          Alert.alert('Error', 'Failed to copy image. Please try again.');
-        }
+    launchImageLibrary(options,async response => {
+      if(response.didCancel){
+        console.log("User cancle Image Picker");
+      }else if(response.error){
+        console.log("Image Picker Error :",response.error)
+      }else if(response.assets[0].uri){
+        console.log(response.assets[0].uri);
+        const select_uri = {uri:response.assets[0].uri}
+        setImageSource(select_uri)
       }
-    });
-  };
+
+  });
+      }
 
   return (
     <TouchableOpacity onPress={selectImage}>
-      <View style={style.img_container}>
+      <View style={styles.imgContainer}>
         {imageSelected ? (
-          <Image source={{uri: imageSource}} style={style.profile_img} />
+          <Image source={{ uri: imageSource.uri }} style={styles.profileImg} />
         ) : (
-          <Image source={imageSource} style={style.profile_img} />
+          <Image source={imageSource} style={styles.profileImg} />
         )}
-        <View style={style.icon_container}>
+        <View style={styles.iconContainer}>
           <Icon name="plus-circle" size={18} color="#0068c6" />
         </View>
       </View>
@@ -75,20 +55,21 @@ const Profilepicture = () => {
   );
 };
 
-const style = StyleSheet.create({
-  icon_container: {
+const styles = StyleSheet.create({
+  iconContainer: {
     position: 'absolute',
     bottom: 10,
     right: 145,
   },
-  img_container: {
+  imgContainer: {
     position: 'relative',
     alignItems: 'center',
   },
-  profile_img: {
+  profileImg: {
     width: 90,
     height: 90,
+    borderRadius: 45
   },
 });
 
-export default Profilepicture;
+export default ProfilePicture;
