@@ -7,7 +7,15 @@ import Icon3 from 'react-native-vector-icons/Octicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BlogPages from '../../../screen/sprint2/BlogPage';
 import ChargerPages from '../../../screen/sprint2/ChargerPages';
+//////////////////////////////////////////////////////////////////////////////
 import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
+import Status from '../../../screen/Status';
+import AddVehicle from '../../../screen/AddVehicle';
+import AddVehicleSelecCar from '../../../screen/AddVehicleSelecCar';
+import Summaryorder from '../../../screen/Summaryorder';
+import Payment from '../../../screen/Payment';
+import Test from '../../../screen/Test'
+//////////////////////////////////////////////////////////////////////////////
 import ProfilePages from '../../../screen/sprint2/Profile';
 import ChatPages from "../../../screen/sprint2/Chat"
 import PhoneNumber from "../../../screen/sprint2/PhoneNumber"
@@ -85,8 +93,26 @@ const Tabs_menu = ({navigation}) => {
         }}
       />
       <Tab.Screen
-        name="Activity"
-        component={ActivitiesPage}
+        // name="Activity"
+        // component={ActivitiesPage}
+        
+        // name="Status"
+        // component={Status}
+
+        // name="Add Vehicle"
+        // component={AddVehicle}
+
+        // name="Select Vehicle"
+        // component={AddVehicleSelecCar}
+
+        // name="Summary order"
+        // component={Summaryorder}
+        
+        // name="Payment"
+        // component={Payment}
+        
+        name="Test"
+        component={Test}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
