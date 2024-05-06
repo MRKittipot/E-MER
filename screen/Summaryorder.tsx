@@ -27,7 +27,7 @@ const Summaryorder = () => {
           <Image style={{ width: 50, height: 50 }} source={require('../images/electric.png')} />
           <View style={{ alignItems: "center" }}>
             <Text style={styles.TextSummaryOrder}>Panachai Likhitpanyarat</Text>
-            <Text style={{ fontSize: 20 }}>Order number : {orderNumber}</Text>
+            <Text style={{ fontSize: 20, marginTop: 5 }}>Order number : {orderNumber}</Text>
           </View>
         </View>
 

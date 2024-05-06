@@ -111,8 +111,8 @@ const Tabs_menu = ({navigation}) => {
         // name="Payment"
         // component={Payment}
         
-        name="Test"
-        component={Test}
+        name="Tests"
+        component={Status}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',

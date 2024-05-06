@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Timestamp from "../src/components/Status/Timestamp"
 import Energy from "../src/components/Status/Energy"
 import Cost_to_pay from "../src/components/Status/Cost_to_pay"
 
-
-
 const Status = () => {
     const [usageTime, setUsageTime] = useState(0);
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     useEffect(() => {
-        let interval = setInterval(() => {
-            setUsageTime((prevTime) => prevTime + 1);
-        }, 1000);
+        let interval;
+        if (isTimerRunning) {
+            interval = setInterval(() => {
+                setUsageTime((prevTime) => prevTime + 1);
+            }, 1000);
+        } else {
+            clearInterval(interval);
+        }
 
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [isTimerRunning]);
+
+    const handleStartStopTimer = () => {
+        setIsTimerRunning((prev) => !prev);
+    };
 
     const seconds = usageTime % 60;
     const minutes = Math.floor((usageTime / 60) % 60);
@@ -37,11 +45,16 @@ const Status = () => {
                     <Energy />
                     <Cost_to_pay />
                 </View>
+                <TouchableOpacity 
+                    style={[styles.button, isTimerRunning ? styles.startButton : styles.stopButton]} 
+                    onPress={handleStartStopTimer}
+                >
+                    <Text style={styles.buttonText}>{isTimerRunning ? 'Stop charging' : 'Start charging'}</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     Head: {
@@ -66,8 +79,26 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
     },
-
+    button: {
+        width: 150, // กำหนดขนาดเป็นวงกลม
+        height: 150, // กำหนดขนาดเป็นวงกลม
+        borderRadius: 80, // กำหนดขนาดของวงกลม
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        alignSelf: 'center',
+    },
+    startButton: {
+        backgroundColor: '#f44336', // สีเขียวเมื่อเป็น Start charging
+    },
+    stopButton: {
+        backgroundColor: '#4CAF50', // สีแดงเมื่อเป็น Stop charging
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
 });
 
-
-export default Status
+export default Status;
