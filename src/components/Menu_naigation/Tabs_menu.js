@@ -111,7 +111,7 @@ const Tabs_menu = ({navigation}) => {
         // component={Payment}
         
         name="Activity"
-        component={ActivitiesPage}
+        component={Status}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
