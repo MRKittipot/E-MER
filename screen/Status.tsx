@@ -73,7 +73,7 @@ const Status = () => {
                     onPress={() => navigation.navigate('Summaryorder')}
                     disabled={!canPay}
                 >
-                    <Text style={styles.buttonText}>ชำระเงิน</Text>
+                    <Text style={styles.buttonText}>Make Payment</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     },
     rectangularButton: {
         width: 150,
-        height: 50,
-        borderRadius: 10,
+        height: 60,
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
     },
 });
