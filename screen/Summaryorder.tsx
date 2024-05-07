@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 
 
@@ -31,7 +31,7 @@ const Summaryorder = () => {
   }, []);
 
   return (
-    <View>
+    <ScrollView>
       {/* 1 */}
       <View>
         <Text style={styles.HeadSummary}>Summary order</Text>
@@ -103,7 +103,7 @@ const Summaryorder = () => {
           {/* <Text style={styles.boldFont}>{total} Bath / บาท</Text> */}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

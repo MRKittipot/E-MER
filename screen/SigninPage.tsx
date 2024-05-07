@@ -69,12 +69,12 @@ const Signin = ({navigation}) => {
         }
         const a = await getUserData(data);
         if(a != null) {
-        navigation.navigate("Profile")
+        navigation.navigate("Activitypage")
         }
       } else {
         // Value could not be retrieved.
         console.log("Please Login First");
-        navigation.navigate('Signin')
+        navigation.navigate('Activitypage')
       }
     } catch(error) {
       // Error retrieving data
@@ -97,7 +97,7 @@ const Signin = ({navigation}) => {
         console.log(login);
         await saveUserData(login);
         saveToken(login.EmerToken);
-        navigation.navigate("Profile")
+        navigation.navigate("Home")
         
         }
     } catch(error) {

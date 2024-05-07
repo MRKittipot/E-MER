@@ -9,37 +9,6 @@ export default function ActivitiesPage() {
 
         <Text style={styles.Head}>Payment History</Text>
         <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
-        <PaymentHistory />
       </ScrollView>
     );
 }
