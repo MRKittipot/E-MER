@@ -11,6 +11,10 @@ function generateOrderNumber() {
 
 let ReservationSchema = mongoose.Schema({
 
+    uid:{
+        type:String,
+        required:true
+    },
     ordernumber: {
         type: String,
         required: true,

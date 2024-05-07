@@ -4,8 +4,8 @@ const router = express.Router();
 
 const postReservation = async (req, res) => {
     try {
-        const { typecharger, userName  } = req.body; // Extract typecharger from the request body
-        const reservedata = { typecharger, userName  }; // Create an object with the typecharger field
+        const { typecharger, userName, uid } = req.body; // Extract typecharger from the request body
+        const reservedata = { typecharger, userName , uid }; // Create an object with the typecharger field
         const bill = await ReservationModel.create(reservedata);
         res.status(200).json({ message: "Save Successful", data: bill });
     } catch (error) {
