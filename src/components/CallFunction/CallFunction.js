@@ -41,8 +41,12 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
                 userName: userName
             });
             console.log("Response", res.data);
-            navigation.navigate('Summaryorder', { selectedOption });
             setIsPaymentAccepted(true);
+            // Set a timeout to navigate to Status page after 30 seconds
+            setTimeout(() => {
+                setIsPaymentAccepted(false);
+                navigation.navigate('Status', { selectedOption });
+            }, 30000); // 30 seconds
         } catch (error) {
             console.log("Error", error);
         }
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
         width: 130,
         height: 50,
         borderRadius: 20,
-        bottom: height * 0.020,
+        bottom: height * 0.0006,
         fontWeight: 'bold',
     },
     callDetailUser: {
