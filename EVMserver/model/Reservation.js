@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 function getOrderNumber(min, max) {
-    return Math.floor(Math.random() * (min - max + 1) + min )
+    return Math.floor(Math.random() * (min - max + 1) + min)
 }
 
-function generateOrderNumber(){
-    const randomOrder = getOrderNumber(1000,9999)
+function generateOrderNumber() {
+    const randomOrder = getOrderNumber(1000, 9999)
     return `EVM${randomOrder}`
 }
 
 let ReservationSchema = mongoose.Schema({
-   
-    ordernumber:{
+
+    ordernumber: {
         type: String,
-        required:true,
+        required: true,
         default: generateOrderNumber
-    }, 
+    },
 
     // carbrand:{
     //     type:String,
@@ -24,6 +24,14 @@ let ReservationSchema = mongoose.Schema({
     typecharger:{
         type:String,
         required:true
+    },
+    userName: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
     // location:{
     //     road:{
@@ -38,7 +46,7 @@ let ReservationSchema = mongoose.Schema({
     //         type:String,
     //         required:true
     //     },
-        
+
     // },
     // amount_to_pay:{
     //     amount:{
@@ -53,7 +61,7 @@ let ReservationSchema = mongoose.Schema({
     //         type:Number,
     //         required:true
     //     }
-    
+
 })
 
-module.exports = mongoose.model("Reservation",ReservationSchema)
+module.exports = mongoose.model("Reservation", ReservationSchema)

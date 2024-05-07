@@ -8,15 +8,17 @@ export const markersData = [
       distance: "2.5 km",
       availability: "Open 24",
    },
-   {
-      coordinate: { latitude: 13.734092, longitude: 100.5240688 },
-      title: "EVolt Charging Station",
-      charger: ["CSS2","CSS2","CSS2"],
-      facilities: ["Restroom", "Cafeteria"],
-      distance: "2.5 km",
-      availability: "Open 24",
-      description: "Description 1",
-   },
+   // {
+   //    coordinate: { latitude: 13.738404,
+   //       longitude: 100.517137,},
+   //    title: "EVolt Charging Station",
+   //    charger: ["CSS2","CSS2","CSS2"],
+   //    facilities: ["Restroom", "Cafeteria"],
+   //    distance: "2.5 km",
+   //    availability: "Open 24",
+   //    description: "Description 1",
+   // },
+
    {
       coordinate: { latitude: 13.7353531, longitude: 100.527427 },
       title: "Virta สถานีชาร์จร",
