@@ -1,28 +1,46 @@
-﻿import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform, TouchableOpacity, Text } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon3 from 'react-native-vector-icons/FontAwesome5';
+import MapViewDirections from 'react-native-maps-directions';
 import { markersData } from '../../src/Data/markersData';
+import { riderRandom } from '../../src/Data/riderRandom';
 import MarkerDetail from '../../src/components/DetailsMarker/MarkerDetail';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
 import CallFunction from '../../src/components/CallFunction/CallFunction';
+import DetailsRider from '../../src/components/DetailsRider/DetailsRider';
+import RiderButton from '../../src/components/DetailsRider/RiderButton';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.01;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const SLIDE_UP_HEIGHT = height * 0.75; // 75% of screen height
+const SLIDE_UP_HEIGHT = height * 0.75;
 
 const ChargerPages = ({ navigation }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [showCallButton, setShowCallButton] = useState(true);
+  const [isPaymentAccepted, setIsPaymentAccepted] = useState(false);
   const slideUpAnimation = new Animated.Value(0);
+  const mapViewRef = React.createRef();
 
   useEffect(() => {
-    // Request location permission
     requestLocationPermission();
   }, []);
 
+  useEffect(() => {
+    if (isPaymentAccepted) {
+      const timeout = setTimeout(() => {
+        setIsPaymentAccepted(false); // Toggle isPaymentAccepted after 30 seconds
+      }, 30000); // 30 seconds in milliseconds
+
+      return () => clearTimeout(timeout); // Cleanup the timeout on unmount or state change
+    }
+  }, [isPaymentAccepted]);
+
+  // Request location permission
   const requestLocationPermission = async () => {
     try {
       if (Platform.OS === 'android') {
@@ -49,7 +67,7 @@ const ChargerPages = ({ navigation }) => {
 
   const handleMarkerPress = (marker) => {
     setSelectedMarker(marker);
-    setShowCallButton(false); // Hide call button when marker is pressed
+    setShowCallButton(false);
     Animated.timing(slideUpAnimation, {
       toValue: 1,
       duration: 300,
@@ -64,14 +82,32 @@ const ChargerPages = ({ navigation }) => {
       useNativeDriver: true,
     }).start(() => {
       setSelectedMarker(null);
-      setShowCallButton(true); // Show call button when closing marker detail
+      setShowCallButton(true);
     });
   };
 
   const navigateToPhoneNumberPage = () => {
-    // Navigate to the phone number page
     navigation.navigate('PhoneNumber');
   };
+
+  const goToMyLocation = () => {
+    mapViewRef.current.animateToRegion({
+      latitude: 13.738404,
+      longitude: 100.517137,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
+    });
+  };
+
+  const origin = { latitude: 13.738404, longitude: 100.517137 };
+  const [destination, setDestination] = useState(null);
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * riderRandom.length);
+    const randomDestination = riderRandom[randomIndex].coordinate;
+    setDestination(randomDestination);
+  }, []);
+
+  const google_maps_api = 'AIzaSyD-IG6lkLkvi1PnO4YeWbUfkyNkB_j8HRo';
 
   return (
     <View style={styles.container}>
@@ -79,16 +115,18 @@ const ChargerPages = ({ navigation }) => {
         <SearchBar />
       </View>
       <MapView
-        style={styles.map}
+        ref={mapViewRef}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 13.726330428,
-          longitude: 100.523831238,
+          latitude: 13.738404,
+          longitude: 100.517137,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}
         showsUserLocation={true}
         followsUserLocation={true}
+        showsMyLocationButton={true}
+        style={styles.map}
       >
         {markersData.map((marker, index) => (
           <Marker
@@ -101,27 +139,60 @@ const ChargerPages = ({ navigation }) => {
             </View>
           </Marker>
         ))}
+        {isPaymentAccepted && (
+          <MapViewDirections
+            origin={origin}
+            destination={destination}
+            apikey={google_maps_api}
+            strokeWidth={5}
+            strokeColor="green"
+          />
+        )}
+        <Marker coordinate={origin}>
+          <View style={styles.originMarker}>
+            <Icon3 name="bullseye" size={30} color="#4285f4" />
+          </View>
+        </Marker>
+        {isPaymentAccepted && destination && (
+          <Marker coordinate={destination}>
+            <View style={styles.destinationMarker}>
+              <Icon name="battery-charging" size={30} color="#0FA958" />
+            </View>
+          </Marker>
+        )}
       </MapView>
-      ส่วนนี้คือกดจาก marker ถ้าจะให้เขาดู function ให้คอมเม้นอันนั้นนะ อันนี้กูจะให้เขาดู call function เลย comment MarkerDetail ไว้
-      // 
-      
       {selectedMarker && (
-        // <MarkerDetail
-        //   selectedMarker={selectedMarker}
-        //   slideUpAnimation={slideUpAnimation}
-        //   handleClose={handleClose}
-        //   slideUpHeight={SLIDE_UP_HEIGHT}
-        // />
         <CallFunction
           selectedMarker={selectedMarker}
           slideUpAnimation={slideUpAnimation}
           handleClose={handleClose}
           slideUpHeight={SLIDE_UP_HEIGHT}
+          setIsPaymentAccepted={setIsPaymentAccepted}
         />
       )}
-      {showCallButton && (
-        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
-          <Icon color="#FF4B33" name="call" size={30} />
+      {showCallButton && (   
+        <TouchableOpacity style={styles.myLocationButton} onPress={goToMyLocation}>
+          <Icon color="#0068c6" name="locate" size={30} />
+        </TouchableOpacity>
+      )}
+      {showCallButton && (   
+        <TouchableOpacity style={styles.callButton}>
+        <Icon color="#FF4B33" name="call" size={30} />
+      </TouchableOpacity>
+      )}
+      {isPaymentAccepted && (
+        <TouchableOpacity
+          style={styles.rider}
+          onPress={() => {
+            Animated.timing(slideUpAnimation, {
+              toValue: 1,
+              duration: 300,
+              useNativeDriver: true,
+            }).start();
+            <DetailsRider />
+          }}
+        >
+          <RiderButton />
         </TouchableOpacity>
       )}
     </View>
@@ -142,8 +213,11 @@ const styles = StyleSheet.create({
     borderColor: '#0068C9',
     padding: 5,
   },
-  searchBox: {
-    // Add your styles here
+  searchBox: {},
+  originMarker: {
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   callButton: {
     position: 'absolute',
@@ -159,6 +233,45 @@ const styles = StyleSheet.create({
     transform: [
       { scaleX: -1 },
     ]
+  },
+  callsButton: {
+    position: 'absolute',
+    bottom: height * 0.05, // Adjust the distance from the bottom
+    alignSelf: 'center', // Align the button horizontally to the center
+    backgroundColor: '#000000',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5, // Ensure it's above other components
+    zIndex: 1, // Ensure it's above other components
+    transform: [{ scaleX: -1 }], // This might need adjustment depending on your specific needs
+  },
+  rider: {
+    position: 'absolute',
+    bottom: height * 0.1,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    width: '90%',
+    height: 60,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    elevation: 5,
+    flexDirection: 'row',
+    marginLeft: 18,
+  },
+  myLocationButton: {
+    position: 'absolute',
+    bottom: height * 0.2,
+    right: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
   },
 });
 

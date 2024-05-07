@@ -11,14 +11,14 @@ import ActivitiesPage from '../../../screen/sprint2/ActivitiesPage';
 import ProfilePages from '../../../screen/sprint2/Profile';
 //import ChatPages from "../../../screen/sprint2/Chat"
 import PhoneNumber from "../../../screen/sprint2/PhoneNumber"
-import Button_tab from './Button_tab';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Tab = createBottomTabNavigator();
 const homeIcon = <Icon name="home" size={25} />;
 const chargerIcon = <Icon2 name="charging-station" size={25} />;
+const carIcon = <Icon2 name="car-alt" size={25} />;
 const historyIcon = <Icon2 name="history" size={25} />;
-const personIcon = <Icon3 name="person" size={25} />;
+const personIcon = <Icon2 name="person" size={25} />;
 
 const Tabs_menu = ({navigation}) => {
   return (
