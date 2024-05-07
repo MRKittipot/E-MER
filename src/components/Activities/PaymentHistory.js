@@ -1,14 +1,17 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-
+import {useUserAuth} from '../../../context/userContext';
 const PaymentHistory = () => {
   const [Bill,setBill] = useState([]);
   const [fetch,setfetch] = useState(false);
-
+  const {userData} = useUserAuth();
   const getDataintocard = async () =>{
     try{
-      const IDcard = await axios.get("http://10.0.2.2:5000/api/reservation/getbill");
+      const info = {
+        uid: userData._id,
+      }
+      const IDcard = await axios.post("http://10.0.2.2:5000/api/reservation/getbill",info);
       if (IDcard.data.length > 0){
         setBill(IDcard.data)
       }
@@ -112,7 +115,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#A2A1A1",
     borderRadius: 11,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     elevation: 4,
   },
 })

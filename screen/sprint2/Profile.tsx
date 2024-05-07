@@ -21,7 +21,7 @@ import Profilepic from "../../src/components/Profile/Profilepic"
 const Profile = ({navigation}) => {
   const [Name, setName] = useState('Manoj Kajornroj');
   const [Email, setEmail] = useState('manoj@gmail.com');
-  const {user, provider, userData} = useUserAuth();
+  const {userData} = useUserAuth();
 
   const handleLogout = async () => {
     try {

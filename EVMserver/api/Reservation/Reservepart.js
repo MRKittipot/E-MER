@@ -15,7 +15,7 @@ const postReservation = async (req, res) => {
 
 const getReservation = async (req, res) => {
     try {
-        const billdata = await ReservationModel.find();
+        const billdata = await ReservationModel.find({uid:req.body.uid});
         if (billdata.length === 0) {
             return res.status(404).json({ message: "No data found" });
         } else {

@@ -9,7 +9,7 @@ const {
 const getCard = require("../api/Reservation/Getcard")
 
 router.post("/savebill",postReservation);
-router.get("/getbill",getReservation);
+router.post("/getbill",getReservation);
 router.get("/card/:id",getCard)
 
 module.exports = router; 

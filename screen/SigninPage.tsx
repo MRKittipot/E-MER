@@ -69,12 +69,12 @@ const Signin = ({navigation}) => {
         }
         const a = await getUserData(data);
         if(a != null) {
-        navigation.navigate("Activitypage")
+        navigation.navigate("Home")
         }
       } else {
         // Value could not be retrieved.
         console.log("Please Login First");
-        navigation.navigate('Activitypage')
+        navigation.navigate('Signin')
       }
     } catch(error) {
       // Error retrieving data
