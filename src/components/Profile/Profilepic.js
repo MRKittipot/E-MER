@@ -8,14 +8,18 @@ import {
   Alert,
   FileSystem
 } from 'react-native';
+import {useUserAuth} from '../../../context/userContext';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Feather';
-
-
+import { auth, db, storage, ref, uploadBytes, getDownloadURL } from '../../../config/Firebaseconfig';
+import axios from 'axios';
 const ProfilePicture = () => {
   const [imageSource, setImageSource] = useState(require('./../../../assets/google-logo.png'));
   const [imageSelected, setImageSelected] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [imgName, setImgName] = useState("");
+
+  const {userData} = useUserAuth();
   const selectImage = () => {
     const options = {
       title: 'Select Image',
@@ -25,23 +29,56 @@ const ProfilePicture = () => {
       },
     };
 
-    launchImageLibrary(options,async response => {
-      if(response.didCancel){
-        console.log("User cancle Image Picker");
-      }else if(response.error){
-        console.log("Image Picker Error :",response.error)
-      }else if(response.assets[0].uri){
-        console.log(response.assets[0].uri);
-        const select_uri = {uri:response.assets[0].uri}
-        setImageSource(select_uri)
-        setIsHidden(true);
-      }
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log("User canceled Image Picker");
+      } else if (response.errorCode) {
+        console.log("Image Picker Error:", response.errorMessage);
+      } else if (response.assets && response.assets.length > 0) {
+        const asset = response.assets[0];
 
-  });
+        if (asset.uri) {
+          setImageSource({ uri: asset.uri });
+
+          if (asset.fileName) {
+            setImgName(asset.fileName)
+            console.log("Image Name:", asset.fileName); // Print image name
+          } else {
+            console.log("Image name not available");
+          }
+
+          setIsHidden(true);
+        }
       }
-  const saveimage = async() => {
-    
-  }
+    });
+  };
+  const saveimage = async () => {
+    if (!imageSource || !imageSource.uri) {
+      console.error("No image source to upload");
+      return;
+    }
+
+    const response = await fetch(imageSource.uri);
+    const blob = await response.blob();
+
+    const timestamp = Date.now();
+    const fileNameWithTimestamp = `${imgName}-${timestamp}`;
+    const storageRef = ref(storage, `ticket_images/${fileNameWithTimestamp}`);
+
+    try {
+      await uploadBytes(storageRef, blob);
+      const downloadURL = await getDownloadURL(storageRef);
+      console.log("Image uploaded to:", downloadURL);
+      const info = {
+        picurl:downloadURL,
+        userId:userData._id
+      }
+      const respone = await axios.post('http://10.0.2.2:5000/api/user/updateUserImg', info)
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  
   return (
     <View>
     <TouchableOpacity onPress={selectImage}>
@@ -49,7 +86,7 @@ const ProfilePicture = () => {
         {imageSelected ? (
           <Image source={{ uri: imageSource.uri }} style={styles.profileImg} />
         ) : (
-          <Image source={imageSource} style={styles.profileImg} />
+          <Image source={{uri: userData.picurl ? userData.picurl : imageSource.uri}} style={styles.profileImg} />
         )}
         <View style={styles.iconContainer}>
           <Icon name="plus-circle" size={18} color="#0068c6" />
@@ -60,7 +97,7 @@ const ProfilePicture = () => {
     {isHidden ? (
         <View style={styles.center}>
           <TouchableOpacity style={styles.confirmbtn} onPress={saveimage}>
-            <Text style={styles.confirmbtntext}>Sign out</Text>
+            <Text style={styles.confirmbtntext}>Upload</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -94,7 +131,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   confirmbtn:{
-    width: "50%",
+    width: "30%",
     backgroundColor: '#0068c6',
     paddingLeft: "20px",
     paddingRight: "20px",

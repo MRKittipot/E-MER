@@ -80,6 +80,7 @@ const SenddatatoMongodb = async (req, res) => {
   }
 };
 
+
 module.exports = {
   updateUserPhoto,
   updateUserinfo,

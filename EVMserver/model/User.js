@@ -23,6 +23,9 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    picurl : {
+        type: String,
+    },
     Phonenumber : {
         type: String,
         required:true
