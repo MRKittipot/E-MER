@@ -86,7 +86,7 @@ const ProfilePicture = () => {
         {imageSelected ? (
           <Image source={{ uri: imageSource.uri }} style={styles.profileImg} />
         ) : (
-          <Image source={{uri: userData.picurl ? userData.picurl : imageSource.uri}} style={styles.profileImg} />
+          <Image source={ userData.picurl ? {uri: userData.picurl} : imageSource} style={styles.profileImg} />
         )}
         <View style={styles.iconContainer}>
           <Icon name="plus-circle" size={18} color="#0068c6" />
