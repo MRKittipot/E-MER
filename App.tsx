@@ -16,6 +16,7 @@ import Profile from './screen/sprint2/Profile';
 import Account from './screen/Account';
 import Chat from './screen/sprint2/Chat';
 import MPhoneNumber from './screen/sprint2/MPhoneNumber'
+import Summaryorder from './screen/Summaryorder'
 import ProtectRoute from './auth/protectRoute.jsx';
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +39,7 @@ const App = () => {
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Account" component={Account} />
           <Stack.Screen name="MPhoneNumber" component={MPhoneNumber} />
+          <Stack.Screen name="Summaryorder" component={Summaryorder} />
           <Stack.Screen name="Chat" component={Chat} />
         </Stack.Navigator>
       </NavigationContainer>

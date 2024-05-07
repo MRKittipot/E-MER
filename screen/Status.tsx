@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 import Timestamp from "../src/components/Status/Timestamp";
 import Energy from "../src/components/Status/Energy";
 import Cost_to_pay from "../src/components/Status/Cost_to_pay";
+import { useNavigation } from '@react-navigation/native';
 
 const Status = () => {
     const [usageTime, setUsageTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [canPay, setCanPay] = useState(false);
-    const navigation = useNavigation(); // Initialize navigation
+    const navigation = useNavigation();
 
     useEffect(() => {
         let interval;
@@ -31,8 +31,9 @@ const Status = () => {
     };
 
     const handlePay = () => {
-        // Navigate to another screen upon payment
-        navigation.navigate('PaymentScreen'); // Replace 'PaymentScreen' with your screen name
+        // กระบวนการชำระเงิน
+        // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์เพื่อการชำระเงิน
+        // หลังจากนั้นคุณสามารถเซ็ตต่า state หรือทำอย่างอื่นต่อไปได้ตามต้องการ
     };
 
     const seconds = usageTime % 60;
@@ -65,14 +66,14 @@ const Status = () => {
                     style={[styles.circularButton, isTimerRunning ? styles.startButton : styles.stopButton]} 
                     onPress={handleStartStopTimer}
                 >
-                    <Text style={styles.buttonText}>{isTimerRunning ? 'Stop Charging' : 'Start Charging'}</Text>
+                    <Text style={styles.buttonText}>{isTimerRunning ? 'Stop charging' : 'Start charging'}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={[styles.rectangularButton, canPay ? styles.payButton : styles.disabledButton]} 
-                    onPress={canPay ? handlePay : null}
+                    onPress={() => navigation.navigate('Summaryorder')}
                     disabled={!canPay}
                 >
-                    <Text style={styles.buttonText}>Make Payment</Text>
+                    <Text style={styles.buttonText}>ชำระเงิน</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     circularButton: {
         width: 150,
         height: 150,
-        borderRadius: 75,
+        borderRadius: 75, // ให้มีรูปร่างวงกลมโดยใช้ความกว้างของเส้นรอบวง (diameter) คือ 150 และหารด้วย 2
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
     },
 });
