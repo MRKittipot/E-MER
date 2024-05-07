@@ -204,4 +204,4 @@ const styles = StyleSheet.create({
 });
 
 export default MarkerDetail;
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e
+

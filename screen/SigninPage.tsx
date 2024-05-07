@@ -41,69 +41,34 @@ const Signin = ({navigation}) => {
 
   //----------------------//
   */
- const {user,Signin} = useUserAuth();
-
+  const { Signin } = useUserAuth();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [Validation, setValidation] = useState(true);
-  const [Data, setData] = useState("")
 
-  const saveToken = async(Token) => {
-    try{
-      await AsyncStorage.setItem("Token",Token);
-      console.log("Data Saved successfully");
-      console.log(Data);
-      
-    }catch(error){
-      console.log("Error saving Data :",error);
+  const saveUserInfo = async (userInfo) => {
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(userInfo));
+      console.log('User info saved successfully:', userInfo);
+      navigation.navigate('Home');
+    } catch (error) {
+      console.log('Error saving user info:', error);
     }
   };
-
-  const getData = async() =>{
-    try{
-      const value = await AsyncStorage.getItem( "Token" );
-      if (value !== null) {
-        // Value was successfully read!
-        setData(value)
-        console.log("Data received Successfully");
-        console.log(Data);
-        
-        navigation.navigate("Profile")
-      } else {
-        // Value could not be retrieved.
-        console.log("Please Login First");
-        navigation.navigate('Signin')
-      }
-    } catch(error) {
-      // Error retrieving data
-      console.log("Error: ", error);
-    }
-  };
-
 
   const handleSigninbyMongodb = async () => {
     try {
-
-      const login = await Signin(Email,Password);
-      
-      if (login == "Incorrect password" || login == "User Not Found") {
-        console.log(
-          login
-        );
+      const login = await Signin(Email, Password);
+      if (login === 'Incorrect password' || login === 'User Not Found') {
+        console.log(login);
       } else {
         console.log(login);
-        saveToken(login.EmerToken);
-        navigation.navigate("Profile")
-        }
-    } catch(error) {
-      console.log(error,"frontend error");
+        saveUserInfo(login);
+      }
+    } catch (error) {
+      console.log(error, 'frontend error');
     }
-  }
-
-  useEffect(()=>{
-    getData();
-  },[])
-
+  };
   return (
     <View>
       <Image

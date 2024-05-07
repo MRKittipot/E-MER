@@ -2,13 +2,12 @@ const usermodel = require("../../model/User");
 
 const getAccount = async (req, res) => {
     try {
-      const userdata = await usermodel.find();
-      console.log('User :', userdata);
+      const userdata = await usermodel.findOne({ EmerToken: req.user });
       res.status(200).send(userdata);
     } catch (error) {
       console.log(error);
-      res.status(500).send({error: 'Error in fetching data'});
+      res.status(500).send({ error: 'Error in fetching data' });
     }
   };
 
-module.exports = getAccount
+module.exports = getAccount;

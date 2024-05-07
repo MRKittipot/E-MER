@@ -48,15 +48,15 @@ const SignUp = ({navigation}) => {
     "DateofBitrh": dateOfBirth
   }
 
-  const sendData = async () => {
-    try{
-      const response = await axios.post('http://10.0.2.2:5000/api/user/Signup',EmeruserData)
-      console.log(response.data);
-    }catch(error){
-      console.log(error);
+  // const sendData = async () => {
+  //   try{
+  //     const response = await axios.post('http://10.0.2.2:5000/api/user/Signup',EmeruserData)
+  //     console.log(response.data);
+  //   }catch(error){
+  //     console.log(error);
       
-    }
-  }
+  //   }
+  // }
 
   const showMode = (currentMode: React.SetStateAction<string>) => {
     setShow(true);

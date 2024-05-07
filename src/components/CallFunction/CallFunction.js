@@ -1,70 +1,52 @@
-<<<<<<< HEAD
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-=======
-import React, { useMemo, useState} from 'react';
-import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios'; // Fix import statement
-import { useNavigation } from '@react-navigation/native'; // Import navigation hooks from react-navigation/native
-
-// test radio
-import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e
-
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 const { height } = Dimensions.get('window');
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Call = ({ slideUpAnimation, handleClose, slideUpHeight}) => {
-    const navigation = useNavigation(); // Get navigation object
+const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPaymentAccepted }) => {
+    const navigation = useNavigation();
 
-<<<<<<< HEAD
-    const randonTimeNumber = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    const randonTime = randonTimeNumber(5, 30)
-=======
     const randomTimeNumber = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     const randomTime = randomTimeNumber(5, 30)
 
+    const [userName, setUserName] = useState('');
+    const [selectedOption, setSelectedOption] = useState(null); // State variable to track selected option
+
+    useEffect(() => {
+        const getUserInfo = async () => {
+          try {
+            const userInfo = await AsyncStorage.getItem('user');
+            if (userInfo !== null) {
+              const user = JSON.parse(userInfo);
+              setUserName(user.Name);
+            }
+          } catch (error) {
+            console.log('Error retrieving user info:', error);
+          }
+        };
+        getUserInfo();
+    }, []);
+
     const handleAcceptToPay = async () => {
         try {
-            const res = await axios.post('http://10.0.2.2:5000/api/reservation/savebill',
-                {
-                    typecharger: selectedId
-
-                });
+            const res = await axios.post('http://10.0.2.2:5000/api/reservation/savebill', {
+                typecharger: selectedOption.value, // Use the selected option value
+                userName: userName
+            });
             console.log("Response", res.data);
-
-            // Navigate to Summaryorder and pass selectedId as parameter
-            navigation.navigate('Summaryorder', { selectedId });
+            navigation.navigate('Summaryorder', { selectedOption });
+            setIsPaymentAccepted(true);
         } catch (error) {
-            console.log("Error", error); // Log the error for debugging
-            // Provide appropriate feedback to the user (optional)
+            console.log("Error", error);
         }
     }
-
-    //
-    const radioButtons = useMemo(() => ([
-        {
-            id: 'CSS2', // acts as primary key, should be unique and non-empty string
-            label: 'Option 1',
-            value: 'option1'
-        },
-        {
-            id: '2',
-            label: 'Option 2',
-            value: 'option2'
-        }
-    ]), []);
-
-    const [selectedId, setSelectedId] = useState();
-
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e
 
     return (
         <Animated.View style={[styles.detailContainer, { height: 370, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
@@ -76,49 +58,48 @@ const Call = ({ slideUpAnimation, handleClose, slideUpHeight}) => {
             </View>
 
             <View style={styles.callDetailUser}>
-                <Text style={{}}>Name: John Doe</Text>
-                <Text>Electric vehicle charging service staff</Text>
-<<<<<<< HEAD
-                <View style={{flexDirection: 'row'}}>
-                    <Text>Distance : 10.0 KM</Text>
-                    <Text>Time to arrive : {randonTime} minute</Text>
-                </View>
-            </View>
-
-            {/* <View>
-                <Text>Slove type: Type A</Text>
-            </View>
-
-
-            <View>
-                <Text>Slove type: Type A</Text>
-            </View> */}
-
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.buttonStyle}>
-=======
-                <View style={{ flexDirection: 'row' }}>
-                    <Text>Distance : 10.0 KM</Text>
+                <Text style={styles.nameUser}>{userName}</Text>
+                <Text style={styles.serviceDetail}>Electric vehicle charging service staff</Text>
+                <View style={{ flexDirection: 'row', marginBottom: 20}}>
+                    <Text style={{marginRight: 20}}>Distance : 10.0 KM</Text>
                     <Text>Time to arrive : {randomTime} minute</Text>
                 </View>
-            </View>
-            <View style={styles.callDetailUser}>
-                <RadioGroup
-                    radioButtons={radioButtons}
-                    onPress={setSelectedId}
-                    selectedId={selectedId}
-                />
+                <View style={{ flexDirection: 'row'}}>
+                    <Text style={{fontSize : 15, fontWeight: 'bold', color: '#000000', marginBottom: 10}}>Slot tpye</Text>
+                </View>
+                <View style={{ flexDirection: 'row'}}>
+                    <TouchableOpacity 
+                        style={[styles.radioButton, selectedOption && selectedOption.id === 'option1' ? styles.radioButtonSelected : null]}
+                        onPress={() => setSelectedOption({ id: 'option1', value: 'CSS2' })}
+                    >
+                        <Icon2 name="ev-plug-ccs2" size={30} color="#000000" />
+                        <Text style={styles.radioButtonText}>CCS2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={[styles.radioButton, selectedOption && selectedOption.id === 'option2' ? styles.radioButtonSelected : null]}
+                        onPress={() => setSelectedOption({ id: 'option2', value: 'TYPE2' })}
+                    >
+                        <Icon2 name="ev-plug-type2" size={30} color="#000000" />
+                        <Text style={styles.radioButtonText}>Type2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={[styles.radioButton, selectedOption && selectedOption.id === 'option3' ? styles.radioButtonSelected : null]}
+                        onPress={() => setSelectedOption({ id: 'option3', value: 'CHAdeMO' })}
+                    >
+                        <Icon2 name="ev-plug-chademo" size={30} color="#000000" />
+                        <Text style={styles.radioButtonText}>Chademo</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.buttonStyle} onPress={handleAcceptToPay}>
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e
                     <Text style={{ color: "#fff" }}>Accept to pay</Text>
                 </TouchableOpacity>
             </View>
         </Animated.View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     detailContainer: {
@@ -131,6 +112,15 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         padding: 20,
         elevation: 5,
+    },
+    nameUser: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#000',
+        marginBottom: 0,
+    },
+    serviceDetail: {
+        color: '#000',
     },
     closeButton: {
         position: 'absolute',
@@ -160,13 +150,28 @@ const styles = StyleSheet.create({
         bottom: height * 0.020,
         fontWeight: 'bold',
     },
-<<<<<<< HEAD
-    callDetailUser:{
-=======
     callDetailUser: {
->>>>>>> 0105460b3c5a1d2bbdcfc663fce89a2f801cc49e
         top: 15
+    },
+    radioButton: {
+        marginLeft: 5,
+        marginRight: 'auto',
+        borderWidth: 1,
+        borderColor: '#D9D9D9',
+        borderRadius: 30,
+        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'space-between',
+        marginBottom: 10,
+    },
+    radioButtonSelected: {
+        backgroundColor: '#04D85F',
+    },
+    radioButtonText: {
+        marginLeft: 10, // Adjust the gap between icon and text
+        fontWeight: 'bold',
     }
 });
 
-export default Call;
+export default CallFunction;
