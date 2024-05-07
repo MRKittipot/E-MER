@@ -26,6 +26,13 @@ const ChargerPages = ({ navigation }) => {
   const slideUpAnimation = new Animated.Value(0);
   const mapViewRef = React.createRef();
 
+  const [region, setRegion] = useState({
+    latitude: 13.738404,
+    longitude: 100.517137,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  });
+
   useEffect(() => {
     requestLocationPermission();
   }, []);
@@ -33,14 +40,13 @@ const ChargerPages = ({ navigation }) => {
   useEffect(() => {
     if (isPaymentAccepted) {
       const timeout = setTimeout(() => {
-        setIsPaymentAccepted(false); // Toggle isPaymentAccepted after 30 seconds
-      }, 30000); // 30 seconds in milliseconds
+        setIsPaymentAccepted(false);
+      }, 30000);
 
-      return () => clearTimeout(timeout); // Cleanup the timeout on unmount or state change
+      return () => clearTimeout(timeout);
     }
   }, [isPaymentAccepted]);
 
-  // Request location permission
   const requestLocationPermission = async () => {
     try {
       if (Platform.OS === 'android') {
@@ -96,6 +102,19 @@ const ChargerPages = ({ navigation }) => {
       longitude: 100.517137,
       latitudeDelta: LATITUDE_DELTA,
       longitudeDelta: LONGITUDE_DELTA,
+    });
+  };
+
+  // const goToMyLocation = () => {
+  //   mapViewRef.current.animateToRegion(region); // Update map to current region
+  // };
+
+  const onLocationSelect = (location) => {
+    // Update the map's region to the selected location
+    setRegion({
+      ...region,
+      latitude: location.latitude,
+      longitude: location.longitude,
     });
   };
 
@@ -176,9 +195,9 @@ const ChargerPages = ({ navigation }) => {
         </TouchableOpacity>
       )}
       {showCallButton && (   
-        <TouchableOpacity style={styles.callButton}>
-        <Icon color="#FF4B33" name="call" size={30} />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.callButton} onPress={navigateToPhoneNumberPage}>
+          <Icon color="#FF4B33" name="call" size={30} />
+        </TouchableOpacity>
       )}
       {isPaymentAccepted && (
         <TouchableOpacity
@@ -236,17 +255,17 @@ const styles = StyleSheet.create({
   },
   callsButton: {
     position: 'absolute',
-    bottom: height * 0.05, // Adjust the distance from the bottom
-    alignSelf: 'center', // Align the button horizontally to the center
+    bottom: height * 0.05,
+    alignSelf: 'center',
     backgroundColor: '#000000',
     borderRadius: 30,
     width: 60,
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 5, // Ensure it's above other components
-    zIndex: 1, // Ensure it's above other components
-    transform: [{ scaleX: -1 }], // This might need adjustment depending on your specific needs
+    elevation: 5,
+    zIndex: 1,
+    transform: [{ scaleX: -1 }],
   },
   rider: {
     position: 'absolute',

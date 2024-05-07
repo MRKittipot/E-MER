@@ -18,6 +18,7 @@ import MPhoneNumber from './screen/sprint2/MPhoneNumber';
 
 import PhoneNumber from './screen/sprint2/PhoneNumber';
 import Summaryorder from './screen/Summaryorder';
+import Status from './screen/Status';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,7 @@ const App = () => {
           <Stack.Screen name="MPhoneNumber" component={MPhoneNumber} />
           <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
           <Stack.Screen name="Summaryorder" component={Summaryorder} />
+          <Stack.Screen name="Status" component={Status} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>
