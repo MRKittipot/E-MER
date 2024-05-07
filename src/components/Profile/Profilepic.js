@@ -74,6 +74,7 @@ const ProfilePicture = () => {
         userId:userData._id
       }
       const respone = await axios.post('http://10.0.2.2:5000/api/user/updateUserImg', info)
+      setIsHidden(false);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
