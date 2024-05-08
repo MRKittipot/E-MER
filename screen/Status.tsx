@@ -4,7 +4,7 @@ import Timestamp from "../src/components/Status/Timestamp";
 import Energy from "../src/components/Status/Energy";
 import Cost_to_pay from "../src/components/Status/Cost_to_pay";
 import { useNavigation, useRoute } from '@react-navigation/native';
-
+import axios from 'axios';
 const Status = ({navigation}) => {
 
     const route = useRoute()
@@ -13,13 +13,17 @@ const Status = ({navigation}) => {
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [canPay, setCanPay] = useState(false);
     const [dataaccept,usedataaccept] = useState("");
-    const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
+    const [energy, setEnergy] = useState(23)
+    const [price, setPrice] = useState(200)
+    const { userName,uid,typecharger,ordernumber,createdAt,_id }:any = route.params
 
     useEffect(() => {
         let interval;
         if (isTimerRunning) {
             interval = setInterval(() => {
                 setUsageTime((prevTime) => prevTime + 1);
+                setEnergy((prevEnergy) => prevEnergy + 0.178);
+                setPrice((prevPrice) => prevPrice + 1);
             }, 1000);
         } else {
             clearInterval(interval);
@@ -44,6 +48,7 @@ const Status = ({navigation}) => {
     const minutes = Math.floor((usageTime / 60) % 60);
     const hours = Math.floor(usageTime / 3600);
 
+
     const pad2 = (number) => {
         return number < 10 ? `0${number}` : number.toString();
     };
@@ -56,6 +61,18 @@ const Status = ({navigation}) => {
         }
     }, [hours, minutes, seconds]);
 
+    const handleClick = async() => {
+        const info = {
+            orderId: _id,
+            price:price,
+            energy:energy*1.07,
+        }
+        const respone = await axios.post('http://10.0.2.2:5000/api/reservation/updateBill',info);
+        if(respone.data) {
+            navigation.navigate('Summaryorder',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt,price:price,energy:energy})
+        }
+    };
+
     return (
         <View>
             <Text style={styles.Head}>Status</Text>
@@ -63,8 +80,8 @@ const Status = ({navigation}) => {
                 <Text style={styles.time}>{pad2(hours)} : {pad2(minutes)} : {pad2(seconds)} hr.</Text>
                 <Timestamp />
                 <View style={styles.energy_and_cost_card}>
-                    <Energy />
-                    <Cost_to_pay />
+                    <Energy energy={energy} />
+                    <Cost_to_pay price={price}/>
                 </View>
                 <TouchableOpacity 
                     style={[styles.circularButton, isTimerRunning ? styles.startButton : styles.stopButton]} 
@@ -74,7 +91,7 @@ const Status = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={[styles.rectangularButton, canPay ? styles.payButton : styles.disabledButton]} 
-                    onPress={() => navigation.navigate('Summaryorder',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt})}
+                    onPress={() => handleClick()}
                     disabled={!canPay}
                 >
                     <Text style={styles.buttonText}>Make Payment</Text>

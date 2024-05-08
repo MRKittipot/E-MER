@@ -8,10 +8,10 @@ import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu'
 const Summaryorder = ({navigation}) => {
   const route = useRoute()
 
-  const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
+  const { userName,uid,typecharger,ordernumber,createdAt,price,energy }:any = route.params
 
   const handleSubmitOrder = () => {
-    navigation.navigate('ReviewPage')
+    navigation.navigate('ReviewPage',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt})
   }
   
   return (
@@ -67,8 +67,8 @@ const Summaryorder = ({navigation}) => {
         {/* 3.1 */}
         <View style={styles.AmountPayHead}>
           <View>
-            <Text style={styles.boldFont}>Amount</Text>
-            <Text style={styles.boldFont}>Energy</Text>
+            <Text style={styles.boldFont}>Amount : {price}</Text>
+            <Text style={styles.boldFont}>Energy : {energy*0.93}</Text>
             <Text style={styles.boldFont}>Vat</Text>
           </View>
           <View>
@@ -127,6 +127,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   TextSummaryOrder: {
+    width:"100%",
+    textAlign:"left",    
     fontSize: 20,
     fontWeight: "bold",
     color: "#000000"

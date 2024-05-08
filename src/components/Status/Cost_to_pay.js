@@ -4,13 +4,13 @@ import React from 'react'
 // mock up
 const cost = 200
 
-const Cost_to_pay = () => {
+const Cost_to_pay = ({price}) => {
     return (
         <View style={styles.cost_card}>
             <Image style={{ marginLeft: 10 }} source={require("../../../images/coin.png")} />
             <View style={styles.cost_detail}>
                 <Text style={{ fontSize: 16, marginLeft: -10, color: "#FFFFFF" }}>Cost</Text>
-                <Text style={styles.cost_text}>{cost} Bath</Text>
+                <Text style={styles.cost_text}>{price} Bath</Text>
             </View>
         </View>
     )

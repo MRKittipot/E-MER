@@ -129,6 +129,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   TextSummaryOrder: {
+    width:"100%",
+    textAlign:"left",
     fontSize: 20,
     fontWeight: "bold",
     color: "#000000",

@@ -1,16 +1,15 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 
-// mock up
-const energy = 28.571
 
-const Energy = () => {
+const Energy = ({energy}) => {
+    const formattedEnergy = energy.toFixed(2); 
     return (
         <View style={styles.energy_card}>
             <Image source={require("../../../images/battery.png")} />
             <View style={styles.energy_detail}>
                 <Text style={{ fontSize: 16, marginLeft: -25, color: "#FFFFFF" }}>Energy</Text>
-                <Text style={styles.energy_text}>{energy} kWh</Text>
+                <Text style={styles.energy_text}>{formattedEnergy} kWh</Text>
             </View>
         </View>
     )

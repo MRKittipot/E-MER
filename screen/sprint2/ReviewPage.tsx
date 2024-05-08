@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Image, Text, TextInput } from 'react-native'; // Import TextInput
-import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Feather';
-
+import { useRoute } from '@react-navigation/native';
+import {useUserAuth} from '../../context/userContext';
 const ReviewPage = ({navigation}) => {
   const [rating, setRating] = useState(0); // เปลี่ยนค่าเริ่มต้นเป็น 0
   const [comment, setComment] = useState(''); // State เพื่อเก็บ comment
-
+  const route = useRoute()
+  const {userData} = useUserAuth();
   // ฟังก์ชันที่ใช้ในการเปลี่ยนคะแนน
   const handleRating = (value) => {
     if (rating === value) {
@@ -17,7 +18,7 @@ const ReviewPage = ({navigation}) => {
       setRating(value);
     }
   };
-
+  const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
   // ตรวจสอบว่าปุ่ม Sent ควรเป็นสีอะไร
   const sentButtonColor = comment.trim() !== '' ? '#0068C6' : '#CCCCCC';
 
@@ -47,13 +48,13 @@ const ReviewPage = ({navigation}) => {
       <View style={styles.profileContainer}>
         <View style={styles.circle}>
           <Image
-            source={require('../../assets/profile.jpg')}
+            source= {userData.picurl? {uri: userData.picurl}  : require('../../assets/profile.jpg')}
             style={styles.image}
           />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.name}>Nattapon Pongkao</Text>
-          <Text style={styles.orderNumber}>Order number : EM1234</Text>
+          <Text style={styles.name}>{userName}</Text>
+          <Text style={styles.orderNumber}>Order number : {ordernumber}</Text>
         </View>
       </View>
       <View style={styles.ratingContainer}>

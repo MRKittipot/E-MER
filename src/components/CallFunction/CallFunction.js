@@ -47,10 +47,10 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
             console.log("Response", res.data.userName);
             setIsPaymentAccepted(true);
             // Set a timeout to navigate to Status page after 30 seconds
-            console.log("Dataaccept :", type(Dataaccept));
+            console.log("Dataaccept :", Dataaccept);
             setTimeout(() => {
                 setIsPaymentAccepted(false);
-                navigation.navigate('Status', {userName:Dataaccept.userName,uid:Dataaccept.uid,typecharger:Dataaccept.typecharger,ordernumber:Dataaccept.ordernumber,createdAt:Dataaccept.createdAt});
+                navigation.navigate('Status', {userName:Dataaccept.userName,uid:Dataaccept.uid,typecharger:Dataaccept.typecharger,ordernumber:Dataaccept.ordernumber,createdAt:Dataaccept.createdAt,_id:Dataaccept._id});
                 
             }, 1000); // 30 seconds
         } catch (error) {

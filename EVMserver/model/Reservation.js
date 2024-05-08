@@ -25,6 +25,12 @@ let ReservationSchema = mongoose.Schema({
     //     type:String,
     //     required:true
     // },
+    price:{
+        type:String,
+    },
+    energy:{
+        type:String,
+    },
     typecharger:{
         type:String,
         required:true
