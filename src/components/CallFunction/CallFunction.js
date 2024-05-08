@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
+import {useUserAuth} from '../../../context/userContext';
 import { useNavigation } from '@react-navigation/native';
 const { height } = Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -17,6 +18,7 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
     const randomTime = randomTimeNumber(5, 30)
 
     const [userName, setUserName] = useState('');
+    const {userData} = useUserAuth();
     const [selectedOption, setSelectedOption] = useState(null); // State variable to track selected option
 
     useEffect(() => {
@@ -38,7 +40,8 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
         try {
             const res = await axios.post('http://10.0.2.2:5000/api/reservation/savebill', {
                 typecharger: selectedOption.value, // Use the selected option value
-                userName: userName
+                userName:userData.Name,
+                uid:userData._id
             });
             console.log("Response", res.data);
             setIsPaymentAccepted(true);
