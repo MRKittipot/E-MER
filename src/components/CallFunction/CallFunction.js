@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -40,7 +40,8 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
         try {
             const res = await axios.post('http://10.0.2.2:5000/api/reservation/savebill', {
                 typecharger: selectedOption.value, // Use the selected option value
-                userName: userName
+                userName:userData.Name,
+                uid:userData._id
             });
             console.log("Response", res.data);
             setIsPaymentAccepted(true);

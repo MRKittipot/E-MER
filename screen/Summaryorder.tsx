@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet, Image, ScrollView } from 'rea
 import axios from 'axios';
 
 
-const Summaryorder = () => {
+const Summaryorder = ({ navigation }) => {
 
   const [orderNumber, setOrderNumber] = useState("")
   // const [carBand, setCarBand] = useState("BYD Dolphin")
@@ -29,6 +29,10 @@ const Summaryorder = () => {
 
     fetchOrderData(); // Call the function to fetch order data when component mounts
   }, []);
+
+  const handleSubmitOrder = () => {
+    navigation.navigate('ReviewPage')
+  }
 
   return (
     <ScrollView>
@@ -103,6 +107,11 @@ const Summaryorder = () => {
           {/* <Text style={styles.boldFont}>{total} Bath / บาท</Text> */}
         </View>
       </View>
+        <TouchableOpacity
+          style={[styles.sentButton]}
+          onPress={handleSubmitOrder}>
+          <Text style={styles.sentButtonText}>Confirm</Text>
+        </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -165,7 +174,21 @@ const styles = StyleSheet.create({
   boldFont: {
     fontWeight: "bold",
     color: "#000000"
-  }
+  },sentButton: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',
+    paddingVertical: 12,
+    borderRadius: 20,
+    marginTop: 50,
+    backgroundColor: '#0068c6'
+  },
+  sentButtonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 })
 
 export default Summaryorder;
