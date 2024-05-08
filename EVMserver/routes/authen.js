@@ -36,7 +36,7 @@ const DeleteUser = require("../api/User/Deleteaccountapi")
 const updatePassword = require("../api/User/Forgetpasswordapi")
 const SendEmailResetPassword = require("../api/User/SendEmailResetPassword")
 const checkResetToken = require("../api/User/checkResetToken")
-
+const updateUserImg = require("../api/User/updateUserImg")
 
 
 router.post("/Signup",createAccount);
@@ -48,4 +48,6 @@ router.post("/DeleteUser",DeleteUser)
 router.post("/Resetpass",updatePassword)
 router.post("/SendEmailResetPassword",SendEmailResetPassword)
 router.post("/checkResetToken",checkResetToken)
+router.post("/updateUserImg",updateUserImg)
+
 module.exports = router;

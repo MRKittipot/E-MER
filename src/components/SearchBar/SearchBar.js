@@ -11,6 +11,10 @@ const SearchBar = () => {
         placeholder='Search'
         onPress={(data, details = null) => {
           console.log(data, details);
+           // Extract the location coordinates from the data object
+           const { lat, lng } = details.geometry.location;
+           // Call the onLocationSelect callback with the coordinates
+           onLocationSelect({ latitude: lat, longitude: lng });
         }}
         query={{
           key: 'AIzaSyD-IG6lkLkvi1PnO4YeWbUfkyNkB_j8HRo',

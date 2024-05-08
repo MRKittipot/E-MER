@@ -18,6 +18,7 @@ import MPhoneNumber from './screen/sprint2/MPhoneNumber';
 
 import PhoneNumber from './screen/sprint2/PhoneNumber';
 import Summaryorder from './screen/Summaryorder';
+import Status from './screen/Status';
 
 import ActivitiesPage from './screen/sprint2/ActivitiesPage';
 
@@ -43,6 +44,7 @@ const App = () => {
           <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
           <Stack.Screen name="Summaryorder" component={Summaryorder} />
           <Stack.Screen name="Activitypage" component={ActivitiesPage} />
+          <Stack.Screen name="Status" component={Status} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>
