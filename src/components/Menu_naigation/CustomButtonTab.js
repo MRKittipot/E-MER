@@ -1,8 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, StyleSheet,Linking } from 'react-native';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 
-const CustomButtonTab = ({ onPress }) => {
+const CustomButtonTab = ({onPress}) => {
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
       <View style={styles.iconContainer}>

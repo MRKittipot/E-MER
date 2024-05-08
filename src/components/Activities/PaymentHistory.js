@@ -1,11 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import {useUserAuth} from '../../../context/userContext';
+import { useNavigation } from '@react-navigation/native';
+
 const PaymentHistory = () => {
   const [Bill,setBill] = useState([]);
   const [fetch,setfetch] = useState(false);
   const {userData} = useUserAuth();
+
+  const navigation = useNavigation()
+
   const getDataintocard = async () =>{
     try{
       const info = {
@@ -35,6 +40,10 @@ const PaymentHistory = () => {
     console.log(Bill[0]);
   },[Bill])
 
+  const PathtoSummaryOrder = (Bill) => {
+    navigation.navigate("Summaryorder",{userName:Bill.userName,uid:Bill.uid,typecharger:Bill.typecharger,ordernumber:Bill.ordernumber,createdAt:Bill.createdAt})
+  }
+
   return (
     Bill.map((Bill) => {
       const Bill_createdAt = new Date(Bill.createdAt);
@@ -45,7 +54,7 @@ const PaymentHistory = () => {
       ];
       const monthAbbreviation = monthNames[Bill_createdAt.getMonth()];
       return (
-        <View style={styles.elevation} key={Bill._id}>
+        <TouchableOpacity style={styles.elevation} key={Bill._id} onPress={()=>PathtoSummaryOrder(Bill)}>
           <View style={styles.Payment}>
             <View style={styles.DateCardPayment}>
               <Text style={styles.DatePayment}>{Bill_createdAt.getDate()}</Text>
@@ -58,12 +67,11 @@ const PaymentHistory = () => {
               </View>
               <Text style={styles.DetailPayment}>Date: {formattedDate}</Text>
               <View style={styles.ValuePay}>
-                <Text style={styles.DetailPayment}>Battery: {30 + "%"}</Text>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: "#0068C6" }}>Price {500} Bath</Text>
               </View>
             </View>
           </View>
-        </View >
+        </TouchableOpacity >
       )
     })
   )
@@ -75,7 +83,7 @@ export default PaymentHistory
 const styles = StyleSheet.create({
   ValuePay: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: "flex-start"
   },
   NamePay: {
     flexDirection: 'row',
@@ -112,9 +120,11 @@ const styles = StyleSheet.create({
     marginTop: "7%",
 
     height: 100,
-    borderWidth: 1,
-    borderColor: "#A2A1A1",
-    borderRadius: 11,
-    elevation: 4,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius:10,
+    borderWidth:1,
+    borderColor:"#A1A1A2"
   },
 })

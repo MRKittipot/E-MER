@@ -1,34 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
+import { useRoute } from '@react-navigation/native';
+import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu'
 
 
 const Summaryorder = () => {
+  const route = useRoute()
 
-  const [orderNumber, setOrderNumber] = useState("")
-  // const [carBand, setCarBand] = useState("BYD Dolphin")
-  // const [typeCharge, setTypeCharge] = useState("CHAdeMO")
-  // const [location, setLocation] = useState("944 Rama IV Road, Wang Mai Subdistrict, Pathumwa District")
-  // const [amount, setMount] = useState(350)
-  // const [energy, setEnergy] = useState(28.571)
-  // const [vet, setVet] = useState(15)
-  // const [total, setTotal] = useState(130)
-
-  const [orderData, setOrderData] = useState(null); // State to store order data
-
-  useEffect(() => {
-    // Function to fetch order data
-    const fetchOrderData = async () => {
-      try {
-        const response = await axios.get('http://10.0.2.2:5000/api/reservation/getbill'); // Replace 'your-api-url' with your actual API endpoint
-        setOrderData(response.data); // Set the fetched order data to the state
-      } catch (error) {
-        console.error('Error fetching order data:', error);
-      }
-    };
-
-    fetchOrderData(); // Call the function to fetch order data when component mounts
-  }, []);
+  const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
 
   return (
     <ScrollView>
@@ -43,12 +23,12 @@ const Summaryorder = () => {
         <View style={styles.HeadOrder}>
           {/* <Image style={{ width: 50, height: 50 }} source={require('../images/electric.png')} /> */}
           <View style={{ alignItems: "center" }}>
-            <Text style={styles.TextSummaryOrder}>Panachai Likhitpanyarat</Text>
-            {orderData && orderData.map(order => (
-              <View key={order._id}>
-                <Text style={{ fontSize: 20 }}>Order number : {order.ordernumber}</Text>
+            <Text style={styles.TextSummaryOrder}>{userName}</Text>
+        
+              <View>
+                <Text style={{ fontSize: 20 }}>Order number : {ordernumber}</Text>
               </View>
-            ))}
+ 
           </View>
         </View>
 
@@ -59,11 +39,11 @@ const Summaryorder = () => {
             {/* <Text>{carBand}</Text> */}
           </View>
           <View>
-            {orderData && orderData.map(order => (
-              <View key={order._id}>
-                <Text style={styles.boldFont}>Type Charger {order.typecharger}</Text>
+            
+              <View>
+                <Text style={styles.boldFont}>Type Charger {typecharger}</Text>
               </View>
-            ))}
+     
           </View>
         </View>
 
@@ -103,6 +83,7 @@ const Summaryorder = () => {
           {/* <Text style={styles.boldFont}>{total} Bath / บาท</Text> */}
         </View>
       </View>
+      <Tabs_menu/>
     </ScrollView>
   );
 };
