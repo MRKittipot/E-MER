@@ -3,6 +3,7 @@ import { TouchableOpacity, Animated, StyleSheet, Dimensions, View, Text } from '
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
+import {useUserAuth} from '../../../context/userContext';
 import { useNavigation } from '@react-navigation/native';
 const { height } = Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -17,6 +18,7 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
     const randomTime = randomTimeNumber(5, 30)
 
     const [userName, setUserName] = useState('');
+    const {userData} = useUserAuth();
     const [selectedOption, setSelectedOption] = useState(null); // State variable to track selected option
 
     useEffect(() => {
