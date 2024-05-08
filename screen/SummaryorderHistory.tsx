@@ -5,15 +5,17 @@ import { useRoute } from '@react-navigation/native';
 import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu'
 
 
-const Summaryorder = ({navigation}) => {
+const SummaryorderHistory = ({navigation}) => {
   const route = useRoute()
 
   const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
 
-  const handleSubmitOrder = () => {
-    navigation.navigate('ReviewPage')
+  const Goback = () => {
+    navigation.goBack()
   }
+
   
+
   return (
     <ScrollView>
       {/* 1 */}
@@ -89,8 +91,8 @@ const Summaryorder = ({navigation}) => {
       </View>
         <TouchableOpacity
           style={[styles.sentButton]}
-          onPress={handleSubmitOrder}>
-          <Text style={styles.sentButtonText}>Confirm</Text>
+          onPress={Goback}>
+          <Text style={styles.sentButtonText}>Go Back</Text>
         </TouchableOpacity>
     </ScrollView>
   );
@@ -129,7 +131,8 @@ const styles = StyleSheet.create({
   TextSummaryOrder: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#000000"
+    color: "#000000",
+    alignSelf:"center"
   },
   CarDetail: {
     flexDirection: "row",
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '70%',
+    width: '88%',
     paddingVertical: 12,
     borderRadius: 20,
     marginTop: 50,
@@ -171,4 +174,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Summaryorder;
+export default SummaryorderHistory;

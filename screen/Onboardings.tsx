@@ -49,13 +49,34 @@ const Onboardings = ({navigation}) => {
     navigation.navigate('Signin');
   };
 
-  const {user} = useUserAuth();
+  const {user,Signin,saveUserData,getUserData} = useUserAuth();
 
-  useEffect(() => {
-    if (user) {
-      navigation.replace('Home'); //Skip to page that navigate 
+  const getData = async() =>{
+    try{
+      const value = await AsyncStorage.getItem( "TokenEmer" );
+      console.log("value", value)
+      if (value !== null) {
+        const data = {
+          uid:value
+        }
+        const a = await getUserData(data);
+        if(a != null) {
+        navigation.navigate("Home")
+        }
+      } else {
+        // Value could not be retrieved.
+        console.log("Please Login First");
+        navigation.navigate('Signin')
+      }
+    } catch(error) {
+      // Error retrieving data
+      console.log("Error: ", error);
     }
-  }, [user, navigation]);
+  };
+
+  useEffect(()=>{
+    getData();
+  },[])
 
   return (
     <View style={styles.container}>

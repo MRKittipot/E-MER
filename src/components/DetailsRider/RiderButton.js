@@ -7,7 +7,7 @@ export default class RiderButton extends Component {
         <View style={styles.riderButton}>
         <View style={styles.leftContent}>
           <Icon2 name="battery-charging" size={30} color="#0FA958" />
-          <Text style={styles.statusText}>Straff arrived</Text>
+          <Text style={styles.statusText}>Staff arrived</Text>
         </View>
         <View style={styles.rightContent}>
           <Text style={styles.statusText}>12 min</Text>

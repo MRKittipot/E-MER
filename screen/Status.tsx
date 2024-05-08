@@ -3,13 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Timestamp from "../src/components/Status/Timestamp";
 import Energy from "../src/components/Status/Energy";
 import Cost_to_pay from "../src/components/Status/Cost_to_pay";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const Status = () => {
+const Status = ({navigation}) => {
+
+    const route = useRoute()
+
     const [usageTime, setUsageTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [canPay, setCanPay] = useState(false);
-    const navigation = useNavigation();
+    const [dataaccept,usedataaccept] = useState("");
+    const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
 
     useEffect(() => {
         let interval;
@@ -70,7 +74,7 @@ const Status = () => {
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={[styles.rectangularButton, canPay ? styles.payButton : styles.disabledButton]} 
-                    onPress={() => navigation.navigate('Summaryorder')}
+                    onPress={() => navigation.navigate('Summaryorder',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt})}
                     disabled={!canPay}
                 >
                     <Text style={styles.buttonText}>Make Payment</Text>

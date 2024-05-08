@@ -29,9 +29,10 @@ const styles = StyleSheet.create({
         margin: "7%",
       },
       Head: {
-        fontSize: 30,
+        fontSize: 24,
         fontWeight: 'bold',
-        marginVertical: 20
+        marginVertical: 20,
+        color: '#000000'
       },
     
 });

@@ -44,7 +44,7 @@ const Profile = ({navigation}) => {
   const formattedDate = a.toISOString().substring(0, 10);
   return (
     <View style={style.page}>
-      <Text style={style.header}>My Account</Text>
+      <Text style={style.header}>My Profile</Text>
       <View style={style.profilecard}>
         <Profilepic/>
         <Text style={style.profilename}>{userData.Name}</Text>

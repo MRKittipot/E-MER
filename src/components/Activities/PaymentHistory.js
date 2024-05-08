@@ -41,7 +41,7 @@ const PaymentHistory = () => {
   },[Bill])
 
   const PathtoSummaryOrder = (Bill) => {
-    navigation.navigate("Summaryorder",{userName:Bill.userName,uid:Bill.uid,typecharger:Bill.typecharger,ordernumber:Bill.ordernumber,createdAt:Bill.createdAt})
+    navigation.navigate("Summaryorderhistory",{userName:Bill.userName,uid:Bill.uid,typecharger:Bill.typecharger,ordernumber:Bill.ordernumber,createdAt:Bill.createdAt})
   }
 
   return (

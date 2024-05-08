@@ -43,18 +43,44 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
                 userName:userData.Name,
                 uid:userData._id
             });
-            console.log("Response", res.data);
+            const Dataaccept = res.data
+            console.log("Response", res.data.userName);
             setIsPaymentAccepted(true);
             // Set a timeout to navigate to Status page after 30 seconds
+            console.log("Dataaccept :", type(Dataaccept));
             setTimeout(() => {
                 setIsPaymentAccepted(false);
-                navigation.navigate('Status', { selectedOption });
-            }, 30000); // 30 seconds
+                navigation.navigate('Status', {userName:Dataaccept.userName,uid:Dataaccept.uid,typecharger:Dataaccept.typecharger,ordernumber:Dataaccept.ordernumber,createdAt:Dataaccept.createdAt});
+                
+            }, 1000); // 30 seconds
         } catch (error) {
             console.log("Error", error);
         }
     }
-
+    const getDataintocard = async () =>{
+        try{
+          const info = {
+            uid: userData._id,
+          }
+          const IDcard = await axios.post("http://10.0.2.2:5000/api/reservation/getbill",info);
+          if (IDcard.data.length > 0){
+            setDataaccept(IDcard.data)
+          }
+        }catch(error){
+          console.log("Error from PaymentHistoryPage :",error);
+        }
+      }
+    
+      useEffect(() => {
+        if (!fetch) { 
+          const fetchData = async () => {
+            await getDataintocard();
+            setfetch(true);
+          };
+          fetchData();
+        }
+      }, [fetch]);
+    
     return (
         <Animated.View style={[styles.detailContainer, { height: 370, transform: [{ translateY: slideUpAnimation.interpolate({ inputRange: [0, 1], outputRange: [slideUpHeight, 0] }) }] }]}>
             <View>

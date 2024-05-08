@@ -7,12 +7,9 @@ import {
   StyleSheet,
 } from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather';
 
-const PhoneNumber = () => {
-
-  const navigation = useNavigation();
-
+const PhoneNumber = ({navigation}) => {
   const handleCall = () => {
     const phoneNumber = 'tel:${191}';
     Linking.openURL(phoneNumber);
@@ -34,17 +31,25 @@ const PhoneNumber = () => {
     Linking.openURL(phoneNumber);
   };
 
-  
-
   return (
     <View style={styles.container}>
-      <Text style={styles.emergencyText}>Emergency Number</Text>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.page}>
+        <View style={{flexDirection:"row", alignItems:"flex-start"}}>
+        <Icon
+          name="chevron-left"
+          size={30}
+          color="#000000"
+          style={{marginLeft: 20}}
+          />
+        <Text style={styles.emergencyText}>Emergency Number</Text>
+          </View>
+      </TouchableOpacity>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
           alignItems: 'flex-start',
           margin: 10,
-          paddingBottom: 50
+          paddingBottom: 50,
         }}>
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <TouchableOpacity onPress={handleCall} style={styles.BTIn1}>
@@ -87,7 +92,9 @@ const PhoneNumber = () => {
               <Text style={styles.Fornt13L1P1}>Call Center EVM</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.BTIn1} onPress={() => navigation.navigate('MPhoneNumber')}>
+          <TouchableOpacity
+            style={styles.BTIn1}
+            onPress={() => navigation.navigate('MPhoneNumber')}>
             <View>
               {/* <Text style={styles.Fornt13L3P11}>หน่วยแพทย์ฉุกเฉิน</Text>
               <Text style={styles.Fornt13L3P22}>(กทม.)</Text> */}
@@ -101,6 +108,10 @@ const PhoneNumber = () => {
 };
 
 const styles = StyleSheet.create({
+  page: {
+    marginTop: 50,
+    margin: -10
+  },
   container: {
     flex: 1,
   },
@@ -108,9 +119,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 24,
     fontWeight: '900',
-    marginLeft: 25,
-    color: '#333333',
-    marginTop: 50,
+    marginLeft: 20,
+    color: '#333333'
   },
   BTIn1: {
     width: 175,
@@ -172,14 +182,14 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginTop:17,
+    marginTop: 17,
   },
   Fornt13L3P22: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
     marginLeft: 55,
-  }
+  },
 });
 
 export default PhoneNumber;

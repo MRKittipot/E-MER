@@ -22,6 +22,7 @@ import Status from './screen/Status';
 
 import ActivitiesPage from './screen/sprint2/ActivitiesPage';
 import ReviewPage from './screen/sprint2/ReviewPage';
+import SummaryorderHistory from './screen/SummaryorderHistory';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Stack.Screen name="Activitypage" component={ActivitiesPage} />
           <Stack.Screen name="Status" component={Status} />
           <Stack.Screen name="ReviewPage" component={ReviewPage} />
+          <Stack.Screen name="Summaryorderhistory" component={SummaryorderHistory} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>

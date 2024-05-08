@@ -4,8 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Feather';
 
-const ReviewPage = () => {
-  const navigation = useNavigation();
+const ReviewPage = ({navigation}) => {
   const [rating, setRating] = useState(0); // เปลี่ยนค่าเริ่มต้นเป็น 0
   const [comment, setComment] = useState(''); // State เพื่อเก็บ comment
 
