@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions, Linking, Image } from 'react-native';
 import Icon, { Button } from 'react-native-vector-icons/Ionicons';
-
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 const { height, width } = Dimensions.get('window');
 
 const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHeight }) => {
@@ -56,10 +56,13 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
   {selectedMarker.charger.map((charger, index) => (
     <View key={index} style={styles.chargerDetail}>
       {charger.includes("CSS2") && (
-        <Icon name="cafe-outline" size={30} color="#000" style={{ marginRight: 11 }} />
+        <Icon2 name="ev-plug-ccs2" size={30} color="#000" style={{ marginRight: 11 }} />
       )}
-      {charger.includes("DCS") && (
-        <Icon name="fast-food-outline" size={30} color="#000" style={{ marginRight: 11 }} />
+      {charger.includes("TYPE2") && (
+        <Icon2 name="ev-plug-type2" size={30} color="#000" style={{ marginRight: 11 }} />
+      )}
+      {charger.includes("CHAdeMO") && (
+        <Icon2 name="ev-plug-chademo" size={30} color="#000" style={{ marginRight: 11 }} />
       )}
       <Text style={{ fontWeight: 'bold' }}>{charger}</Text>
     </View>
@@ -75,8 +78,8 @@ const MarkerDetail = ({ selectedMarker, slideUpAnimation, handleClose, slideUpHe
             <Text style={{ fontWeight: 'bold' }}>Facilities Available: </Text>
           </View>
           <View style={styles.Facicon}>
-            {selectedMarker.facilities.includes("Restroom") && <Icon name="cafe-outline" size={30} color="#000" style={styles.iconFac} />}
-            {selectedMarker.facilities.includes("Cafe") && <Icon name="fast-food-outline" size={30} color="#000" style={styles.iconFac} />}
+            {selectedMarker.facilities.includes("Restroom") && <Icon2 name="toilet" size={30} color="#000" style={styles.iconFac} />}
+            {selectedMarker.facilities.includes("Cafeteria") && <Icon name="fast-food-outline" size={30} color="#000" style={styles.iconFac} />}
           </View>
           <Text style={{ textAlign: "center" }}>{selectedMarker.facilities.join(' , ')}</Text>
         </View>
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 1,
     borderColor: '#D9D9D9',
-    width: 100,
+    width: 110,
     height: 40, // ปรับความสูงเพื่อให้ข้อความอยู่ตรงกลางของกล่อง
     borderRadius: 5,
     textAlign: 'center', // จัดให้ข้อความอยู่กลางตามแนวนอน
