@@ -65,7 +65,7 @@ const Status = ({navigation}) => {
         const info = {
             orderId: _id,
             price:price,
-            energy:energy*1.07,
+            energy:energy,
         }
         const respone = await axios.post('http://10.0.2.2:5000/api/reservation/updateBill',info);
         if(respone.data) {

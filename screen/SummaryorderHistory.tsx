@@ -8,13 +8,14 @@ import Tabs_menu from '../src/components/Menu_naigation/Tabs_menu'
 const SummaryorderHistory = ({navigation}) => {
   const route = useRoute()
 
-  const { userName,uid,typecharger,ordernumber,createdAt }:any = route.params
+  const { userName,uid,typecharger,ordernumber,createdAt,price,energy }:any = route.params
 
   const Goback = () => {
     navigation.goBack()
   }
 
-  
+  const formattedPrice = parseFloat(price).toFixed(2);
+  const formattedEnergy = parseFloat(energy).toFixed(2);
 
   return (
     <ScrollView>
@@ -54,24 +55,18 @@ const SummaryorderHistory = ({navigation}) => {
         </View>
 
         {/* 2.3 */}
-        <View style={{ marginTop: "7%" }}>
-          <Text style={styles.boldFont}>Location</Text>
-          {/* <Text>{location}</Text> */}
-        </View>
       </View>
 
       {/* 3 */}
       <View style={styles.SummaryCard}>
         <View style={styles.AmountPayHeadDetail}>
-          <Text style={styles.boldFont}>Amount to pay</Text>
           {/* <Image style={{ width: 20, height: 20, marginLeft: 5 }} source={require('../images/money.png')} /> */}
         </View>
         {/* 3.1 */}
         <View style={styles.AmountPayHead}>
           <View>
-            <Text style={styles.boldFont}>Amount</Text>
-            <Text style={styles.boldFont}>Energy</Text>
-            <Text style={styles.boldFont}>Vat</Text>
+            <Text style={styles.boldFont}>Amount : {formattedPrice} Bath</Text>
+            <Text style={styles.boldFont}>Energy : {formattedEnergy}</Text>
           </View>
           <View>
             {/* <Text style={styles.boldFont}>{amount} Bath / บาท</Text>
@@ -83,7 +78,7 @@ const SummaryorderHistory = ({navigation}) => {
         {/* 3.2 */}
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
-            <Text style={styles.boldFont}>Total  </Text>
+            <Text style={styles.boldFont}>Total : {price} Bath</Text>
             {/* <Text style={{ color: "#000000" }}>{total + 100} - {total + 150}</Text> */}
           </View>
           {/* <Text style={styles.boldFont}>{total} Bath / บาท</Text> */}

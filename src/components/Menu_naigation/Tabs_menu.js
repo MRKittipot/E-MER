@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Animated, Dimensions, TurboModuleRegistry } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/Octicons';
@@ -28,8 +28,14 @@ const Tabs_menu = ({ navigation }) => {
   const [isPaymentAccepted, setIsPaymentAccepted] = useState(false);
 
   // Function to handle payment acceptance
-  const handleAcceptPayment = () => {
-    setIsPaymentAccepted(true);
+  const handleAcceptPayment = (e) => {
+    setIsPaymentAccepted(e);
+    Animated.timing(slideUpAnimation, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+    setShowCallButton(true);
   };
 
 
@@ -168,6 +174,7 @@ const Tabs_menu = ({ navigation }) => {
             useNativeDriver: true,
           }).start(() => setShowCallButton(true)); // Show call button when sliding down is complete
         }}
+        type={"2"}
         slideUpHeight={height * 0.75} // Adjust the slide up height as needed
         handleAcceptPayment={handleAcceptPayment} // Pass setIsPaymentAccepted function if needed
       />

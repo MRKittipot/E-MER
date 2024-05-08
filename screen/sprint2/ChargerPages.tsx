@@ -186,6 +186,7 @@ const ChargerPages = ({ navigation }) => {
       selectedMarker={selectedMarker}
       slideUpAnimation={slideUpAnimation}
       handleClose={handleClose}
+      type={"1"}
       slideUpHeight={SLIDE_UP_HEIGHT}
       setIsPaymentAccepted={setIsPaymentAccepted}
     />

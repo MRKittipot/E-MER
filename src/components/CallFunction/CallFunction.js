@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 const { height } = Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPaymentAccepted }) => {
+const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, handleAcceptPayment, type,setIsPaymentAccepted }) => {
     const navigation = useNavigation();
 
     const randomTimeNumber = (min, max) => {
@@ -20,7 +20,6 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
     const [userName, setUserName] = useState('');
     const {userData} = useUserAuth();
     const [selectedOption, setSelectedOption] = useState(null); // State variable to track selected option
-
     useEffect(() => {
         const getUserInfo = async () => {
           try {
@@ -45,14 +44,23 @@ const CallFunction = ({ slideUpAnimation, handleClose, slideUpHeight, setIsPayme
             });
             const Dataaccept = res.data
             console.log("Response", res.data.Name);
-            setIsPaymentAccepted(true);
+            if(type == "2") {
+            handleAcceptPayment(true);
+            } else {
+                setIsPaymentAccepted(true);
+            }
+            slideUpHeight=0
             // Set a timeout to navigate to Status page after 30 seconds
             console.log("Dataaccept :", Dataaccept);
             setTimeout(() => {
-                setIsPaymentAccepted(false);
+                if(type == "2") {
+                handleAcceptPayment(false);
+                } else {
+                    setIsPaymentAccepted(false);
+                }
                 navigation.navigate('Status', {userName:Dataaccept.userName,uid:Dataaccept.uid,typecharger:Dataaccept.typecharger,ordernumber:Dataaccept.ordernumber,createdAt:Dataaccept.createdAt,_id:Dataaccept._id});
                 
-            }, 10000); // 30 seconds
+            }, type == "2" ? 100 : 10000); // 30 seconds
         } catch (error) {
             console.log("Error", error);
         }
