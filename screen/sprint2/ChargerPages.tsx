@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions, Animated, PermissionsAndroid, Platform, TouchableOpacity, Text } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -181,14 +181,25 @@ const ChargerPages = ({ navigation }) => {
         )}
       </MapView>
       {selectedMarker && (
-        <CallFunction
-          selectedMarker={selectedMarker}
-          slideUpAnimation={slideUpAnimation}
-          handleClose={handleClose}
-          slideUpHeight={SLIDE_UP_HEIGHT}
-          setIsPaymentAccepted={setIsPaymentAccepted}
-        />
-      )}
+  selectedMarker.coordinate.latitude === 13.7263841 && selectedMarker.coordinate.longitude === 100.5067284 ? (
+    <CallFunction
+      selectedMarker={selectedMarker}
+      slideUpAnimation={slideUpAnimation}
+      handleClose={handleClose}
+      slideUpHeight={SLIDE_UP_HEIGHT}
+      setIsPaymentAccepted={setIsPaymentAccepted}
+    />
+  ) : (
+    <MarkerDetail
+      selectedMarker={selectedMarker}
+      slideUpAnimation={slideUpAnimation}
+      handleClose={handleClose}
+      slideUpHeight={SLIDE_UP_HEIGHT}
+      setIsPaymentAccepted={setIsPaymentAccepted}
+    />
+  )
+)}
+
       {showCallButton && (   
         <TouchableOpacity style={styles.myLocationButton} onPress={goToMyLocation}>
           <Icon color="#0068c6" name="locate" size={30} />
