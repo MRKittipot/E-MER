@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     marginTop: 50,
-    marginLeft: 20,
   },
   profileContainer: {
     flexDirection: 'row',
