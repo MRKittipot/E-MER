@@ -2,24 +2,23 @@ import { View, Text, FlatList, StyleSheet, Image, Dimensions, TouchableOpacity }
 import React, { useState, useEffect } from 'react';
 import PlayList from './PlayList';
 import NewsEVM from './NewsEVM';
-
+import axios from 'axios'
 const Slider = () => {
+
+    const [data, setData] = useState([])
     const [sliderList, setSliderList] = useState([]);
 
+
+    const fetchBlog = async() => {
+        const response = await axios.get('http://10.0.2.2:4000/posts')
+        const filteredData = data.filter((item) => item.type === "main");
+        setSliderList(filteredData);
+        setData(response.data.data);
+    }
     useEffect(() => {
-        setSliderList([
-            {
-                id : 1,
-                name : 'MGC-ASIA จับมือ ปตท.สยายปีก รุกธุรกิจรถยนต์ไฟฟ้าชูไทยศูนย์กลางการผลิต',
-                imageUrl : 'https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5LTeZ6oAJmQ9fjoZaVrjJOKhgyLnZQc5jAXqomepLvDEXlT65LQ.jpg'
-            },
-            {
-                id : 2,
-                name : 'IONIQ 5 N ผ่านเข้ารอบสามอันดับสุดท้ายรถยนต์ยอดเยี่ยม 2024 World Car Awards',
-                imageUrl : 'https://static.thairath.co.th/media/B6FtNKtgSqRqbnNsbKGsoB0uoilbeE0wqIbQ5TsvTckOf769VmCPV20vIKjAoufVEr0Ju.webp'
-            }
-        ])
-    }, [])
+
+        fetchBlog();
+    }, [data])
 
     return (
         <View>
@@ -33,13 +32,13 @@ const Slider = () => {
                     //     }
                     // }}>
                     <View>
-                        <Image source={{ uri: item.imageUrl }} style={style.SliderImage} />
-                        <Text style = {style.nameText}>{item.name}</Text>
+                        <Image source={{ uri: item.urlpic }} style={style.SliderImage} />
+                        <Text style = {style.nameText}>{item.title}</Text>
                     </View>
                 )}
             />
-            <NewsEVM/>
-            <PlayList/>
+            <NewsEVM data={data}/>
+            <PlayList data={data}/>
         </View>
     )
 }

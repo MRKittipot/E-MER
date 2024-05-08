@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 import Slider from '../../pages/sprint2/Slider'
-
 const BlogPage = () => {
   return (
     <View style={styles.container}>
