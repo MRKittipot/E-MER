@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 
 //mock up
-const timestamp = "20 Mar 2023  10:00 - 10:30";
+const timestamp = "15 minute - 2 hour";
 
 const Timestamp = () => {
     return (

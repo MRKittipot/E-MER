@@ -41,6 +41,7 @@ const Summaryorder = ({navigation}) => {
         <View style={styles.CarDetail}>
           <View style={{ alignItems: "center" }}>
             <Text style={styles.boldFont}>Car brand</Text>
+            <Text style={styles.boldFont}>Tesla</Text>
             {/* <Text>{carBand}</Text> */}
           </View>
           <View>

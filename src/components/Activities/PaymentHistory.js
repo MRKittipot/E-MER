@@ -67,7 +67,7 @@ const PaymentHistory = () => {
               </View>
               <Text style={styles.DetailPayment}>Date: {formattedDate}</Text>
               <View style={styles.ValuePay}>
-                <Text style={{ fontSize: 16, fontWeight: 'bold', color: "#0068C6" }}>Price {500} Bath</Text>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: "#0068C6" }}>Price {Bill.price} Bath</Text>
               </View>
             </View>
           </View>

@@ -42,7 +42,7 @@ const SummaryorderHistory = ({navigation}) => {
         {/* 2.2 */}
         <View style={styles.CarDetail}>
           <View style={{ alignItems: "center" }}>
-            <Text style={styles.boldFont}>Car brand</Text>
+            <Text style={styles.boldFont}>Car brand : Tesla</Text>
             {/* <Text>{carBand}</Text> */}
           </View>
           <View>
