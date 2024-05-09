@@ -15,6 +15,7 @@ import Forgetpassword from './screen/ForgetPassword';
 import Profile from './screen/sprint2/Profile';
 //import ProtectRoute from './auth/protectRoute.jsx';
 import MPhoneNumber from './screen/sprint2/MPhoneNumber';
+import AddVehicle from './screen/AddVehicle';
 
 import PhoneNumber from './screen/sprint2/PhoneNumber';
 import Summaryorder from './screen/Summaryorder';
@@ -50,6 +51,7 @@ const App = () => {
           <Stack.Screen name="ReviewPage" component={ReviewPage} />
           <Stack.Screen name="Summaryorderhistory" component={SummaryorderHistory} />
           <Stack.Screen name="Qrpayment" component={Qrpayment} />
+          <Stack.Screen name="AddVehicle" component={AddVehicle} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>

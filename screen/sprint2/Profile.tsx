@@ -32,6 +32,10 @@ const Profile = ({navigation}) => {
       navigation.navigate('Signin');
     }
   };
+
+  const handleVehile = () => {
+    navigation.navigate('AddVehicle');
+  }
   /*
   useEffect(() => {
     console.log(JSON.stringify(user).length);
@@ -88,7 +92,7 @@ const Profile = ({navigation}) => {
         <View style={style.detailcard}>
           <IconAnt name="car" size={30} color="#65676b" />
           <Text style={{color: 'black'}}>My Vehicle</Text>
-          <Icon name="chevron-right" size={30} color="#65676b" />
+          <Icon name="chevron-right" size={30} color="#65676b" onPress={handleVehile}/>
         </View>
         <View style={style.detailcard}>
           <Icon name="credit-card" size={30} color="#65676b" />
