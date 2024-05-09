@@ -112,7 +112,7 @@ const Tabs_menu = ({navigation}) => {
         // component={Payment}
         
         name="Activity"
-        component={Review}
+        component={AddVehicle}
         options={{
           tabBarLabelStyle: {
             fontWeight: 'bold',
