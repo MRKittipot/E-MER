@@ -11,7 +11,7 @@ const Summaryorder = ({navigation}) => {
   const { userName,uid,typecharger,ordernumber,createdAt,price,energy }:any = route.params
 
   const handleSubmitOrder = () => {
-    navigation.navigate('ReviewPage',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt})
+    navigation.navigate('Qrpayment',{userName:userName,uid:uid,typecharger:typecharger,ordernumber:ordernumber,createdAt:createdAt,price:price})
   }
   const formattedPrice = parseFloat(price).toFixed(2);
   const formattedEnergy = parseFloat(energy).toFixed(2);

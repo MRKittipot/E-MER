@@ -23,6 +23,7 @@ import Status from './screen/Status';
 import ActivitiesPage from './screen/sprint2/ActivitiesPage';
 import ReviewPage from './screen/sprint2/ReviewPage';
 import SummaryorderHistory from './screen/SummaryorderHistory';
+import Qrpayment from './screen/Qrpayment';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
           <Stack.Screen name="Status" component={Status} />
           <Stack.Screen name="ReviewPage" component={ReviewPage} />
           <Stack.Screen name="Summaryorderhistory" component={SummaryorderHistory} />
+          <Stack.Screen name="Qrpayment" component={Qrpayment} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserAuthContextProvider>
